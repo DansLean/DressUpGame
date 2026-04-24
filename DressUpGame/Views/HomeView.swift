@@ -16,11 +16,29 @@ struct HomeView: View {
                 .ignoresSafeArea()
             VStack {
                 HStack {
-                    Button("", systemImage: "square.and.pencil"){}
+                    Button {
+                      // Button actions here.
+                    } label: {
+                      Image(systemName: "trash.fill")
+                    }
+                    .buttonBorderShape(.circle)
+                    .buttonStyle(.glass)
                     Image("Doll")
                     VStack {
-                        Button("", systemImage: "square.and.pencil"){}
-                        Button("", systemImage: "square.and.pencil"){}
+                        Button {
+                          // Button actions here.
+                        } label: {
+                          Image(systemName: "rectangle.portrait.badge.plus")
+                        }
+                        .buttonBorderShape(.circle)
+                        .buttonStyle(.glass)
+                        Button {
+                          // Button actions here.
+                        } label: {
+                          Image(systemName: "hanger")
+                        }
+                        .buttonBorderShape(.circle)
+                        .buttonStyle(.glass)
                     }
                 }
             }
