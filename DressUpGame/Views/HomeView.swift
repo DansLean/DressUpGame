@@ -14,8 +14,15 @@ struct HomeView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .ignoresSafeArea()
-            HStack {
-                Text("Hello, World!")
+            VStack {
+                HStack {
+                    Button("", systemImage: "square.and.pencil"){}
+                    Image("Doll")
+                    VStack {
+                        Button("", systemImage: "square.and.pencil"){}
+                        Button("", systemImage: "square.and.pencil"){}
+                    }
+                }
             }
         }
     }
