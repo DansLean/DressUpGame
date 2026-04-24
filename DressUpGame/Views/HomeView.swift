@@ -14,35 +14,57 @@ struct HomeView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .ignoresSafeArea()
-            VStack {
-                HStack {
-                    Button {
-                      // Button actions here.
-                    } label: {
-                      Image(systemName: "trash.fill")
-                    }
-                    .buttonBorderShape(.circle)
-                    .buttonStyle(.glass)
-                    Image("Doll")
-                    VStack {
-                        Button {
-                          // Button actions here.
-                        } label: {
-                          Image(systemName: "rectangle.portrait.badge.plus")
+            
+                VStack(alignment: .center, spacing: 30)  {
+                    HStack (spacing: 30) {
+                        VStack{
+                            Spacer()
+                            Button {
+                            } label: {
+                              Image("trash_button")
+                            }
                         }
-                        .buttonBorderShape(.circle)
-                        .buttonStyle(.glass)
-                        Button {
-                          // Button actions here.
-                        } label: {
-                          Image(systemName: "hanger")
+                        
+                        VStack {
+                            Image("Doll")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 200, height: 400)
                         }
-                        .buttonBorderShape(.circle)
-                        .buttonStyle(.glass)
+                        VStack {
+                            Spacer()
+                            Button {
+                            } label: {
+                              Image("post_button")
+                            }
+                            .buttonBorderShape(.circle)
+                                                        Button {
+                              // Button actions here.
+                            } label: {
+                              Image("hanger_button")
+                            }
+                            .buttonBorderShape(.circle)
+                            
+                        }
+            
                     }
+                    ScrollView(.horizontal) {
+                        HStack(spacing: 1) {
+                            ForEach(1..<6) {
+                                Text("Look \($0)")
+                                    .foregroundStyle(.white)
+                                    .font(.largeTitle)
+                                    .frame(width: 200, height: 200)
+                                    .background(.green)
+                            }
+                        }
+                    }
+                    .defaultScrollAnchor(.trailing)
+                    
                 }
+                
             }
-        }
+        
     }
 }
 
