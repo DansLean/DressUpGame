@@ -195,7 +195,6 @@ struct CreateAvatarView: View {
                 Image("HomeBackground")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .ignoresSafeArea()
             )
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
