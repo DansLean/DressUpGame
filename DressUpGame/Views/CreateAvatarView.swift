@@ -41,7 +41,7 @@ struct CreateAvatarView: View {
                             // Button actions here.
                         } label: {
                             ZStack {
-                                Image("ButtonSelected")
+                                Image("buttonSelected")
                                 Image("AvatarHair")
                             }
                         }
@@ -143,7 +143,7 @@ struct CreateAvatarView: View {
                         } label: {
                             ZStack {
                                 //Image("AssetSelected")
-                                Image("Body")
+                                Image("body")
                             }
                         }
                         .frame(width: 130, height: 160)
@@ -152,18 +152,8 @@ struct CreateAvatarView: View {
                             // Button actions here.
                         } label: {
                             ZStack {
-                                Image("AssetSelected")
-                                Image("Body")
-                            }
-                        }
-                        .frame(width: 130, height: 160)
-                        
-                        Button {
-                            // Button actions here.
-                        } label: {
-                            ZStack {
-                                //Image("AssetSelected")
-                                Image("Body")
+                                Image("assetSelected")
+                                Image("body")
                             }
                         }
                         .frame(width: 130, height: 160)
@@ -173,7 +163,17 @@ struct CreateAvatarView: View {
                         } label: {
                             ZStack {
                                 //Image("AssetSelected")
-                                Image("Body")
+                                Image("body")
+                            }
+                        }
+                        .frame(width: 130, height: 160)
+                        
+                        Button {
+                            // Button actions here.
+                        } label: {
+                            ZStack {
+                                //Image("AssetSelected")
+                                Image("body")
                             }
                         }
                         .frame(width: 130, height: 160)
@@ -201,16 +201,20 @@ struct CreateAvatarView: View {
                     Button {
                         // Button actions here.
                     } label: {
-                        Image(systemName: "chevron.left")
+                        Image("chevron_left_button")
                     }
+                    
                 }
+                .sharedBackgroundVisibility(.hidden)
+                
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         // Button actions here.
                     } label: {
-                        Image(systemName: "chevron.right")
+                        Image("chevron_right_button")
                     }
                 }
+                .sharedBackgroundVisibility(.hidden)
             }
             .ignoresSafeArea()
         }
