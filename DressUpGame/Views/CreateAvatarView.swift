@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CreateAvatarView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
         NavigationStack {
             VStack (spacing: 0) {
@@ -199,7 +201,7 @@ struct CreateAvatarView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
-                        // Button actions here.
+                        self.presentationMode.wrappedValue.dismiss()
                     } label: {
                         Image("chevron_left_button")
                     }
@@ -217,6 +219,7 @@ struct CreateAvatarView: View {
                 .sharedBackgroundVisibility(.hidden)
             }
             .ignoresSafeArea()
+            .navigationBarBackButtonHidden(true)
         }
         
     }
