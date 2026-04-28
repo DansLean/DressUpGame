@@ -20,6 +20,7 @@ struct CreateAvatarView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 200, height: 450)
+                    .position(x: 200, y: 330)
                 
                 Spacer()
                 
@@ -100,35 +101,35 @@ struct CreateAvatarView: View {
                 ScrollView (.horizontal, showsIndicators: false) {
                     HStack (spacing: 0) {
                         Circle()
-                            .fill(Color.gray)
+                            .fill(Color.grayColorNew)
                             .frame(width: 30, height: 30)
                             .padding(10)
                         Circle()
-                            .fill(Color.beige)
+                            .fill(Color.beigeColorNew)
                             .frame(width: 30, height: 30)
                             .padding(10)
                         Circle()
-                            .fill(Color.orange)
+                            .fill(Color.orangeColorNew)
                             .frame(width: 30, height: 30)
                             .padding(10)
                         Circle()
-                            .fill(Color.darkRed)
+                            .fill(Color.redColorNew)
                             .frame(width: 30, height: 30)
                             .padding(10)
                         Circle()
-                            .fill(Color.brown)
+                            .fill(Color.brownColorNew)
                             .frame(width: 30, height: 30)
                             .padding(10)
                         Circle()
-                            .fill(Color.blue)
+                            .fill(Color.blueColorNew)
                             .frame(width: 30, height: 30)
                             .padding(10)
                         Circle()
-                            .fill(Color.pink)
+                            .fill(Color.pinkColorNew)
                             .frame(width: 30, height: 30)
                             .padding(10)
                         Circle()
-                            .fill(Color.purple)
+                            .fill(Color.purpleColorNew)
                             .frame(width: 30, height: 30)
                             .padding(10)
                     }
@@ -194,7 +195,7 @@ struct CreateAvatarView: View {
                 .background(Color.white)
             }
             .background(
-                Image("HomeBackground")
+                Image("backgroundFill")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
             )
@@ -203,18 +204,26 @@ struct CreateAvatarView: View {
                     Button {
                         self.presentationMode.wrappedValue.dismiss()
                     } label: {
-                        Image("chevron_left_button")
+                        
+                            Image("chevron_left_button")
+                        
                     }
-                    
+                    .shadow(radius: 2, y: 2)
                 }
                 .sharedBackgroundVisibility(.hidden)
                 
+                
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        // Button actions here.
-                    } label: {
-                        Image("chevron_right_button")
-                    }
+                    
+                        Button {
+                            
+                        } label: {
+                            NavigationLink(destination: CreatePostView()) {
+                                Image("chevron_right_button")
+                            }
+                        }
+                        .shadow(radius: 2, y: 2)
+                    
                 }
                 .sharedBackgroundVisibility(.hidden)
             }

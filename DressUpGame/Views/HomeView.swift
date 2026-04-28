@@ -11,23 +11,25 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .center, spacing: 30)  {
-                HStack (spacing: 20) {
+                HStack (spacing: 24) {
                     VStack{
                         Spacer()
                         Button {
                         } label: {
                             Image("trash_button")
                                 .shadow(radius: 2, y: 2)
-                            
                         }
                     }
                     
                     VStack {
                         Spacer()
+                        Spacer()
+                        Spacer()
                         Image("Doll")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 220, height: 420)
+                            .frame(width: 200, height: 450)
+                        Spacer()
                         
                     }
                     VStack (spacing: 18) {
@@ -44,17 +46,19 @@ struct HomeView: View {
                                 .shadow(radius: 2, y: 2)
                             
                         }
-                        .buttonBorderShape(.circle)
                         
                     }
-                    
                 }
+
+                
                 Button {
                 } label: {
+                    
+                    NavigationLink(destination: CreateAvatarView()) {
                     ZStack {
                         LinearGradient(gradient: Gradient(colors: [.lightgreenGradient, .greenGradient]), startPoint: .top, endPoint: .bottom)
                         
-                        NavigationLink(destination: CreateAvatarView()) {
+                        
                             VStack (spacing: 8) {
                                 Label("New Look",systemImage: "plus.circle")
                                     .labelStyle(.iconOnly)
@@ -65,10 +69,9 @@ struct HomeView: View {
                                     .font(.system(size: 18, weight: .semibold))
                             }
                         }
-                        .padding()
                         
                     }
-                    .frame(maxWidth: .infinity, maxHeight: 300)
+                    .frame(maxWidth: .infinity, maxHeight: 270)
                     .overlay(Rectangle()
                         .frame(width: nil, height: 3, alignment: .top)
                         .foregroundColor(.separator), alignment: .top)
@@ -80,6 +83,7 @@ struct HomeView: View {
                     .aspectRatio(contentMode: .fill)
             )
             .ignoresSafeArea()
+            .navigationBarBackButtonHidden(true)
         }
     }
 }
