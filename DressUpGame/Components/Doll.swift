@@ -16,27 +16,36 @@ struct Doll: View {
                     .scaledToFit()
                     .frame(width: geometry.size.width, height: geometry.size.height / 1.25)
                     .position(x: geometry.size.width / 2, y: geometry.size.height / 2 + 30)
-                Image("Cabelo1")   // Cabelo
+                
+                Image("Cabelo7")   // Cabelo
                     .resizable()
                     .scaledToFit()
-                    .frame(width: geometry.size.width / 3, height: geometry.size.height / 5.15)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height / 2 - 165)
-                Image("")   // Acessórios
-                Image("Shoes1")   // Calçado
+                    .frame(width: geometry.size.width / 3, height: geometry.size.height)
+                    .position(x: geometry.size.width / 2 - 2, y: geometry.size.height / 2 + 16)
+                
+                Image("Shoes4")   // Calçado
                     .resizable()
                     .scaledToFit()
-                    .frame(width: geometry.size.width / 2.6, height: geometry.size.height / 5.7)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height / 2 + 230)
-                Image("Bottom1")   // Bottom
+                    .frame(width: geometry.size.width / 3, height: geometry.size.height)
+                    .position(x: geometry.size.width / 2, y: geometry.size.height / 2 + 30)
+                
+                Image("Bottom2")   // Bottom
                     .resizable()
                     .scaledToFit()
-                    .frame(width: geometry.size.width / 2.8, height: geometry.size.height / 2.9)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height / 2 + 100)
-                Image("Top1")   // Top
+                    .frame(width: geometry.size.width / 3, height: geometry.size.height)
+                    .position(x: geometry.size.width / 2, y: geometry.size.height / 1.82)
+                
+                Image("Top3")   // Top
                     .resizable()
                     .scaledToFit()
-                    .frame(width: geometry.size.width / 2.8, height: geometry.size.height / 4.3)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height / 2 - 32)
+                    .frame(width: geometry.size.width / 3, height: geometry.size.height)
+                    .position(x: geometry.size.width / 2, y: geometry.size.height / 1.82)
+                
+                Image("Acessorio9")   // Acessórios
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: geometry.size.width / 2.5, height: geometry.size.height)
+                    .position(x: geometry.size.width / 2 - 8, y: geometry.size.height / 2 + 34)
             }
         }
     }
