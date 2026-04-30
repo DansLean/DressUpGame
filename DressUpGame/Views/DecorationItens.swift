@@ -48,7 +48,7 @@ struct DecorationItens: View {
                                 
                             }
                         
-                        .aspectRatio(1, contentMode: .fit)
+                        .aspectRatio(1.5, contentMode: .fit)
                         .onTapGesture {
                             tap(Image("\(number)"))
                         

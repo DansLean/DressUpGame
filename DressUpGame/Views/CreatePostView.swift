@@ -7,6 +7,18 @@
 
 import SwiftUI
 
+//enum Wallpapers {
+//    case op1
+//    case op2
+//    case op3
+//    case op4
+//    case op5
+//    case op6
+//    case op7
+//    case op8
+//    case op9
+//    case op10
+//}
 
 
 @Observable
@@ -14,6 +26,8 @@ class ModelTest: Identifiable {
     let id = UUID()
     var imageName: Image
     var position: CGPoint
+    
+    
     init(imageName: Image, position: CGPoint) {
         self.imageName = imageName
         self.position = position
@@ -24,62 +38,48 @@ class ModelTest: Identifiable {
     }
 }
 
+
+class Teste: Identifiable {
+    var imageWallpaper: Image
+    
+    init(imageWallpaper: Image) {
+        self.imageWallpaper = imageWallpaper
+    }
+    
+}
+
 struct CreatePostView: View {
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.displayScale) var displayScale
     @State var selectedOption: PostOptions = .stickers
-    var wallpaper: Image?
+    @State var renderedImage = Image("shareButton")
+    @State private var showActivityControllerView: Bool = false
+    //    var wallpaper: Wallpapers
+    //    var teste : Teste
     @State var selectedItens: [ModelTest] = []
+    
+    var mainView: some View {
+        VStack {
+            Text("Blalabla")
+        }
+    }
+    
     var body: some View {
         NavigationStack {
             ZStack {
                 
-//                Image("backgroundFill")
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fill)
-//                    .ignoresSafeArea()
-                
                 VStack (alignment: .center, spacing: 0) {
                     
-                    ZStack {
-                        Image("Doll")
-                            .resizable()
-                            .scaledToFit()
-                            .padding(.top, 28)
-                            .padding(.bottom, 37)
-//                            .frame(width: 200, height: 450)
-//                            .position(x: 200, y: 330)
-                        
-                        
-                        
-                    }
-                    .frame(maxWidth: .infinity)
-                    .overlay(alignment: .bottomTrailing, content: {
-                        Button {
-                            // Button actions here.
-                        } label: {
-                            Image("zoom_button")
-                        }
-                        .shadow(radius: 2, y: 2)
-                        .padding(.trailing)
-//                        .position(x: 350, y: 248)
-                    })
-                    .overlay {
-                        ForEach(selectedItens) { item in
-                            item.imageName
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 100, height: 100)
-                                .position(item.position)
-                                .gesture(
-                                    DragGesture()
-                                        .onChanged { gesture in
-                                            item.position = gesture.location
-                                        }
-                                )
-                        }
-                        
-                    }
-                    
+                    postGroup
+                        .overlay(alignment: .bottomTrailing, content: {
+                            Button {
+                                // Button actions here.
+                            } label: {
+                                Image("zoom_button")
+                            }
+                            .shadow(radius: 2, y: 2)
+                            .padding(.trailing)
+                        })
                     
                     Spacer()
                     
@@ -99,7 +99,7 @@ struct CreatePostView: View {
                     
                     DecorationItens(selectedOption: $selectedOption) { tapped in
                         if (selectedOption == .palettes) {
-                           
+                            //                            teste == Teste(imageWallpaper: tapped)
                         } else {
                             let newItem = ModelTest(imageName: tapped, position: .init(x: 200, y: 200))
                             selectedItens.append(newItem)
@@ -124,12 +124,27 @@ struct CreatePostView: View {
                     .sharedBackgroundVisibility(.hidden)
                     
                     ToolbarItem(placement: .topBarTrailing) {
-                        Button {
-                            // Button actions here.
-                        } label: {
-                            Image("shareButton")
+                        HStack {
+                            
+                            ShareLink("Export", item: renderedImage, preview: SharePreview(Text("Shared Image"), image: renderedImage))
+                                .onTapGesture {
+                                    render()
+                                }
+                                
+                            
+                            //                            postGroup
+                            //                                .padding()
+                            //                            renderedImage
+                            //                                .resizable()
+                            //                                .padding()
+//                                                        Button {
+//                                                            render()
+//                                                        } label: {
+//                                                            Image("shareButton")
+//                                                        }
+//                                                        .shadow(radius: 2, y: 2)
                         }
-                        .shadow(radius: 2, y: 2)
+                        
                         
                     }
                     .sharedBackgroundVisibility(.hidden)
@@ -137,17 +152,63 @@ struct CreatePostView: View {
                 //            .ignoresSafeArea()
                 .navigationBarBackButtonHidden(true)
             }
+            
             .background {
-                Image("backgroundFill" ?? "\(wallpaper)")
+                Image("backgroundFill")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .ignoresSafeArea()
             }
             
-//            .ignoresSafeArea()
+            //            .ignoresSafeArea()
         }
         
+        
     }
+    
+    @MainActor
+    func render() {
+        let renderer = ImageRenderer(content: postGroup)
+        renderer.scale = displayScale
+        
+        if let uiImage = renderer.uiImage {
+            renderedImage = Image(uiImage: uiImage)
+        }
+    }
+    
+    //    var selectedWallpaper : String {
+    ////        switch wallpaper {
+    ////        case .op1:
+    ////            return "11"
+    ////        case .op2:
+    ////            return "12"
+    ////        case .op3:
+    ////            return "13"
+    ////        case .op4:
+    ////            return "14"
+    ////        case .op5:
+    ////            return "15"
+    ////        }
+    ////
+    //        if (wallpaper == .op1) {
+    //            return "11"
+    //        }
+    //        else if (wallpaper == .op2) {
+    //            return "12"
+    //        }
+    //        else if (wallpaper == .op3) {
+    //            return "13"
+    //        }
+    //        else if (wallpaper == .op4) {
+    //            return "14"
+    //        }
+    //        else if (wallpaper == .op5) {
+    //            return "15"
+    //        }
+    //        else {
+    //            return "backgroundFill"
+    //        }
+    //    }
     
     var stickerButton: some View {
         ZStack {
@@ -205,7 +266,7 @@ struct CreatePostView: View {
                     .frame(width: 101, height: 60)
                     .border(Color.borderPink, width: 1)
                 }
-               
+                
             }
         }
     }
@@ -265,7 +326,39 @@ struct CreatePostView: View {
             }
         }
     }
-
+    
+    var postGroup: some View {
+        ZStack {
+            ZStack {
+                Image("Doll")
+                    .resizable()
+                    .scaledToFit()
+                    .padding(.top, 28)
+                    .padding(.bottom, 37)
+                
+            }
+            .frame(maxWidth: .infinity)
+            
+            .overlay {
+                ForEach(selectedItens) { item in
+                    item.imageName
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
+                        .position(item.position)
+                        .gesture(
+                            DragGesture()
+                                .onChanged { gesture in
+                                    item.position = gesture.location
+                                }
+                        )
+                }
+                
+            }
+            
+        }
+    }
+    
 }
 
 
