@@ -12,42 +12,42 @@ struct HomeView: View {
         NavigationStack {
             VStack(alignment: .center, spacing: 30)  {
                 HStack (spacing: 24) {
-                    VStack{
-                        Spacer()
-                        Button {
-                        } label: {
-                            Image("trash_button")
-                                .shadow(radius: 2, y: 2)
-                        }
-                    }
+//                    VStack{
+//                        Spacer()
+//                        Button {
+//                        } label: {
+//                            Image("trash_button")
+//                                .shadow(radius: 2, y: 2)
+//                        }
+//                    }
                     
                     VStack {
                         Spacer()
                         Spacer()
                         Spacer()
-                        Image("Doll")
+                        Image("Doll1")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 200, height: 450)
                         Spacer()
                         
                     }
-                    VStack (spacing: 18) {
-                        Spacer()
-                        Button {
-                        } label: {
-                            Image("post_button")
-                                .shadow(radius: 2, y: 2)
-                        }
-                        .buttonBorderShape(.circle)
-                        Button {
-                        } label: {
-                            Image("hanger_button")
-                                .shadow(radius: 2, y: 2)
-                            
-                        }
-                        
-                    }
+//                    VStack (spacing: 18) {
+//                        Spacer()
+//                        Button {
+//                        } label: {
+//                            Image("post_button")
+//                                .shadow(radius: 2, y: 2)
+//                        }
+//                        .buttonBorderShape(.circle)
+//                        Button {
+//                        } label: {
+//                            Image("hanger_button")
+//                                .shadow(radius: 2, y: 2)
+//                            
+//                        }
+//                        
+//                    }
                 }
 
                 

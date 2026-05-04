@@ -14,6 +14,14 @@ enum PostOptions {
     case texts
 }
 
+enum AvatarOptions {
+    case face
+    case hair
+    case top
+    case bottom
+    case shoes
+    case accessories
+}
 
 @main
 struct DressUpGameApp: App {

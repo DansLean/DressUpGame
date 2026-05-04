@@ -13,9 +13,9 @@ struct DecorationItens: View {
     
     @Binding var selectedOption: PostOptions
 
-    var tap: (Image) -> Void
+    var tap: (Int) -> Void
 
-    let stickersImages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    let stickersImages = [1, 2, 3, 4, 5, 6]
     let palettesImages = [11, 13, 14, 15, 16, 17, 18, 19, 20]
     let bubblesImages = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
     let textsImages = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
@@ -50,8 +50,7 @@ struct DecorationItens: View {
                         
                         .aspectRatio(1.5, contentMode: .fit)
                         .onTapGesture {
-                            tap(Image("\(number)"))
-                        
+                            tap(number)
                         }
                         
                 }
