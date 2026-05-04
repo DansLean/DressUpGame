@@ -12,7 +12,7 @@ struct AvatarDecorationItens: View {
 
     var tap: (Int) -> Void
 
-    let faceImages = [1, 2]
+    let faceImages = [1, 2, 3, 4, 5, 6, 7, 8]
     let hairImages = [1, 2, 3, 4, 5, 6, 7, 8]
     let topImages = [1, 2, 3, 4, 5, 6, 7]
     let bottomImages = [1, 2, 3]
