@@ -143,7 +143,7 @@ struct CreateAvatarView: View {
                         Button {
                             
                         } label: {
-                            NavigationLink(destination: CreatePostView()) {
+                            NavigationLink(destination: CreatePostView(doll: $doll)) {
                                 Image("chevron_right_button")
                             }
                         }
