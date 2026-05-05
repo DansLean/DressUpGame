@@ -26,7 +26,6 @@ class ModelTest: Identifiable {
 }
 
 
-
 struct CreatePostView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.displayScale) var displayScale
@@ -37,18 +36,24 @@ struct CreatePostView: View {
     
     var wallpaper: Image = Image("Background0")
     
+    @State var changes = 0
+    
     @State var background = WallpaperClass(wallpaper: 0)
     var body: some View {
         NavigationStack {
-            ZStack {
-                Image("Background\(background.wallpaper)")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .ignoresSafeArea()
-                
+            ZStack (alignment: .bottom) {
                 VStack (spacing: 0) {
+                    Spacer()
+                    Spacer()
+                    Rectangle()
+                        .frame(height: 1, alignment: .top)
+                        .foregroundColor(Color.borderPink)
                     postGroup
-                        .padding(.bottom, 40)
+                        .clipShape(.rect(cornerRadius: 6))
+                    Rectangle()
+                        .frame(height: 1, alignment: .top)
+                        .foregroundColor(Color.borderPink)
+                    Spacer()
                     Rectangle()
                         .frame(height: 0.5, alignment: .top)
                         .foregroundColor(Color.borderPink)
@@ -60,12 +65,10 @@ struct CreatePostView: View {
                         textButton
                         
                     }
-                    .background(Color.white)
                     
                     DecorationItens(selectedOption: $selectedOption) { tapped in
                         if (selectedOption == .palettes) {
                             background.setWallpaper(wallpaper: tapped)
-                            print("bbbb")
                         }
                         if (selectedOption == .stickers) {
                             let newItem = ModelTest(imageName: Image("Sticker\(tapped)"), position: .init(x: 200, y: 200))
@@ -75,13 +78,13 @@ struct CreatePostView: View {
                             let newItem = ModelTest(imageName: Image("Bubble\(tapped)"), position: .init(x: 200, y: 200))
                             selectedItens.append(newItem)
                         }
-
+                        
                         if (selectedOption == .texts) {
                             let newItem = ModelTest(imageName: Image("Alphabet\(tapped)"), position: .init(x: 200, y: 200))
                             selectedItens.append(newItem)
                         }
-                        
                     }
+                    .ignoresSafeArea()
                 }
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
@@ -107,26 +110,30 @@ struct CreatePostView: View {
                             ) {
                                 Image("shareButton")
                             }
+                            .id(changes)
                         }
                     }
                     .sharedBackgroundVisibility(.hidden)
                 }
                 .navigationBarBackButtonHidden(true)
             }
+            .background(.lightgreenGradient)
+            .ignoresSafeArea()
         }
     }
     
     var renderedImage: Image {
         let renderer = ImageRenderer(content: postGroup)
         renderer.scale = displayScale
+        //        renderer.scale =
         
         if let uiImage = renderer.uiImage {
             return Image(uiImage: uiImage)
+                .resizable()
         }
         
         return Image("Doll1")
     }
-    
     
     var stickerButton: some View {
         ZStack {
@@ -141,23 +148,22 @@ struct CreatePostView: View {
                     .frame(width: 101, height: 60)
                     .border(Color.borderPink, width: 1)
                 }
-                
-                
             } else {
                 Button {
                     selectedOption = .stickers
                 } label: {
                     ZStack {
                         Image("stickerButton")
+                            
                     }
+                    
                     .frame(width: 101, height: 60)
+                    .background(.white)
                     .border(Color.borderPink, width: 1)
                 }
-                
             }
         }
     }
-    
     
     var paletteButton: some View {
         ZStack {
@@ -182,13 +188,13 @@ struct CreatePostView: View {
                         Image("paletteButton")
                     }
                     .frame(width: 101, height: 60)
+                    .background(.white)
                     .border(Color.borderPink, width: 1)
                 }
                 
             }
         }
     }
-    
     
     var bubbleButton: some View {
         ZStack {
@@ -211,6 +217,7 @@ struct CreatePostView: View {
                         Image("bubbleButton")
                     }
                     .frame(width: 101, height: 60)
+                    .background(.white)
                     .border(Color.borderPink, width: 1)
                 }
             }
@@ -238,37 +245,39 @@ struct CreatePostView: View {
                         Image("textButton")
                     }
                     .frame(width: 101, height: 60)
+                    .background(.white)
                     .border(Color.borderPink, width: 1)
                 }
             }
         }
     }
-
-    
     
     var postGroup: some View {
         ZStack {
-                DollView(doll: doll)
+            DollView(doll: doll)
         }
-        .ignoresSafeArea()
+        .frame(width: .infinity, height: 400)
+        .background(Image("Background\(background.wallpaper)"))
+        //        .ignoresSafeArea()
         .overlay {
             ForEach(selectedItens) { item in
+                
                 item.imageName
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 100, height: 100)
+                    .frame(width: 70, height: 70)
                     .position(item.position)
                     .gesture(
                         DragGesture()
                             .onChanged { gesture in
                                 item.position = gesture.location
                             }
+                            .onEnded { _ in
+                                changes += 1
+                            }
                     )
             }
         }
-
-
-        
     }
     
     

@@ -17,8 +17,8 @@ struct DecorationItens: View {
 
     let stickersImages = [1, 2, 3, 4, 5, 6]
     let palettesImages = [0, 1, 2, 3, 4, 5]
-    let bubblesImages = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
-    let textsImages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28]
+    let bubblesImages = [1, 2, 3, 4]
+    let textsImages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
 
     
     var selectedNumbers: [Int] {
@@ -66,14 +66,14 @@ struct DecorationItens: View {
                                 Image("Alphabet\(number)")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 70, height: 70)
-                                    .padding(.bottom, 70)
+                                    .frame(width: 100, height: 100)
+                                    .padding(.bottom, 50)
                             }
 
                             
                                 
                             }
-                        .aspectRatio(1, contentMode: .fit)
+                        .aspectRatio(0.7, contentMode: .fit)
                         .onTapGesture {
                             tap(number)
                             print("teste")
@@ -82,7 +82,8 @@ struct DecorationItens: View {
                 }
                 
             }
-            .background(.borderPink)
+            .border(Color.borderPink, width: 1)
+            .background(Color.white)
             .foregroundStyle(.white)
             .frame(height: 200)
             

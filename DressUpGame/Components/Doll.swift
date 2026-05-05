@@ -55,48 +55,49 @@ class DollClass: Identifiable {
 struct DollView: View {
     let doll: DollClass
     var body: some View {
-        GeometryReader { geometry in
-            ZStack {
+//        GeometryReader { geometry in
+        ZStack(alignment: .center) {
                 Image("Doll\(doll.face)")   // Boneca
                     .resizable()
                     .scaledToFit()
-                    .frame(width: geometry.size.width, height: geometry.size.height / 1.28)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height / 2 + 30)
+//                    .frame(width: geometry.size.width, height: geometry.size.height / 1.28)
+//                    .position(x: geometry.size.width / 2, y: geometry.size.height / 2 + 30)
                     
                 
                 Image("Cabelo\(doll.hair)")   // Cabelo
                     .resizable()
                     .scaledToFit()
-                    .frame(width: geometry.size.width / 3, height: geometry.size.height)
-                    .position(x: geometry.size.width / 2 - 2, y: geometry.size.height / 2 + 16)
+//                    .frame(width: geometry.size.width / 3, height: geometry.size.height)
+//                    .position(x: geometry.size.width / 2 - 2, y: geometry.size.height / 2 + 16)
                 
                 Image("Shoes\(doll.shoes)")   // Calçado
                     .resizable()
                     .scaledToFit()
-                    .frame(width: geometry.size.width / 3, height: geometry.size.height)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height / 2 + 30)
+//                    .frame(width: geometry.size.width / 3, height: geometry.size.height)
+//                    .position(x: geometry.size.width / 2, y: geometry.size.height / 2 + 30)
                 
                 Image("Bottom\(doll.bottom)")   // Bottom
                     .resizable()
                     .scaledToFit()
-                    .frame(width: geometry.size.width / 3, height: geometry.size.height)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height / 1.82)
+//                    .frame(width: geometry.size.width / 3, height: geometry.size.height)
+//                    .position(x: geometry.size.width / 2, y: geometry.size.height / 1.82)
                 
                 Image("Top\(doll.top)")   // Top
                     .resizable()
                     .scaledToFit()
-                    .frame(width: geometry.size.width / 3, height: geometry.size.height)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height / 1.82)
+//                    .frame(width: geometry.size.width / 3, height: geometry.size.height)
+//                    .position(x: geometry.size.width / 2, y: geometry.size.height / 1.82)
                 
                 Image("Acessorio\(doll.accessories)")   // Acessórios
                     .resizable()
                     .scaledToFit()
-                    .frame(width: geometry.size.width / 2.5, height: geometry.size.height)
-                    .position(x: geometry.size.width / 2 - 8, y: geometry.size.height / 2 + 34)
+//                    .frame(width: geometry.size.width / 2.5, height: geometry.size.height)
+//                    .position(x: geometry.size.width / 2 - 8, y: geometry.size.height / 2 + 34)
             }
-            .ignoresSafeArea()
+        .scaleEffect(0.8)
+//            .ignoresSafeArea()
             
-        }
+//        }
     }
     
 }

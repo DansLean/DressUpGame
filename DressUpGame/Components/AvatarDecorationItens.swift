@@ -93,6 +93,8 @@ struct AvatarDecorationItens: View {
                         }
                 }
             }
+            
+            .background(Color.white)
             .foregroundStyle(.white)
             .frame(height: 200)
         }

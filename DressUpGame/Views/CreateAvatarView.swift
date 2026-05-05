@@ -34,16 +34,20 @@ struct CreateAvatarView: View {
                         .frame(height: 0.5, alignment: .top)
                         .foregroundColor(Color.borderPink)
                     
-                    ScrollView (.horizontal, showsIndicators: false) {
-                        HStack (spacing: 0) {
+//                    ScrollView (.horizontal, showsIndicators: false) {
+                        HStack () {
                             faceButton
+                            Spacer()
                             hairButton
+                            Spacer()
                             topButton
+                            Spacer()
                             bottomButton
+                            Spacer()
                             shoesButton
-                            accessoriesButton
+//                            accessoriesButton
                         }
-                    }
+//                    }
                     .background(Color.white)
                     
                     Rectangle()
