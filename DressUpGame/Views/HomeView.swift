@@ -78,7 +78,7 @@ struct HomeView: View {
                 }
             }
             .background(
-                Image("backgroundFill")
+                Image("Background0")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
             )

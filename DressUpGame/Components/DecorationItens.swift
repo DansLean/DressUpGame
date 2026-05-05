@@ -16,9 +16,9 @@ struct DecorationItens: View {
     var tap: (Int) -> Void
 
     let stickersImages = [1, 2, 3, 4, 5, 6]
-    let palettesImages = [11, 13, 14, 15, 16, 17, 18, 19, 20]
+    let palettesImages = [0, 1, 2, 3, 4, 5]
     let bubblesImages = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
-    let textsImages = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+    let textsImages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28]
 
     
     var selectedNumbers: [Int] {
@@ -36,27 +36,55 @@ struct DecorationItens: View {
     
     var body: some View {
         ScrollView(.horizontal) {
-            LazyHGrid(rows: Array(repeating: GridItem(.flexible()), count: 2)) {
+            LazyHGrid(rows: Array(repeating: GridItem(.flexible()), count: 1)) {
                 ForEach(selectedNumbers, id: \.self) { number in
                     Rectangle()
                         .overlay {
-                            Image("\(number)")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 60, height: 60)
-                                
+                            if self.selectedOption == .stickers {
+                                Image("Sticker\(number)")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 60, height: 60)
+                                    .padding(.bottom, 50)
+                                    
+                            }
+                            if self.selectedOption == .palettes {
+                                Image("Background\(number)")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(maxWidth: .infinity, minHeight: 500)
+                                    .padding(.bottom, 50)
+                            }
+                            if self.selectedOption == .bubbles {
+                                Image("Bubble\(number)")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 60, height: 60)
+                                    .padding(.bottom, 50)
+                            }
+                            if self.selectedOption == .texts {
+                                Image("Alphabet\(number)")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 70, height: 70)
+                                    .padding(.bottom, 70)
+                            }
+
+                            
                                 
                             }
-                        
-                        .aspectRatio(1.5, contentMode: .fit)
+                        .aspectRatio(1, contentMode: .fit)
                         .onTapGesture {
                             tap(number)
+                            print("teste")
                         }
                         
                 }
                 
             }
+            .background(.borderPink)
             .foregroundStyle(.white)
+            .frame(height: 200)
             
             
             

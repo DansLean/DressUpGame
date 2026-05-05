@@ -19,11 +19,10 @@ struct CreateAvatarView: View {
     var accessories: Image = Image("Accessories1")
     
     @State var doll = DollClass(face: 1, hair: 0, top: 0, bottom: 0, shoes: 0, accessories: 0)
-    
     var body: some View {
         NavigationStack {
             ZStack {
-                Image("backgroundFill")
+                Image("Background0")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .ignoresSafeArea()
@@ -31,7 +30,6 @@ struct CreateAvatarView: View {
                 VStack (spacing: 0) {
                     
                     DollView(doll: doll)
-                    
                     Rectangle()
                         .frame(height: 0.5, alignment: .top)
                         .foregroundColor(Color.borderPink)

@@ -7,18 +7,6 @@
 
 import SwiftUI
 
-//enum Wallpapers {
-//    case op1
-//    case op2
-//    case op3
-//    case op4
-//    case op5
-//    case op6
-//    case op7
-//    case op8
-//    case op9
-//    case op10
-//}
 
 
 @Observable
@@ -26,7 +14,6 @@ class ModelTest: Identifiable {
     let id = UUID()
     var imageName: Image
     var position: CGPoint
-    
     
     init(imageName: Image, position: CGPoint) {
         self.imageName = imageName
@@ -39,51 +26,29 @@ class ModelTest: Identifiable {
 }
 
 
-class Teste: Identifiable {
-    var imageWallpaper: Image
-    
-    init(imageWallpaper: Image) {
-        self.imageWallpaper = imageWallpaper
-    }
-    
-}
 
 struct CreatePostView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.displayScale) var displayScale
     @State var selectedOption: PostOptions = .stickers
-    @State var renderedImage = Image("shareButton")
     @State private var showActivityControllerView: Bool = false
-    //    var wallpaper: Wallpapers
-    //    var teste : Teste
     @State var selectedItens: [ModelTest] = []
+    @Binding var doll: DollClass
     
-    var mainView: some View {
-        VStack {
-            Text("Blalabla")
-        }
-    }
+    var wallpaper: Image = Image("Background0")
     
+    @State var background = WallpaperClass(wallpaper: 0)
     var body: some View {
         NavigationStack {
             ZStack {
+                Image("Background\(background.wallpaper)")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .ignoresSafeArea()
                 
-                VStack (alignment: .center, spacing: 0) {
-                    
+                VStack (spacing: 0) {
                     postGroup
-                        .overlay(alignment: .bottomTrailing, content: {
-                            Button {
-                                // Button actions here.
-                            } label: {
-                                Image("zoom_button")
-                            }
-                            .shadow(radius: 2, y: 2)
-                            .padding(.trailing)
-                        })
-                    
-                    Spacer()
-                    
-                    
+                        .padding(.bottom, 40)
                     Rectangle()
                         .frame(height: 0.5, alignment: .top)
                         .foregroundColor(Color.borderPink)
@@ -99,16 +64,24 @@ struct CreatePostView: View {
                     
                     DecorationItens(selectedOption: $selectedOption) { tapped in
                         if (selectedOption == .palettes) {
-                            //                            teste == Teste(imageWallpaper: tapped)
-                        } else {
-                            let newItem = ModelTest(imageName: tapped, position: .init(x: 200, y: 200))
+                            background.setWallpaper(wallpaper: tapped)
+                            print("bbbb")
+                        }
+                        if (selectedOption == .stickers) {
+                            let newItem = ModelTest(imageName: Image("Sticker\(tapped)"), position: .init(x: 200, y: 200))
+                            selectedItens.append(newItem)
+                        }
+                        if (selectedOption == .bubbles) {
+                            let newItem = ModelTest(imageName: Image("Bubble\(tapped)"), position: .init(x: 200, y: 200))
+                            selectedItens.append(newItem)
+                        }
+
+                        if (selectedOption == .texts) {
+                            let newItem = ModelTest(imageName: Image("Alphabet\(tapped)"), position: .init(x: 200, y: 200))
                             selectedItens.append(newItem)
                         }
                         
                     }
-                    
-                    
-                    
                 }
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
@@ -125,90 +98,35 @@ struct CreatePostView: View {
                     
                     ToolbarItem(placement: .topBarTrailing) {
                         HStack {
-                            
-                            ShareLink("Export", item: renderedImage, preview: SharePreview(Text("Shared Image"), image: renderedImage))
-                                .onTapGesture {
-                                    render()
-                                }
-                                
-                            
-                            //                            postGroup
-                            //                                .padding()
-                            //                            renderedImage
-                            //                                .resizable()
-                            //                                .padding()
-//                                                        Button {
-//                                                            render()
-//                                                        } label: {
-//                                                            Image("shareButton")
-//                                                        }
-//                                                        .shadow(radius: 2, y: 2)
+                            ShareLink(
+                                item: renderedImage,
+                                preview: SharePreview(
+                                    Text("Post"),
+                                    image: renderedImage
+                                )
+                            ) {
+                                Image("shareButton")
+                            }
                         }
-                        
-                        
                     }
                     .sharedBackgroundVisibility(.hidden)
                 }
-                //            .ignoresSafeArea()
                 .navigationBarBackButtonHidden(true)
             }
-            
-            .background {
-                Image("backgroundFill")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .ignoresSafeArea()
-            }
-            
-            //            .ignoresSafeArea()
         }
-        
-        
     }
     
-    @MainActor
-    func render() {
+    var renderedImage: Image {
         let renderer = ImageRenderer(content: postGroup)
         renderer.scale = displayScale
         
         if let uiImage = renderer.uiImage {
-            renderedImage = Image(uiImage: uiImage)
+            return Image(uiImage: uiImage)
         }
+        
+        return Image("Doll1")
     }
     
-    //    var selectedWallpaper : String {
-    ////        switch wallpaper {
-    ////        case .op1:
-    ////            return "11"
-    ////        case .op2:
-    ////            return "12"
-    ////        case .op3:
-    ////            return "13"
-    ////        case .op4:
-    ////            return "14"
-    ////        case .op5:
-    ////            return "15"
-    ////        }
-    ////
-    //        if (wallpaper == .op1) {
-    //            return "11"
-    //        }
-    //        else if (wallpaper == .op2) {
-    //            return "12"
-    //        }
-    //        else if (wallpaper == .op3) {
-    //            return "13"
-    //        }
-    //        else if (wallpaper == .op4) {
-    //            return "14"
-    //        }
-    //        else if (wallpaper == .op5) {
-    //            return "15"
-    //        }
-    //        else {
-    //            return "backgroundFill"
-    //        }
-    //    }
     
     var stickerButton: some View {
         ZStack {
@@ -299,7 +217,6 @@ struct CreatePostView: View {
         }
     }
     
-    
     var textButton: some View {
         ZStack {
             if (selectedOption == .texts) {
@@ -326,42 +243,38 @@ struct CreatePostView: View {
             }
         }
     }
+
+    
     
     var postGroup: some View {
         ZStack {
-            ZStack {
-                Image("Doll")
+                DollView(doll: doll)
+        }
+        .ignoresSafeArea()
+        .overlay {
+            ForEach(selectedItens) { item in
+                item.imageName
                     .resizable()
                     .scaledToFit()
-                    .padding(.top, 28)
-                    .padding(.bottom, 37)
-                
+                    .frame(width: 100, height: 100)
+                    .position(item.position)
+                    .gesture(
+                        DragGesture()
+                            .onChanged { gesture in
+                                item.position = gesture.location
+                            }
+                    )
             }
-            .frame(maxWidth: .infinity)
-            
-            .overlay {
-                ForEach(selectedItens) { item in
-                    item.imageName
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 100, height: 100)
-                        .position(item.position)
-                        .gesture(
-                            DragGesture()
-                                .onChanged { gesture in
-                                    item.position = gesture.location
-                                }
-                        )
-                }
-                
-            }
-            
         }
+
+
+        
     }
+    
     
 }
 
 
-#Preview {
-    CreatePostView()
-}
+//#Preview {
+//    CreatePostView()
+//}
