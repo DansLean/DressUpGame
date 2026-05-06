@@ -1,0 +1,122 @@
+{
+  "fill-specializations" : [
+    {
+      "value" : {
+        "linear-gradient" : [
+          "display-p3:0.90869,0.59521,0.73242,1.00000",
+          "display-p3:0.87744,0.25415,0.56396,1.00000"
+        ],
+        "orientation" : {
+          "start" : {
+            "x" : 0.5,
+            "y" : 0
+          },
+          "stop" : {
+            "x" : 0.5,
+            "y" : 0.7
+          }
+        }
+      }
+    },
+    {
+      "appearance" : "dark",
+      "value" : {
+        "linear-gradient" : [
+          "display-p3:0.86730,0.57355,0.70721,1.00000",
+          "display-p3:0.53914,0.15671,0.35064,1.00000"
+        ],
+        "orientation" : {
+          "start" : {
+            "x" : 0.5,
+            "y" : 0
+          },
+          "stop" : {
+            "x" : 0.5,
+            "y" : 0.7
+          }
+        }
+      }
+    }
+  ],
+  "groups" : [
+    {
+      "layers" : [
+        {
+          "image-name" : "smallstar.svg",
+          "name" : "smallstar",
+          "position" : {
+            "scale" : 1.24,
+            "translation-in-points" : [
+              308.9979869871937,
+              -6.000000000108344
+            ]
+          }
+        },
+        {
+          "image-name" : "star.svg",
+          "name" : "star",
+          "position" : {
+            "scale" : 1.24,
+            "translation-in-points" : [
+              -297.88758834274597,
+              -105.4999999998916
+            ]
+          }
+        },
+        {
+          "hidden" : true,
+          "image-name" : "shirt.svg",
+          "name" : "shirt",
+          "position" : {
+            "scale" : 1.6,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "hidden" : true,
+          "image-name" : "bag 2.svg",
+          "name" : "bag 2",
+          "position" : {
+            "scale" : 3,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "blend-mode" : "normal",
+          "fill" : "none",
+          "glass" : true,
+          "hidden" : false,
+          "image-name" : "hanger.svg",
+          "name" : "hanger",
+          "position" : {
+            "scale" : 1.45,
+            "translation-in-points" : [
+              0.005826922571486648,
+              -14.00010460476608
+            ]
+          }
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "circles" : [
+      "watchOS"
+    ],
+    "squares" : "shared"
+  }
+}

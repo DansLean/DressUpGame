@@ -7,6 +7,22 @@
 
 import SwiftUI
 
+enum PostOptions {
+    case stickers
+    case palettes
+    case bubbles
+    case texts
+}
+
+enum AvatarOptions {
+    case face
+    case hair
+    case top
+    case bottom
+    case shoes
+    case accessories
+}
+
 @main
 struct DressUpGameApp: App {
     var body: some Scene {
@@ -15,3 +31,5 @@ struct DressUpGameApp: App {
         }
     }
 }
+
+
