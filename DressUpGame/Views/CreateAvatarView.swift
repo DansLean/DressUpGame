@@ -35,15 +35,11 @@ struct CreateAvatarView: View {
                         .foregroundColor(Color.borderPink)
                     
 //                    ScrollView (.horizontal, showsIndicators: false) {
-                        HStack () {
+                    HStack (spacing: 0) {
                             faceButton
-                            Spacer()
                             hairButton
-                            Spacer()
                             topButton
-                            Spacer()
                             bottomButton
-                            Spacer()
                             shoesButton
 //                            accessoriesButton
                         }
@@ -166,10 +162,12 @@ struct CreateAvatarView: View {
                     
                 } label: {
                     ZStack {
-                        Image("buttonSelected")
+                        Image("buttonSelectedPost")
+                            .resizable()
+                            .frame(width: 82, height: 60)
                         Image("AvatarHead")
                     }
-                    .frame(width: 70, height: 60)
+                    .frame(width: 82, height: 60)
                     .border(Color.borderPink, width: 1)
                 }
                 
@@ -181,7 +179,7 @@ struct CreateAvatarView: View {
                     ZStack {
                         Image("AvatarHead")
                     }
-                    .frame(width: 70, height: 60)
+                    .frame(width: 82, height: 60)
                     .border(Color.borderPink, width: 1)
                 }
             }
@@ -195,11 +193,13 @@ struct CreateAvatarView: View {
                     
                 } label: {
                     ZStack {
-                        Image("buttonSelected")
+                        Image("buttonSelectedPost")
+                            .resizable()
+                            .frame(width: 82, height: 60)
                         Image("AvatarHair")
                     }
                     .background()
-                    .frame(width: 70, height: 60)
+                    .frame(width: 82, height: 60)
                     .border(Color.borderPink, width: 1)
                 }
                 
@@ -210,7 +210,7 @@ struct CreateAvatarView: View {
                     ZStack {
                         Image("AvatarHair")
                     }
-                    .frame(width: 70, height: 60)
+                    .frame(width: 82, height: 60)
                     .border(Color.borderPink, width: 1)
                 }
             }
@@ -226,11 +226,13 @@ struct CreateAvatarView: View {
                     
                 } label: {
                     ZStack {
-                        Image("buttonSelected")
+                        Image("buttonSelectedPost")
+                            .resizable()
+                            .frame(width: 82, height: 60)
                         Image("AvatarTop")
                     }
                     .background()
-                    .frame(width: 70, height: 60)
+                    .frame(width: 82, height: 60)
                     .border(Color.borderPink, width: 1)
                 }
                 
@@ -241,7 +243,7 @@ struct CreateAvatarView: View {
                     ZStack {
                         Image("AvatarTop")
                     }
-                    .frame(width: 70, height: 60)
+                    .frame(width: 82, height: 60)
                     .border(Color.borderPink, width: 1)
                 }
             }
@@ -257,11 +259,13 @@ struct CreateAvatarView: View {
                     
                 } label: {
                     ZStack {
-                        Image("buttonSelected")
+                        Image("buttonSelectedPost")
+                            .resizable()
+                            .frame(width: 82, height: 60)
                         Image("AvatarBottom")
                     }
                     .background()
-                    .frame(width: 70, height: 60)
+                    .frame(width: 82, height: 60)
                     .border(Color.borderPink, width: 1)
                 }
                 
@@ -272,7 +276,7 @@ struct CreateAvatarView: View {
                     ZStack {
                         Image("AvatarBottom")
                     }
-                    .frame(width: 70, height: 60)
+                    .frame(width: 82, height: 60)
                     .border(Color.borderPink, width: 1)
                 }
             }
@@ -288,11 +292,13 @@ struct CreateAvatarView: View {
                     
                 } label: {
                     ZStack {
-                        Image("buttonSelected")
+                        Image("buttonSelectedPost")
+                            .resizable()
+                            .frame(width: 82, height: 60)
                         Image("AvatarShoes")
                     }
                     .background()
-                    .frame(width: 70, height: 60)
+                    .frame(width: 82, height: 60)
                     .border(Color.borderPink, width: 1)
                 }
                 
@@ -303,7 +309,7 @@ struct CreateAvatarView: View {
                     ZStack {
                         Image("AvatarShoes")
                     }
-                    .frame(width: 70, height: 60)
+                    .frame(width: 82, height: 60)
                     .border(Color.borderPink, width: 1)
                 }
             }
@@ -319,7 +325,9 @@ struct CreateAvatarView: View {
                     
                 } label: {
                     ZStack {
-                        Image("buttonSelected")
+                        Image("buttonSelectedPost")
+                            .resizable()
+                            .frame(width: 82, height: 60)
                         Image("AvatarAccessories")
                     }
                     .background()
