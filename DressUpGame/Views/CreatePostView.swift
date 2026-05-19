@@ -259,7 +259,7 @@ struct CreatePostView: View {
             DollView(doll: doll)
             
         }
-        .frame(width: .infinity, height: 400)
+        .frame(width: 400, height: 400)
         .background(Image("Background\(background.wallpaper)"))
         //        .ignoresSafeArea()
         .overlay {
