@@ -64,7 +64,7 @@ struct HomeView: View {
                                     .labelStyle(.iconOnly)
                                     .foregroundStyle(Color(.primaryPink))
                                     .font(.system(size: 58))
-                                Text("New Look")
+                                Text("buttonTitle")
                                     .foregroundStyle(.primaryPink)
                                     .font(.system(.body, weight: .semibold))
                             }

@@ -253,8 +253,8 @@ struct CreatePostView: View {
     }
     
     var postGroup: some View {
+        
         ZStack {
-            
             
             DollView(doll: doll)
             
@@ -281,7 +281,7 @@ struct CreatePostView: View {
                     )
             }
         }
-        .overlay {
+        .overlay{
             VStack {
             
                 Image("Dolliu_marca")

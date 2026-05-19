@@ -67,7 +67,7 @@ struct DollView: View {
                 Image("Cabelo\(doll.hair)")   // Cabelo
                     .resizable()
                     .scaledToFit()
-            .offset(x: -1, y: -15)
+                    .offset(x: -1, y: -15)
 //                    .frame(width: geometry.size.width / 3, height: geometry.size.height)
 //                    .position(x: geometry.size.width / 2 - 2, y: geometry.size.height / 2 + 16)
                 
@@ -95,7 +95,7 @@ struct DollView: View {
 //                    .frame(width: geometry.size.width / 2.5, height: geometry.size.height)
 //                    .position(x: geometry.size.width / 2 - 8, y: geometry.size.height / 2 + 34)
             }
-        .scaleEffect(0.8)
+        .scaleEffect(0.7)
 //            .ignoresSafeArea()
             
 //        }
