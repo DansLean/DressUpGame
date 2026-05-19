@@ -99,6 +99,11 @@
 				es,
 				ja,
 				it,
+				ar,
+				ru,
+				tr,
+				th,
+				de,
 			);
 			mainGroup = CE0094362F9910DB00891CC9;
 			minimizedProjectReferenceProxies = 1;
