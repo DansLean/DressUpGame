@@ -6,13 +6,8 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		CE3B993E2FAB64A00017EBF4 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = CE3B993D2FAB64A00017EBF4 /* AppIcon.icon */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
 		CE00943F2F9910DB00891CC9 /* DressUpGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DressUpGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE3B993D2FAB64A00017EBF4 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -38,7 +33,6 @@
 			isa = PBXGroup;
 			children = (
 				CE0094412F9910DB00891CC9 /* DressUpGame */,
-				CE3B993D2FAB64A00017EBF4 /* AppIcon.icon */,
 				CE0094402F9910DB00891CC9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -115,7 +109,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE3B993E2FAB64A00017EBF4 /* AppIcon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -66,7 +66,7 @@ struct HomeView: View {
                                     .font(.system(size: 58))
                                 Text("New Look")
                                     .foregroundStyle(.primaryPink)
-                                    .font(.system(size: 18, weight: .semibold))
+                                    .font(.system(.body, weight: .semibold))
                             }
                         }
                         

@@ -254,7 +254,10 @@ struct CreatePostView: View {
     
     var postGroup: some View {
         ZStack {
+            
+            
             DollView(doll: doll)
+            
         }
         .frame(width: .infinity, height: 400)
         .background(Image("Background\(background.wallpaper)"))
@@ -278,6 +281,18 @@ struct CreatePostView: View {
                     )
             }
         }
+        .overlay {
+            VStack {
+            
+                Image("Dolliu_marca")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 80, height: 80, alignment: .bottomTrailing)
+                    .padding(.leading, 270)
+                    .padding(.top, 270)
+            }
+        }
+        
     }
     
     
