@@ -45,7 +45,7 @@ struct DecorationItens: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 60, height: 60)
-                                    .padding(.bottom, 20)
+                                    .padding(.bottom, 50)
                                     
                             }
                             if self.selectedOption == .palettes {
@@ -60,14 +60,14 @@ struct DecorationItens: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 60, height: 60)
-                                    .padding(.bottom, 20)
+                                    .padding(.bottom, 50)
                             }
                             if self.selectedOption == .texts {
                                 Image("Alphabet\(number)")
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 100, height: 100)
-                                    .padding(.bottom, 20)
+                                    .padding(.bottom, 50)
                             }
 
                             

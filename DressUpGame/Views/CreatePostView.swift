@@ -48,14 +48,12 @@ struct CreatePostView: View {
                     Rectangle()
                         .frame(height: 1, alignment: .top)
                         .foregroundColor(Color.borderPink)
+                        .padding(.top, 100)
                     postGroup
                         .clipShape(.rect(cornerRadius: 6))
+                        
                     Rectangle()
                         .frame(height: 1, alignment: .top)
-                        .foregroundColor(Color.borderPink)
-                    Spacer()
-                    Rectangle()
-                        .frame(height: 0.5, alignment: .top)
                         .foregroundColor(Color.borderPink)
                     
                     HStack (spacing: 0) {
@@ -65,6 +63,7 @@ struct CreatePostView: View {
                         textButton
                         
                     }
+                    .padding(.top, 100)
                     
                     DecorationItens(selectedOption: $selectedOption) { tapped in
                         if (selectedOption == .palettes) {
@@ -87,38 +86,69 @@ struct CreatePostView: View {
                     .ignoresSafeArea()
                 }
                 .toolbar {
-                    ToolbarItem(placement: .topBarLeading) {
-                        NavigationLink(destination: CreateAvatarView()) {
-                            Button {
-                                self.presentationMode.wrappedValue.dismiss()
-                            } label: {
-                                Image("chevron_left_button")
+                    if #available(iOS 26.0, *) {
+                        ToolbarItem(placement: .topBarLeading) {
+                            NavigationLink(destination: CreateAvatarView()) {
+                                Button {
+                                    self.presentationMode.wrappedValue.dismiss()
+                                } label: {
+                                    Image("chevron_left_button")
+                                }
+                                .shadow(radius: 2, y: 2)
                             }
-                            .shadow(radius: 2, y: 2)
+                        }
+                        .sharedBackgroundVisibility(.hidden)
+                    } else {
+                        ToolbarItem(placement: .topBarLeading) {
+                            NavigationLink(destination: CreateAvatarView()) {
+                                Button {
+                                    self.presentationMode.wrappedValue.dismiss()
+                                } label: {
+                                    Image("chevron_left_button")
+                                }
+                                .shadow(radius: 2, y: 2)
+                            }
                         }
                     }
-                    .sharedBackgroundVisibility(.hidden)
                     
-                    ToolbarItem(placement: .topBarTrailing) {
-                        HStack {
-                            ShareLink(
-                                item: renderedImage,
-                                preview: SharePreview(
-                                    Text("Post"),
-                                    image: renderedImage
-                                )
-                            ) {
-                                Image("shareButton")
+                    if #available(iOS 26.0, *) {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            HStack {
+                                ShareLink(
+                                    item: renderedImage,
+                                    preview: SharePreview(
+                                        Text("Post"),
+                                        image: renderedImage
+                                    )
+                                ) {
+                                    Image("share_button")
+                                }
+                                .id(changes)
                             }
-                            .id(changes)
                         }
+                        .sharedBackgroundVisibility(.hidden)
+                    } else {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            HStack {
+                                ShareLink(
+                                    item: renderedImage,
+                                    preview: SharePreview(
+                                        Text("Post"),
+                                        image: renderedImage
+                                    )
+                                ) {
+                                    Image("share_button")
+                                }
+                                .id(changes)
+                            }
+                        }
+
                     }
-                    .sharedBackgroundVisibility(.hidden)
                 }
                 .navigationBarBackButtonHidden(true)
             }
             .background(.lightgreenGradient)
-            .ignoresSafeArea()
+//            .ignoresSafeArea()
         }
     }
     
