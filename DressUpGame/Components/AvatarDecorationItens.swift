@@ -87,7 +87,7 @@ struct AvatarDecorationItens: View {
                                     .padding(.bottom, 3)
                             }
                             }
-                        .aspectRatio(1, contentMode: .fit)
+                        .aspectRatio(0.7, contentMode: .fit)
                         .onTapGesture {
                             tap(tab)
                         }

@@ -21,7 +21,33 @@ struct CreateAvatarView: View {
     @State var doll = DollClass(face: 1, hair: 0, top: 0, bottom: 0, shoes: 0, accessories: 0)
     var body: some View {
         NavigationStack {
-            ZStack {
+            ZStack{
+//                ZStack(alignment: .topLeading) {
+//                    
+//                    HStack {
+//                        Button {
+//                            self.presentationMode.wrappedValue.dismiss()
+//                        } label: {
+//                            
+//                            Image("chevron_left_button")
+//                            
+//                        }
+//                        .shadow(radius: 2, y: 2)
+//                        
+//                        Spacer()
+//                        
+//                        Button {
+//                            
+//                        } label: {
+//                            NavigationLink(destination: CreatePostView(doll: $doll)) {
+//                                Image("chevron_right_button")
+//                            }
+//                        }
+//                        .shadow(radius: 2, y: 2)
+//                        
+//                    }
+//                }
+                
                 Image("Background0")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -123,36 +149,65 @@ struct CreateAvatarView: View {
                 //                    .aspectRatio(contentMode: .fill)
                 //            )
                 .toolbar {
-                    ToolbarItem(placement: .topBarLeading) {
-                        Button {
-                            self.presentationMode.wrappedValue.dismiss()
-                        } label: {
-                            
-                            Image("chevron_left_button")
-                            
-                        }
-                        .shadow(radius: 2, y: 2)
-                    }
-                    .sharedBackgroundVisibility(.hidden)
-                    
-                    
-                    ToolbarItem(placement: .topBarTrailing) {
-                        
-                        Button {
-                            
-                        } label: {
-                            NavigationLink(destination: CreatePostView(doll: $doll)) {
-                                Image("chevron_right_button")
+                    if #available(iOS 26.0, *) {
+                        ToolbarItem(placement: .topBarLeading) {
+                            Button {
+                                self.presentationMode.wrappedValue.dismiss()
+                            } label: {
+                                
+                                Image("chevron_left_button")
+                                
                             }
+                            .shadow(radius: 2, y: 2)
                         }
-                        .shadow(radius: 2, y: 2)
-                        
+                        .sharedBackgroundVisibility(.hidden)
+                    } else {
+                        ToolbarItem(placement: .topBarLeading) {
+                            Button {
+                                self.presentationMode.wrappedValue.dismiss()
+                            } label: {
+                                
+                                Image("chevron_left_button")
+                                
+                            }
+                            .shadow(radius: 2, y: 2)
+                        }
                     }
-                    .sharedBackgroundVisibility(.hidden)
+                    
+                    
+                    if #available(iOS 26.0, *) {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            
+                            Button {
+                                
+                            } label: {
+                                NavigationLink(destination: CreatePostView(doll: $doll)) {
+                                    Image("chevron_right_button")
+                                }
+                            }
+                            .shadow(radius: 2, y: 2)
+                            
+                        }
+                        .sharedBackgroundVisibility(.hidden)
+                    } else {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            
+                            Button {
+                                
+                            } label: {
+                                NavigationLink(destination: CreatePostView(doll: $doll)) {
+                                    Image("chevron_right_button")
+                                }
+                            }
+                            .shadow(radius: 2, y: 2)
+                            
+                        }
+                    }
                 }
                 //.ignoresSafeArea()
                 .navigationBarBackButtonHidden(true)
             }
+            
         }
     }
     var faceButton: some View {
