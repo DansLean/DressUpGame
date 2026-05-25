@@ -33,53 +33,62 @@ struct DecorationItens: View {
             return textsImages
         }
     }
+    @State private var imgData: Data? = nil
     
     var body: some View {
         ScrollView(.horizontal) {
             LazyHGrid(rows: Array(repeating: GridItem(.flexible()), count: 1)) {
-                ForEach(selectedNumbers, id: \.self) { number in
-                    Rectangle()
-                        .overlay {
-                            if self.selectedOption == .stickers {
-                                Image("Sticker\(number)")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 60, height: 60)
-                                    .padding(.bottom, 50)
+                if selectedOption == . stickers {
+                    PhotoPicker() { data in
+                        imgData = data
+                    }
+                    .frame(width: 100, height: 60)
+                    .padding(.bottom, 50)
+                    .padding(.leading, 30)
+                }
+                    ForEach(selectedNumbers, id: \.self) { number in
+                        Rectangle()
+                            .overlay {
+                                if self.selectedOption == .stickers {
+                                    Image("Sticker\(number)")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 60, height: 60)
+                                        .padding(.bottom, 50)
                                     
-                            }
-                            if self.selectedOption == .palettes {
-                                Image("Background\(number)")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(maxWidth: .infinity, minHeight: 500)
-                                    .padding(.bottom, 50)
-                            }
-                            if self.selectedOption == .bubbles {
-                                Image("Bubble\(number)")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 60, height: 60)
-                                    .padding(.bottom, 50)
-                            }
-                            if self.selectedOption == .texts {
-                                Image("Alphabet\(number)")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 100, height: 100)
-                                    .padding(.bottom, 50)
-                            }
-
-                            
+                                }
+                                if self.selectedOption == .palettes {
+                                    Image("Background\(number)")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(maxWidth: .infinity, minHeight: 500)
+                                        .padding(.bottom, 50)
+                                }
+                                if self.selectedOption == .bubbles {
+                                    Image("Bubble\(number)")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 60, height: 60)
+                                        .padding(.bottom, 50)
+                                }
+                                if self.selectedOption == .texts {
+                                    Image("Alphabet\(number)")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 100, height: 100)
+                                        .padding(.bottom, 50)
+                                }
+                                
+                                
                                 
                             }
-                        .aspectRatio(0.7, contentMode: .fit)
-                        .onTapGesture {
-                            tap(number)
-                            print("teste")
-                        }
-                        
-                }
+                            
+                            .aspectRatio(0.7, contentMode: .fit)
+                            .onTapGesture {
+                                tap(number)
+                            }
+                    }
+                
                 
             }
             .border(Color.borderPink, width: 1)
