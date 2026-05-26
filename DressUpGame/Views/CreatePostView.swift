@@ -8,7 +8,6 @@
 import SwiftUI
 
 
-
 @Observable
 class ModelTest: Identifiable {
     let id = UUID()
@@ -25,7 +24,6 @@ class ModelTest: Identifiable {
     }
 }
 
-
 struct CreatePostView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.displayScale) var displayScale
@@ -39,51 +37,71 @@ struct CreatePostView: View {
     @State var changes = 0
     
     @State var background = WallpaperClass(wallpaper: 0)
+    
+    let sizeScreen: CGFloat = UIScreen.main.bounds.width + UIScreen.main.bounds.height / UIScreen.main.bounds.width
+    
     var body: some View {
         NavigationStack {
-            ZStack (alignment: .bottom) {
+            ZStack (alignment: .center) {
                 VStack (spacing: 0) {
-                    Spacer()
-                    Spacer()
-                    Rectangle()
-                        .frame(height: 1, alignment: .top)
-                        .foregroundColor(Color.borderPink)
-                        .padding(.top, 100)
-                    postGroup
-                        .clipShape(.rect(cornerRadius: 6))
-                        
-                    Rectangle()
-                        .frame(height: 1, alignment: .top)
-                        .foregroundColor(Color.borderPink)
-                    
-                    HStack (spacing: 0) {
-                        stickerButton
-                        paletteButton
-                        bubbleButton
-                        textButton
-                        
-                    }
-                    .padding(.top, 100)
-                    
-                    DecorationItens(selectedOption: $selectedOption) { tapped in
-                        if (selectedOption == .palettes) {
-                            background.setWallpaper(wallpaper: tapped)
-                        }
-                        if (selectedOption == .stickers) {
-                            let newItem = ModelTest(imageName: Image("Sticker\(tapped)"), position: .init(x: 200, y: 200))
-                            selectedItens.append(newItem)
-                        }
-                        if (selectedOption == .bubbles) {
-                            let newItem = ModelTest(imageName: Image("Bubble\(tapped)"), position: .init(x: 200, y: 200))
-                            selectedItens.append(newItem)
-                        }
-                        
-                        if (selectedOption == .texts) {
-                            let newItem = ModelTest(imageName: Image("Alphabet\(tapped)"), position: .init(x: 200, y: 200))
-                            selectedItens.append(newItem)
+                    VStack (spacing: 0) {
+                        Group {
+                            Rectangle()
+                                .frame(height: 1)
+                                .foregroundColor(Color.borderPink)
+                            
+                            postGroup
+                                .clipShape(.rect(cornerRadius: 6))
+                            
+                            Rectangle()
+                                .frame(height: 1)
+                                .foregroundColor(Color.borderPink)
                         }
                     }
-                    .ignoresSafeArea()
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.7
+                        } else {
+                            return length
+                        }
+                    }
+                    
+                    Group {
+                        HStack (spacing: 0) {
+                            stickerButton
+                            paletteButton
+                            bubbleButton
+                            textButton
+                        }
+                        
+                        DecorationItens(selectedOption: $selectedOption) { tapped in
+                            if (selectedOption == .palettes) {
+                                background.setWallpaper(wallpaper: tapped)
+                            }
+                            
+                            if (selectedOption == .stickers) {
+                                let newItem = ModelTest(imageName: Image("Sticker\(tapped)"), position: .init(x: 200, y: 200))
+                                selectedItens.append(newItem)
+                            }
+                            
+                            if (selectedOption == .bubbles) {
+                                let newItem = ModelTest(imageName: Image("Bubble\(tapped)"), position: .init(x: 200, y: 200))
+                                selectedItens.append(newItem)
+                            }
+                            
+                            if (selectedOption == .texts) {
+                                let newItem = ModelTest(imageName: Image("Alphabet\(tapped)"), position: .init(x: 200, y: 200))
+                                selectedItens.append(newItem)
+                            }
+                        }
+                        .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                            if axis == .vertical {
+                                return length * 0.3
+                            } else {
+                                return length
+                            }
+                        }
+                    }
                 }
                 .toolbar {
                     if #available(iOS 26.0, *) {
@@ -142,20 +160,18 @@ struct CreatePostView: View {
                                 .id(changes)
                             }
                         }
-
                     }
                 }
                 .navigationBarBackButtonHidden(true)
             }
+            //            .ignoresSafeArea()
             .background(.lightgreenGradient)
-//            .ignoresSafeArea()
         }
     }
     
     var renderedImage: Image {
         let renderer = ImageRenderer(content: postGroup)
         renderer.scale = displayScale
-        //        renderer.scale =
         
         if let uiImage = renderer.uiImage {
             return Image(uiImage: uiImage)
@@ -173,9 +189,23 @@ struct CreatePostView: View {
                 } label: {
                     ZStack {
                         Image("buttonSelectedPost")
+                            .resizable()
+                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                if axis == .vertical {
+                                    return length * 0.1
+                                } else {
+                                    return length * 0.25
+                                }
+                            }
                         Image("stickerButton")
                     }
-                    .frame(width: 101, height: 60)
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.1
+                        } else {
+                            return length * 0.25
+                        }
+                    }
                     .border(Color.borderPink, width: 1)
                 }
             } else {
@@ -184,12 +214,23 @@ struct CreatePostView: View {
                 } label: {
                     ZStack {
                         Image("stickerButton")
-                            
                     }
-                    
-                    .frame(width: 101, height: 60)
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.1
+                        } else {
+                            return length * 0.25
+                        }
+                    }
                     .background(.white)
                     .border(Color.borderPink, width: 1)
+                }
+                .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                    if axis == .vertical {
+                        return length * 0.1
+                    } else {
+                        return length * 0.25
+                    }
                 }
             }
         }
@@ -203,10 +244,32 @@ struct CreatePostView: View {
                 } label: {
                     ZStack {
                         Image("buttonSelectedPost")
+                            .resizable()
+                        
+                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                if axis == .vertical {
+                                    return length * 0.1
+                                } else {
+                                    return length * 0.25
+                                }
+                            }
                         Image("paletteButton")
                     }
-                    .frame(width: 101, height: 60)
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.1
+                        } else {
+                            return length * 0.25
+                        }
+                    }
                     .border(Color.borderPink, width: 1)
+                }
+                .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                    if axis == .vertical {
+                        return length * 0.1
+                    } else {
+                        return length * 0.25
+                    }
                 }
                 
                 
@@ -217,7 +280,13 @@ struct CreatePostView: View {
                     ZStack {
                         Image("paletteButton")
                     }
-                    .frame(width: 101, height: 60)
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.1
+                        } else {
+                            return length * 0.25
+                        }
+                    }
                     .background(.white)
                     .border(Color.borderPink, width: 1)
                 }
@@ -234,10 +303,31 @@ struct CreatePostView: View {
                 } label: {
                     ZStack {
                         Image("buttonSelectedPost")
+                            .resizable()
+                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                if axis == .vertical {
+                                    return length * 0.1
+                                } else {
+                                    return length * 0.25
+                                }
+                            }
                         Image("bubbleButton")
                     }
-                    .frame(width: 101, height: 60)
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.1
+                        } else {
+                            return length * 0.25
+                        }
+                    }
                     .border(Color.borderPink, width: 1)
+                }
+                .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                    if axis == .vertical {
+                        return length * 0.1
+                    } else {
+                        return length * 0.25
+                    }
                 }
             } else {
                 Button {
@@ -246,9 +336,22 @@ struct CreatePostView: View {
                     ZStack {
                         Image("bubbleButton")
                     }
-                    .frame(width: 101, height: 60)
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.1
+                        } else {
+                            return length * 0.25
+                        }
+                    }
                     .background(.white)
                     .border(Color.borderPink, width: 1)
+                }
+                .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                    if axis == .vertical {
+                        return length * 0.1
+                    } else {
+                        return length * 0.25
+                    }
                 }
             }
         }
@@ -262,9 +365,30 @@ struct CreatePostView: View {
                 } label: {
                     ZStack {
                         Image("buttonSelectedPost")
+                            .resizable()
+                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                if axis == .vertical {
+                                    return length * 0.1
+                                } else {
+                                    return length * 0.25
+                                }
+                            }
                         Image("textButton")
                     }
-                    .frame(width: 101, height: 60)
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.1
+                        } else {
+                            return length * 0.25
+                        }
+                    }
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.1
+                        } else {
+                            return length * 0.25
+                        }
+                    }
                     .border(Color.borderPink, width: 1)
                 }
             } else {
@@ -274,7 +398,13 @@ struct CreatePostView: View {
                     ZStack {
                         Image("textButton")
                     }
-                    .frame(width: 101, height: 60)
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.1
+                        } else {
+                            return length * 0.25
+                        }
+                    }
                     .background(.white)
                     .border(Color.borderPink, width: 1)
                 }
@@ -289,7 +419,7 @@ struct CreatePostView: View {
             DollView(doll: doll)
             
         }
-        .frame(width: 400, height: 400)
+        .frame(width: UIScreen.main.bounds.height * 0.7, height: UIScreen.main.bounds.height * 0.752)
         .background(Image("Background\(background.wallpaper)"))
         //        .ignoresSafeArea()
         .overlay {
@@ -313,19 +443,15 @@ struct CreatePostView: View {
         }
         .overlay{
             VStack {
-            
                 Image("Dolliu_marca")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 80, height: 80, alignment: .bottomTrailing)
-                    .padding(.leading, 270)
-                    .padding(.top, 270)
+                    .padding(.leading, 0.7 * sizeScreen)
+                    .padding(.top, 1.3 * sizeScreen)
             }
         }
-        
     }
-    
-    
 }
 
 
