@@ -448,7 +448,7 @@ struct CreatePostView: View {
                     .scaledToFit()
                     .frame(width: 80, height: 80, alignment: .bottomTrailing)
                     .padding(.leading, 0.7 * sizeScreen)
-                    .padding(.top, 1.3 * sizeScreen)
+                    .padding(.top, 1 * sizeScreen)
             }
         }
     }
