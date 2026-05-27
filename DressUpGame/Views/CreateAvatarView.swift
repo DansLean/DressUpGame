@@ -136,18 +136,12 @@ struct CreateAvatarView: View {
                         if selectedCustomization == .accessories {
                             doll.setAccessories(accessories: tapped)
                         }
-//                            let newItem = ModelTest(imageName: tapped, position: .init(x: 200, y: 200))
-//                            selectedItens.append(newItem)
-                        
+
                         
                     }
 
                 }
-                //            .background(
-                //                Image("backgroundFill")
-                //                    .resizable()
-                //                    .aspectRatio(contentMode: .fill)
-                //            )
+               
                 .toolbar {
                     if #available(iOS 26.0, *) {
                         ToolbarItem(placement: .topBarLeading) {

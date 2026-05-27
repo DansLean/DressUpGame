@@ -34,6 +34,7 @@ struct CreatePostView: View {
     @State var selectedItens: [ModelTest] = []
     @Binding var doll: DollClass
     
+    
     var wallpaper: Image = Image("Background0")
     
     @State var changes = 0
@@ -293,6 +294,7 @@ struct CreatePostView: View {
         .background(Image("Background\(background.wallpaper)"))
         //        .ignoresSafeArea()
         .overlay {
+    
             ForEach(selectedItens) { item in
                 
                 item.imageName

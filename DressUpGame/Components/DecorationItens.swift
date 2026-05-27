@@ -6,10 +6,23 @@
 //
 import SwiftUI
 
+struct Sticker: Identifiable {
+    let id = UUID()
+    let image: UIImage
+}
+
+
 struct DecorationItens: View {
-    //    func tap(quemfoiclicado) {
-    //
-    //    }
+   
+    @State var stickers = [
+        Sticker(image: UIImage(resource: .sticker1)),
+        Sticker(image: UIImage(resource: .sticker2)),
+        Sticker(image: UIImage(resource: .sticker3)),
+        Sticker(image: UIImage(resource: .sticker4)),
+        Sticker(image: UIImage(resource: .sticker5)),
+        Sticker(image: UIImage(resource: .sticker6)),
+        Sticker(image: UIImage(resource: .sticker7)),
+    ]
     
     @Binding var selectedOption: PostOptions
 
@@ -41,11 +54,14 @@ struct DecorationItens: View {
                 if selectedOption == . stickers {
                     PhotoPicker() { data in
                         imgData = data
+                        
+
                     }
                     .frame(width: 100, height: 60)
                     .padding(.bottom, 50)
                     .padding(.leading, 30)
                 }
+                
                     ForEach(selectedNumbers, id: \.self) { number in
                         Rectangle()
                             .overlay {
@@ -55,7 +71,7 @@ struct DecorationItens: View {
                                         .scaledToFit()
                                         .frame(width: 60, height: 60)
                                         .padding(.bottom, 50)
-                                    
+                                                                    
                                 }
                                 if self.selectedOption == .palettes {
                                     Image("Background\(number)")
@@ -78,7 +94,6 @@ struct DecorationItens: View {
                                         .frame(width: 100, height: 100)
                                         .padding(.bottom, 50)
                                 }
-                                
                                 
                                 
                             }
