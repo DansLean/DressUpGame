@@ -21,32 +21,32 @@ struct CreateAvatarView: View {
     @State var doll = DollClass(face: 1, hair: 0, top: 0, bottom: 0, shoes: 0, accessories: 0)
     var body: some View {
         NavigationStack {
-            ZStack{
-//                ZStack(alignment: .topLeading) {
-//                    
-//                    HStack {
-//                        Button {
-//                            self.presentationMode.wrappedValue.dismiss()
-//                        } label: {
-//                            
-//                            Image("chevron_left_button")
-//                            
-//                        }
-//                        .shadow(radius: 2, y: 2)
-//                        
-//                        Spacer()
-//                        
-//                        Button {
-//                            
-//                        } label: {
-//                            NavigationLink(destination: CreatePostView(doll: $doll)) {
-//                                Image("chevron_right_button")
-//                            }
-//                        }
-//                        .shadow(radius: 2, y: 2)
-//                        
-//                    }
-//                }
+            ZStack {
+                //                ZStack(alignment: .topLeading) {
+                //
+                //                    HStack {
+                //                        Button {
+                //                            self.presentationMode.wrappedValue.dismiss()
+                //                        } label: {
+                //
+                //                            Image("chevron_left_button")
+                //
+                //                        }
+                //                        .shadow(radius: 2, y: 2)
+                //
+                //                        Spacer()
+                //
+                //                        Button {
+                //
+                //                        } label: {
+                //                            NavigationLink(destination: CreatePostView(doll: $doll)) {
+                //                                Image("chevron_right_button")
+                //                            }
+                //                        }
+                //                        .shadow(radius: 2, y: 2)
+                //
+                //                    }
+                //                }
                 
                 Image("Background0")
                     .resizable()
@@ -54,94 +54,76 @@ struct CreateAvatarView: View {
                     .ignoresSafeArea()
                 
                 VStack (spacing: 0) {
+                    VStack(alignment: .center) {
+                        DollView(doll: doll)
+                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                if axis == .vertical {
+                                    return length * 0.85
+                                } else {
+                                    return length
+                                }
+                            }
+                    }
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.7
+                        } else {
+                            return length
+                        }
+                    }
                     
-                    DollView(doll: doll)
-                    Rectangle()
-                        .frame(height: 0.5, alignment: .top)
-                        .foregroundColor(Color.borderPink)
-                    
-//                    ScrollView (.horizontal, showsIndicators: false) {
-                    HStack (spacing: 0) {
+                    Group {
+                        Rectangle()
+                            .frame(height: 0.5, alignment: .top)
+                            .foregroundColor(Color.borderPink)
+                        
+                        //                    ScrollView (.horizontal, showsIndicators: false) {
+                        HStack (spacing: 0) {
                             faceButton
                             hairButton
                             topButton
                             bottomButton
                             shoesButton
-//                            accessoriesButton
+                            //                            accessoriesButton
                         }
-//                    }
-                    .background(Color.white)
-                    
-                    Rectangle()
-                        .frame(height: 0.5, alignment: .top)
-                        .foregroundColor(Color.borderPink)
-                    
-//                    ScrollView (.horizontal, showsIndicators: false) {
-//                        HStack (spacing: 0) {
-//                            Circle()
-//                                .fill(Color.grayColorNew)
-//                                .frame(width: 30, height: 30)
-//                                .padding(10)
-//                            Circle()
-//                                .fill(Color.beigeColorNew)
-//                                .frame(width: 30, height: 30)
-//                                .padding(10)
-//                            Circle()
-//                                .fill(Color.orangeColorNew)
-//                                .frame(width: 30, height: 30)
-//                                .padding(10)
-//                            Circle()
-//                                .fill(Color.redColorNew)
-//                                .frame(width: 30, height: 30)
-//                                .padding(10)
-//                            Circle()
-//                                .fill(Color.brownColorNew)
-//                                .frame(width: 30, height: 30)
-//                                .padding(10)
-//                            Circle()
-//                                .fill(Color.blueColorNew)
-//                                .frame(width: 30, height: 30)
-//                                .padding(10)
-//                            Circle()
-//                                .fill(Color.pinkColorNew)
-//                                .frame(width: 30, height: 30)
-//                                .padding(10)
-//                            Circle()
-//                                .fill(Color.purpleColorNew)
-//                                .frame(width: 30, height: 30)
-//                                .padding(10)
-//                        }
-//                    }
-//                    .background(Color.white)
-//                    Rectangle()
-//                        .frame(height: 1, alignment: .top)
-//                        .foregroundColor(Color.borderPink)
-                    
-                    AvatarDecorationItens(selectedCustomization: $selectedCustomization) { tapped in
-                        if selectedCustomization == .face {
-                            doll.setDoll(face: tapped)
-                        }
-                        if selectedCustomization == .hair {
-                            doll.setHair(hair: tapped)
-                        }
-                        if selectedCustomization == .top {
-                            doll.setTop(top: tapped)
-                        }
-                        if selectedCustomization == .bottom {
-                            doll.setBottom(bottom: tapped)
-                        }
-                        if selectedCustomization == .shoes {
-                            doll.setShoes(shoes: tapped)
-                        }
-                        if selectedCustomization == .accessories {
-                            doll.setAccessories(accessories: tapped)
-                        }
-
+                        //                    }
+                        .background(Color.white)
                         
+                        Rectangle()
+                            .frame(height: 0.5, alignment: .top)
+                            .foregroundColor(Color.borderPink)
+                        
+                        AvatarDecorationItens(selectedCustomization: $selectedCustomization) { tapped in
+                            if selectedCustomization == .face {
+                                doll.setDoll(face: tapped)
+                            }
+                            if selectedCustomization == .hair {
+                                doll.setHair(hair: tapped)
+                            }
+                            if selectedCustomization == .top {
+                                doll.setTop(top: tapped)
+                            }
+                            if selectedCustomization == .bottom {
+                                doll.setBottom(bottom: tapped)
+                            }
+                            if selectedCustomization == .shoes {
+                                doll.setShoes(shoes: tapped)
+                            }
+                            if selectedCustomization == .accessories {
+                                doll.setAccessories(accessories: tapped)
+                            }
+                        }
+                        .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                            if axis == .vertical {
+                                return length * 0.3
+                            } else {
+                                return length
+                            }
+                        }
                     }
-
+                    
+                    
                 }
-               
                 .toolbar {
                     if #available(iOS 26.0, *) {
                         ToolbarItem(placement: .topBarLeading) {
@@ -213,13 +195,24 @@ struct CreateAvatarView: View {
                     ZStack {
                         Image("buttonSelectedPost")
                             .resizable()
-                            .frame(width: 82, height: 60)
+                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                if axis == .vertical {
+                                    return length * 0.1
+                                } else {
+                                    return length * 0.2
+                                }
+                            }
                         Image("AvatarHead")
                     }
-                    .frame(width: 82, height: 60)
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.1
+                        } else {
+                            return length * 0.2
+                        }
+                    }
                     .border(Color.borderPink, width: 1)
                 }
-                
             }
             else {
                 Button {
@@ -228,7 +221,13 @@ struct CreateAvatarView: View {
                     ZStack {
                         Image("AvatarHead")
                     }
-                    .frame(width: 82, height: 60)
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.1
+                        } else {
+                            return length * 0.2
+                        }
+                    }
                     .border(Color.borderPink, width: 1)
                 }
             }
@@ -244,11 +243,23 @@ struct CreateAvatarView: View {
                     ZStack {
                         Image("buttonSelectedPost")
                             .resizable()
-                            .frame(width: 82, height: 60)
+                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                if axis == .vertical {
+                                    return length * 0.1
+                                } else {
+                                    return length * 0.2
+                                }
+                            }
                         Image("AvatarHair")
                     }
                     .background()
-                    .frame(width: 82, height: 60)
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.1
+                        } else {
+                            return length * 0.2
+                        }
+                    }
                     .border(Color.borderPink, width: 1)
                 }
                 
@@ -259,7 +270,13 @@ struct CreateAvatarView: View {
                     ZStack {
                         Image("AvatarHair")
                     }
-                    .frame(width: 82, height: 60)
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.1
+                        } else {
+                            return length * 0.2
+                        }
+                    }
                     .border(Color.borderPink, width: 1)
                 }
             }
@@ -277,11 +294,23 @@ struct CreateAvatarView: View {
                     ZStack {
                         Image("buttonSelectedPost")
                             .resizable()
-                            .frame(width: 82, height: 60)
+                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                if axis == .vertical {
+                                    return length * 0.1
+                                } else {
+                                    return length * 0.2
+                                }
+                            }
                         Image("AvatarTop")
                     }
                     .background()
-                    .frame(width: 82, height: 60)
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.1
+                        } else {
+                            return length * 0.2
+                        }
+                    }
                     .border(Color.borderPink, width: 1)
                 }
                 
@@ -292,7 +321,13 @@ struct CreateAvatarView: View {
                     ZStack {
                         Image("AvatarTop")
                     }
-                    .frame(width: 82, height: 60)
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.1
+                        } else {
+                            return length * 0.2
+                        }
+                    }
                     .border(Color.borderPink, width: 1)
                 }
             }
@@ -310,11 +345,23 @@ struct CreateAvatarView: View {
                     ZStack {
                         Image("buttonSelectedPost")
                             .resizable()
-                            .frame(width: 82, height: 60)
+                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                if axis == .vertical {
+                                    return length * 0.1
+                                } else {
+                                    return length * 0.2
+                                }
+                            }
                         Image("AvatarBottom")
                     }
                     .background()
-                    .frame(width: 82, height: 60)
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.1
+                        } else {
+                            return length * 0.2
+                        }
+                    }
                     .border(Color.borderPink, width: 1)
                 }
                 
@@ -325,7 +372,13 @@ struct CreateAvatarView: View {
                     ZStack {
                         Image("AvatarBottom")
                     }
-                    .frame(width: 82, height: 60)
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.1
+                        } else {
+                            return length * 0.2
+                        }
+                    }
                     .border(Color.borderPink, width: 1)
                 }
             }
@@ -343,11 +396,23 @@ struct CreateAvatarView: View {
                     ZStack {
                         Image("buttonSelectedPost")
                             .resizable()
-                            .frame(width: 82, height: 60)
+                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                if axis == .vertical {
+                                    return length * 0.1
+                                } else {
+                                    return length * 0.2
+                                }
+                            }
                         Image("AvatarShoes")
                     }
                     .background()
-                    .frame(width: 82, height: 60)
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.1
+                        } else {
+                            return length * 0.2
+                        }
+                    }
                     .border(Color.borderPink, width: 1)
                 }
                 
@@ -358,7 +423,13 @@ struct CreateAvatarView: View {
                     ZStack {
                         Image("AvatarShoes")
                     }
-                    .frame(width: 82, height: 60)
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.1
+                        } else {
+                            return length * 0.2
+                        }
+                    }
                     .border(Color.borderPink, width: 1)
                 }
             }
@@ -376,11 +447,23 @@ struct CreateAvatarView: View {
                     ZStack {
                         Image("buttonSelectedPost")
                             .resizable()
-                            .frame(width: 82, height: 60)
+                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                if axis == .vertical {
+                                    return length * 0.1
+                                } else {
+                                    return length * 0.2
+                                }
+                            }
                         Image("AvatarAccessories")
                     }
                     .background()
-                    .frame(width: 70, height: 60)
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.1
+                        } else {
+                            return length * 0.2
+                        }
+                    }
                     .border(Color.borderPink, width: 1)
                 }
                 
@@ -391,7 +474,13 @@ struct CreateAvatarView: View {
                     ZStack {
                         Image("AvatarAccessories")
                     }
-                    .frame(width: 70, height: 60)
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.1
+                        } else {
+                            return length * 0.2
+                        }
+                    }
                     .border(Color.borderPink, width: 1)
                 }
             }
@@ -399,8 +488,8 @@ struct CreateAvatarView: View {
         
         
     }
-
-
+    
+    
 }
 
 #Preview {

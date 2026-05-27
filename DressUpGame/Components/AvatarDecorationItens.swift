@@ -9,16 +9,17 @@ import SwiftUI
 struct AvatarDecorationItens: View {
     
     @Binding var selectedCustomization: AvatarOptions
-
+    
     var tap: (Int) -> Void
-
+    
     let faceImages = [1, 2, 3, 4, 5, 6, 7, 8]
     let hairImages = [1, 2, 3, 4, 5, 6, 7, 8]
     let topImages = [1, 2, 3, 4, 5, 6, 7]
     let bottomImages = [1, 2, 3]
     let shoesImages = [1, 2, 3, 4]
     let accessoriesImages = [1, 2, 3, 4, 5, 6, 7, 8, 9 , 10, 11, 12]
-
+    
+    let sizeScreen: CGFloat = UIScreen.main.bounds.width + UIScreen.main.bounds.height / UIScreen.main.bounds.width
     
     var selectedTab: [Int] {
         switch (selectedCustomization) {
@@ -48,36 +49,71 @@ struct AvatarDecorationItens: View {
                                 Image("Doll\(tab)")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 200, height: 320)
-                                    .padding(.top, 150)
+                                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                        if axis == .vertical {
+                                            return length * 2
+                                        } else {
+                                            return length * 0.25
+                                            
+                                        }
+                                    }
+                                    .padding(.top, 0.45 * sizeScreen)
                             }
                             if self.selectedCustomization == .hair {
                                 Image("Cabelo\(tab)")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 200, height: 280)
-                                    .padding(.top, 100)
+                                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                        if axis == .vertical {
+                                            return length * 8
+                                        } else {
+                                            return length * 0.25
+                                            
+                                        }
+                                    }
+                                    .padding(.top, 0.65 * sizeScreen)
                             }
                             if self.selectedCustomization == .top {
                                 Image("Top\(tab)")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 200, height: 320)
-                                    .padding(.top, 25)
+                                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                        if axis == .vertical {
+                                            return length * 2
+                                        } else {
+                                            return length * 0.5
+                                            
+                                        }
+                                    }
+                                    .padding(.top, 0.25 * sizeScreen)
                             }
                             if self.selectedCustomization == .bottom {
                                 Image("Bottom\(tab)")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 200, height: 250)
-                                    .padding(.bottom, 120)
+                                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                        if axis == .vertical {
+                                            return length * 1.6
+                                        } else {
+                                            return length * 0.2
+                                            
+                                        }
+                                    }
+                                    .padding(.top, -0.2 * sizeScreen)
                             }
                             if self.selectedCustomization == .shoes {
                                 Image("Shoes\(tab)")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 200, height: 320)
-                                    .padding(.bottom, 280)
+                                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                        if axis == .vertical {
+                                            return length * 1.8
+                                        } else {
+                                            return length * 0.3
+                                            
+                                        }
+                                    }
+                                    .padding(.top, -0.75 * sizeScreen)
                             }
                             if self.selectedCustomization == .accessories {
                                 Image("Acessorio\(tab)")
@@ -86,21 +122,15 @@ struct AvatarDecorationItens: View {
                                     .frame(width: 200, height: 320)
                                     .padding(.bottom, 3)
                             }
-                            }
-                        .aspectRatio(0.7, contentMode: .fit)
+                        }
+                        .aspectRatio(0.0013 * sizeScreen, contentMode: .fit)
                         .onTapGesture {
                             tap(tab)
                         }
                 }
             }
-            
             .background(Color.white)
             .foregroundStyle(.white)
-            .frame(height: 200)
         }
-        
-    
-        
     }
-    
 }
