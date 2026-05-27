@@ -38,12 +38,13 @@ struct CreatePostView: View {
     
     @State var background = WallpaperClass(wallpaper: 0)
     
-    let sizeScreen: CGFloat = UIScreen.main.bounds.width + UIScreen.main.bounds.height / UIScreen.main.bounds.width
+    let sizeScreenHeight: CGFloat = UIScreen.main.bounds.height
+    let sizeScreenWidth: CGFloat = UIScreen.main.bounds.width
     
     var body: some View {
         NavigationStack {
             ZStack (alignment: .center) {
-                VStack (spacing: 0) {
+                VStack (spacing: sizeScreenHeight * 0.04) {
                     VStack (spacing: 0) {
                         Group {
                             Rectangle()
@@ -66,7 +67,7 @@ struct CreatePostView: View {
                         }
                     }
                     
-                    Group {
+                    VStack (spacing: 0) {
                         HStack (spacing: 0) {
                             stickerButton
                             paletteButton
@@ -419,7 +420,7 @@ struct CreatePostView: View {
             DollView(doll: doll)
             
         }
-        .frame(width: UIScreen.main.bounds.height * 0.7, height: UIScreen.main.bounds.height * 0.752)
+        .frame(width: 400, height: 400)
         .background(Image("Background\(background.wallpaper)"))
         //        .ignoresSafeArea()
         .overlay {
@@ -447,8 +448,8 @@ struct CreatePostView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 80, height: 80, alignment: .bottomTrailing)
-                    .padding(.leading, 0.7 * sizeScreen)
-                    .padding(.top, 1 * sizeScreen)
+                    .padding(.leading, 400 * 0.7)
+                    .padding(.top, 400 * 0.7)
             }
         }
     }
