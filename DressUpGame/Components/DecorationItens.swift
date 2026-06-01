@@ -107,7 +107,7 @@ struct DecorationItens: View {
                             .resizable()
                             .scaledToFit()
                             .font(.body)
-                            .frame(width: 75, height: 75)
+                            .frame(width: 50, height: 50)
                             .foregroundColor(.primaryPink)
                     }
                     .frame(width: 170, height: 100)
