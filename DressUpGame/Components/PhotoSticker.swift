@@ -8,6 +8,7 @@
 import SwiftUI
 import PhotosUI
 
+
 struct PhotoSticker: View {
     
     @Environment(\.dismiss) var dismiss
@@ -24,8 +25,16 @@ struct PhotoSticker: View {
             VStack {
                 PhotosPicker(selection: $selection) {
                     Image(systemName: "photo.badge.plus.fill")
+                        .resizable()
+                        .scaledToFit()
                         .font(.title)
-                        .frame(height: 300)
+                        .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                            if axis == .vertical {
+                                return length * 0.33
+                            } else {
+                                return length * 0.25
+                            }
+                        }
                         .frame(maxWidth: .infinity)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .foregroundColor(.primaryPink)
@@ -41,6 +50,7 @@ struct PhotoSticker: View {
                             return
                         }
                         image = UIImage(data: data)
+                        submitPermission()
                     }
                 }
                 
@@ -48,18 +58,47 @@ struct PhotoSticker: View {
                     if let sticker {
                         Image(uiImage: sticker)
                             .resizable()
+                            .scaledToFit()
                             .border(.red)
+                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                if axis == .vertical {
+                                    return length * 0.33
+                                } else {
+                                    return length * 1
+                                }
+                            }
+                        
                     } else {
                         if image != nil {
                             ProgressView()
                                 .progressViewStyle(CircularProgressViewStyle())
+                                .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                    if axis == .vertical {
+                                        return length * 0.33
+                                    } else {
+                                        return length * 1
+                                    }
+                                }
                         }
                     }
                 }
-                .frame(width: 100, height: 100)
+                .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                    if axis == .vertical {
+                        return length * 0.33
+                    } else {
+                        return length * 1
+                    }
+                }
                 
                 if let image {
                     ImageLift(image: image, subject: $sticker)
+                        .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                            if axis == .vertical {
+                                return length * 0.33
+                            } else {
+                                return length  * 1
+                            }
+                        }
                 }
             }
             .toolbar {
@@ -97,10 +136,18 @@ struct PhotoSticker: View {
                     }
                     .foregroundColor(.primaryPink)
                     .cornerRadius(50)
-                    .disabled(sticker == nil)
+                    .disabled(submitPermission())
                 }
             }
             .interactiveDismissDisabled(true)
+        }
+    }
+    
+    func submitPermission() -> Bool {
+        if (image != nil) {
+            return false
+        } else {
+            return true
         }
     }
 }
