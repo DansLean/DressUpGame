@@ -100,10 +100,17 @@ struct DecorationItens: View {
         ScrollView(.horizontal) {
             LazyHGrid(rows: Array(repeating: GridItem(.flexible()), count: 1)) {
                 if selectedOption == .stickers {
-                    Button ("New Sticker") {
+                    Button {
                         isShowingCustomStickerPicker = true
+                    } label: {
+                        Image(systemName: "photo.badge.plus.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .font(.body)
+                            .frame(width: 75, height: 75)
+                            .foregroundColor(.primaryPink)
                     }
-                    .foregroundColor(.red)
+                    .frame(width: 170, height: 100)
                 }
                 ForEach(selectedNumbers, id: \.self) { number in
                     Rectangle()
@@ -121,7 +128,7 @@ struct DecorationItens: View {
                                     }
                                     .sheet(isPresented: $isShowingCustomStickerPicker) {
                                         PhotoSticker {
-                                            stickers.append(Asset(image: $0))
+                                            stickers.insert(Asset(image: $0), at: 0)
                                         }
                                     }
                             }
