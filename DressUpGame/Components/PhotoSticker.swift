@@ -28,6 +28,7 @@ struct PhotoSticker: View {
                         .frame(height: 300)
                         .frame(maxWidth: .infinity)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .foregroundColor(.primaryPink)
                 }
                 .onChange(of: selection) {
                     guard let selection else { return }
@@ -64,7 +65,7 @@ struct PhotoSticker: View {
                         } label: {
                             Text("Cancel")
                         }
-                        .foregroundColor(.white)
+                        .foregroundColor(.primaryPink)
                         .cornerRadius(50)
                     }
                     .sharedBackgroundVisibility(.hidden)
@@ -75,6 +76,7 @@ struct PhotoSticker: View {
                         } label: {
                             Text("Cancel")
                         }
+                        .foregroundColor(.primaryPink)
                         .cornerRadius(50)
                     }
                 }
@@ -88,6 +90,7 @@ struct PhotoSticker: View {
                     } label: {
                         Text("Confirm")
                     }
+                    .foregroundColor(.primaryPink)
                     .cornerRadius(50)
                     .disabled(sticker == nil)
                 }
