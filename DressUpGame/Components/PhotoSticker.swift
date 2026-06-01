@@ -22,22 +22,33 @@ struct PhotoSticker: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
+            VStack (spacing: 5) {
                 PhotosPicker(selection: $selection) {
-                    Image(systemName: "photo.badge.plus.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .font(.title)
-                        .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                            if axis == .vertical {
-                                return length * 0.33
-                            } else {
-                                return length * 0.25
+                    VStack {
+                        Image(systemName: "photo.badge.plus.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                if axis == .vertical {
+                                    return length * 0.2
+                                } else {
+                                    return length * 0.25
+                                }
                             }
+                            .font(.title)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .foregroundColor(.primaryPink)
+                        
+                        Text("Selecione uma imagem para criar um sticker")
+                            .foregroundColor(.primaryPink)
+                    }
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.4
+                        } else {
+                            return length * 1
                         }
-                        .frame(maxWidth: .infinity)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .foregroundColor(.primaryPink)
+                    }
                 }
                 .onChange(of: selection) {
                     guard let selection else { return }
@@ -60,54 +71,51 @@ struct PhotoSticker: View {
                             .resizable()
                             .scaledToFit()
                             .border(.red)
-                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                                if axis == .vertical {
-                                    return length * 0.33
-                                } else {
-                                    return length * 1
-                                }
-                            }
-                        
                     } else {
                         if image != nil {
                             ProgressView()
                                 .progressViewStyle(CircularProgressViewStyle())
-                                .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                                    if axis == .vertical {
-                                        return length * 0.33
-                                    } else {
-                                        return length * 1
-                                    }
-                                }
                         }
                     }
                 }
                 .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                     if axis == .vertical {
-                        return length * 0.33
+                        return length * 0.2
                     } else {
                         return length * 1
                     }
                 }
                 
-                if let image {
-                    ImageLift(image: image, subject: $sticker)
-                        .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                            if axis == .vertical {
-                                return length * 0.33
-                            } else {
-                                return length  * 1
-                            }
+                    VStack {
+                        if let image {
+                            ImageLift(image: image, subject: $sticker)
                         }
+                    }
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.4
+                        } else {
+                            return length  * 1
+                        }
+                    }
+            }
+            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                if axis == .vertical {
+                    return length * 1
+                } else {
+                    return length * 1
                 }
             }
+            .background(.lightgreenGradient)
+            
             .toolbar {
                 if #available(iOS 26.0, *) {
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button {
                             dismiss()
                         } label: {
-                            Text("Cancel")
+                            Image("Multiply")
+                                .padding(.top, 25)
                         }
                         .foregroundColor(.primaryPink)
                         .cornerRadius(50)
@@ -118,7 +126,8 @@ struct PhotoSticker: View {
                         Button {
                             dismiss()
                         } label: {
-                            Text("Cancel")
+                            Image("Multiply")
+                                .padding(.top, 25)
                         }
                         .foregroundColor(.primaryPink)
                         .cornerRadius(50)
@@ -132,7 +141,8 @@ struct PhotoSticker: View {
                             dismiss()
                         }
                     } label: {
-                        Text("Confirm")
+                        Image("Checkmark")
+                            .padding(.top, 25)
                     }
                     .foregroundColor(.primaryPink)
                     .cornerRadius(50)
