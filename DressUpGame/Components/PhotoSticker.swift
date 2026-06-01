@@ -48,9 +48,14 @@ struct PhotoSticker: View {
                     if let sticker {
                         Image(uiImage: sticker)
                             .resizable()
+                            .border(.red)
+                    } else {
+                        if image != nil {
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle())
+                        }
                     }
                 }
-                .border(.red)
                 .frame(width: 100, height: 100)
                 
                 if let image {
