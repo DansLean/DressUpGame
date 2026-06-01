@@ -61,13 +61,17 @@ struct CreatePostView: View {
                     }
                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                         if axis == .vertical {
-                            return length * 0.7
+                            return length * 0.675
                         } else {
                             return length
                         }
                     }
                     
                     VStack (spacing: 0) {
+                        Rectangle()
+                            .frame(height: 0.5)
+                            .foregroundColor(Color.borderPink)
+                        
                         HStack (spacing: 0) {
                             stickerButton
                             paletteButton
@@ -97,7 +101,7 @@ struct CreatePostView: View {
                         }
                         .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                             if axis == .vertical {
-                                return length * 0.3
+                                return length * 0.325
                             } else {
                                 return length
                             }

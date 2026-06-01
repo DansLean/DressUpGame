@@ -110,7 +110,13 @@ struct DecorationItens: View {
                             .frame(width: 50, height: 50)
                             .foregroundColor(.primaryPink)
                     }
-                    .frame(width: 170, height: 100)
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 1
+                        } else {
+                            return length * 0.4
+                        }
+                    }
                 }
                 ForEach(selectedNumbers, id: \.self) { number in
                     Rectangle()
@@ -182,7 +188,7 @@ struct DecorationItens: View {
                     
                 }
             }
-            .border(Color.borderPink, width: 1)
+            .border(Color.borderPink, width: 0.5)
             .background(Color.white)
             .foregroundStyle(.white)
         }
