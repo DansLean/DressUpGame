@@ -32,11 +32,11 @@ struct CreatePostView: View {
     @State var selectedItens: [ModelTest] = []
     @Binding var doll: DollClass
     
-    var wallpaper: Image = Image("Background0")
+    var wallpaper: UIImage = UIImage(resource: .background0)
     
     @State var changes = 0
     
-    @State var background = WallpaperClass(wallpaper: 0)
+    @State var background = WallpaperClass(wallpaper: UIImage(resource: .background0))
     
     let sizeScreenHeight: CGFloat = UIScreen.main.bounds.height
     let sizeScreenWidth: CGFloat = UIScreen.main.bounds.width
@@ -61,13 +61,17 @@ struct CreatePostView: View {
                     }
                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                         if axis == .vertical {
-                            return length * 0.7
+                            return length * 0.675
                         } else {
                             return length
                         }
                     }
                     
                     VStack (spacing: 0) {
+                        Rectangle()
+                            .frame(height: 0.5)
+                            .foregroundColor(Color.borderPink)
+                        
                         HStack (spacing: 0) {
                             stickerButton
                             paletteButton
@@ -81,23 +85,23 @@ struct CreatePostView: View {
                             }
                             
                             if (selectedOption == .stickers) {
-                                let newItem = ModelTest(imageName: Image("Sticker\(tapped)"), position: .init(x: 200, y: 200))
+                                let newItem = ModelTest(imageName: Image(uiImage: tapped), position: .init(x: 200, y: 200))
                                 selectedItens.append(newItem)
                             }
                             
                             if (selectedOption == .bubbles) {
-                                let newItem = ModelTest(imageName: Image("Bubble\(tapped)"), position: .init(x: 200, y: 200))
+                                let newItem = ModelTest(imageName: Image(uiImage: tapped), position: .init(x: 200, y: 200))
                                 selectedItens.append(newItem)
                             }
                             
                             if (selectedOption == .texts) {
-                                let newItem = ModelTest(imageName: Image("Alphabet\(tapped)"), position: .init(x: 200, y: 200))
+                                let newItem = ModelTest(imageName: Image(uiImage: tapped), position: .init(x: 200, y: 200))
                                 selectedItens.append(newItem)
                             }
                         }
                         .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                             if axis == .vertical {
-                                return length * 0.3
+                                return length * 0.325
                             } else {
                                 return length
                             }
@@ -414,18 +418,13 @@ struct CreatePostView: View {
     }
     
     var postGroup: some View {
-        
         ZStack {
-            
             DollView(doll: doll)
-            
         }
         .frame(width: 400, height: 400)
-        .background(Image("Background\(background.wallpaper)"))
-        //        .ignoresSafeArea()
+        .background(Image(uiImage: background.wallpaper))
         .overlay {
             ForEach(selectedItens) { item in
-                
                 item.imageName
                     .resizable()
                     .scaledToFit()

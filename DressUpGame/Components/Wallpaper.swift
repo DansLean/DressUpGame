@@ -10,13 +10,13 @@ import SwiftUI
 
 @Observable
 class WallpaperClass: Identifiable {
-    var wallpaper: Int
+    var wallpaper: UIImage
     
-    init(wallpaper: Int) {
+    init(wallpaper: UIImage) {
         self.wallpaper = wallpaper
     }
     
-    func setWallpaper(wallpaper: Int) {
+    func setWallpaper(wallpaper: UIImage) {
         self.wallpaper = wallpaper
     }
 }
@@ -24,11 +24,10 @@ class WallpaperClass: Identifiable {
 struct WallpaperView: View {
     let wallpaper: WallpaperClass
     var body: some View {
-        Image("Background\(wallpaper.wallpaper)")
+        Image(uiImage: wallpaper.wallpaper)
             .resizable()
             .aspectRatio(contentMode: .fill)
             .ignoresSafeArea()
     }
-    
 }
 
