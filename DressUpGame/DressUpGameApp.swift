@@ -28,6 +28,11 @@ struct Asset: Hashable {
     let image: UIImage
 }
 
+struct AssetColor: Hashable {
+    let id = UUID()
+    let color: UIColor
+}
+
 @main
 struct DressUpGameApp: App {
     var body: some Scene {

@@ -23,32 +23,6 @@ struct CreateAvatarView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                //                ZStack(alignment: .topLeading) {
-                //
-                //                    HStack {
-                //                        Button {
-                //                            self.presentationMode.wrappedValue.dismiss()
-                //                        } label: {
-                //
-                //                            Image("chevron_left_button")
-                //
-                //                        }
-                //                        .shadow(radius: 2, y: 2)
-                //
-                //                        Spacer()
-                //
-                //                        Button {
-                //
-                //                        } label: {
-                //                            NavigationLink(destination: CreatePostView(doll: $doll)) {
-                //                                Image("chevron_right_button")
-                //                            }
-                //                        }
-                //                        .shadow(radius: 2, y: 2)
-                //
-                //                    }
-                //                }
-                
                 Image("Background0")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -90,9 +64,20 @@ struct CreateAvatarView: View {
                         //                    }
                         .background(Color.white)
                         
+                        
+                        
                         Rectangle()
                             .frame(height: 0.5, alignment: .top)
                             .foregroundColor(Color.borderPink)
+                        
+                        ColorDecorationItens()
+                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                            if axis == .vertical {
+                                return length * 0.1
+                            } else {
+                                return length
+                            }
+                        }
                         
                         AvatarDecorationItens(selectedCustomization: $selectedCustomization) { tapped in
                             if selectedCustomization == .face {
