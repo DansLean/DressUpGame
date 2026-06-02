@@ -7,6 +7,23 @@
 
 import SwiftUI
 
+struct Sticker: Identifiable {
+    let id = UUID()
+    let image: UIImage
+}
+
+
+//struct DecorationItens: View {
+//
+//    @State var stickers = [
+//        Sticker(image: UIImage(resource: .sticker1)),
+//        Sticker(image: UIImage(resource: .sticker2)),
+//        Sticker(image: UIImage(resource: .sticker3)),
+//        Sticker(image: UIImage(resource: .sticker4)),
+//        Sticker(image: UIImage(resource: .sticker5)),
+//        Sticker(image: UIImage(resource: .sticker6)),
+//        Sticker(image: UIImage(resource: .sticker7)),
+//    ]
 
 struct DecorationItens: View {
     
@@ -15,9 +32,9 @@ struct DecorationItens: View {
     var tap: (Int) -> Void
     
     let stickersImages = [1, 2, 3, 4, 5, 6, 7]
-    let palettesImages = [0, 1, 2, 3, 4, 5]
+    let palettesImages = [0, 1, 2, 3, 4, 5, 6, 7, 8]
     let bubblesImages = [1, 2, 3, 4]
-    let textsImages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+    let textsImages = [1, 2, 3, 4, 5, 6, 7, 8]
     
     let sizeScreen: CGFloat = UIScreen.main.bounds.width + UIScreen.main.bounds.height / UIScreen.main.bounds.width
     
@@ -34,9 +51,13 @@ struct DecorationItens: View {
         }
     }
     
+    @State private var text: String = ""
+    
     var body: some View {
         ScrollView(.horizontal) {
             LazyHGrid(rows: Array(repeating: GridItem(.flexible()), count: 1)) {
+                
+                
                 ForEach(selectedNumbers, id: \.self) { number in
                     Rectangle()
                         .overlay {
@@ -85,6 +106,8 @@ struct DecorationItens: View {
                             }
                             
                             if self.selectedOption == .texts {
+                                
+                                
                                 Image("Alphabet\(number)")
                                     .resizable()
                                     .scaledToFit()

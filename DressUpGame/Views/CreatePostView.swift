@@ -106,33 +106,49 @@ struct CreatePostView: View {
                 }
                 .toolbar {
                     if #available(iOS 26.0, *) {
-                        ToolbarItem(placement: .topBarLeading) {
-                            NavigationLink(destination: CreateAvatarView()) {
-                                Button {
-                                    self.presentationMode.wrappedValue.dismiss()
-                                } label: {
-                                    Image("chevron_left_button")
+                        ToolbarItem(placement: .automatic) {
+                            Menu{
+                                ShareLink(
+                                    item: renderedDoll,
+                                    preview: SharePreview(
+                                        Text("Doll"),
+                                        image: renderedDoll
+                                    )
+                                ) {
+                                    Label("Compartilhar Doll", systemImage: "square.and.arrow.up")
                                 }
-                                .shadow(radius: 2, y: 2)
+                                .id(changes)
+                                ShareLink(
+                                    item: renderedImage,
+                                    preview: SharePreview(
+                                        Text("Post"),
+                                        image: renderedImage
+                                    )
+                                )
+                                {
+                                    Label("Compartilhar Post", systemImage: "square.and.arrow.up")
+                                }
+                                .id(changes)
+                                
+                            }
+                            label:{
+                                Image("share_button")
                             }
                         }
                         .sharedBackgroundVisibility(.hidden)
                     } else {
-                        ToolbarItem(placement: .topBarLeading) {
-                            NavigationLink(destination: CreateAvatarView()) {
-                                Button {
-                                    self.presentationMode.wrappedValue.dismiss()
-                                } label: {
-                                    Image("chevron_left_button")
+                        ToolbarItem(placement: .automatic) {
+                            Menu{
+                                ShareLink(
+                                    item: renderedDoll,
+                                    preview: SharePreview(
+                                        Text("Doll"),
+                                        image: renderedDoll
+                                    )
+                                ) {
+                                    Label("Compartilhar Doll", systemImage: "square.and.arrow.up")
                                 }
-                                .shadow(radius: 2, y: 2)
-                            }
-                        }
-                    }
-                    
-                    if #available(iOS 26.0, *) {
-                        ToolbarItem(placement: .topBarTrailing) {
-                            HStack {
+                                .id(changes)
                                 ShareLink(
                                     item: renderedImage,
                                     preview: SharePreview(
@@ -140,322 +156,415 @@ struct CreatePostView: View {
                                         image: renderedImage
                                     )
                                 ) {
-                                    Image("share_button")
+                                    Label("Compartilhar Post", systemImage: "square.and.arrow.up")
                                 }
                                 .id(changes)
+                                
+                            }
+                            label:{
+                                Image("share_button")
                             }
                         }
-                        .sharedBackgroundVisibility(.hidden)
-                    } else {
-                        ToolbarItem(placement: .topBarTrailing) {
-                            HStack {
-                                ShareLink(
-                                    item: renderedImage,
-                                    preview: SharePreview(
-                                        Text("Post"),
-                                        image: renderedImage
-                                    )
-                                ) {
-                                    Image("share_button")
-                                }
-                                .id(changes)
-                            }
-                        }
-                    }
-                }
-                .navigationBarBackButtonHidden(true)
-            }
-            //            .ignoresSafeArea()
-            .background(.lightgreenGradient)
-        }
-    }
-    
-    var renderedImage: Image {
-        let renderer = ImageRenderer(content: postGroup)
-        renderer.scale = displayScale
-        
-        if let uiImage = renderer.uiImage {
-            return Image(uiImage: uiImage)
-                .resizable()
-        }
-        
-        return Image("Doll1")
-    }
-    
-    var stickerButton: some View {
-        ZStack {
-            if (selectedOption == .stickers) {
-                Button {
-                    
-                } label: {
-                    ZStack {
-                        Image("buttonSelectedPost")
-                            .resizable()
-                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                                if axis == .vertical {
-                                    return length * 0.1
-                                } else {
-                                    return length * 0.25
-                                }
-                            }
-                        Image("stickerButton")
-                    }
-                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                        if axis == .vertical {
-                            return length * 0.1
-                        } else {
-                            return length * 0.25
-                        }
-                    }
-                    .border(Color.borderPink, width: 1)
-                }
-            } else {
-                Button {
-                    selectedOption = .stickers
-                } label: {
-                    ZStack {
-                        Image("stickerButton")
-                    }
-                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                        if axis == .vertical {
-                            return length * 0.1
-                        } else {
-                            return length * 0.25
-                        }
-                    }
-                    .background(.white)
-                    .border(Color.borderPink, width: 1)
-                }
-                .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                    if axis == .vertical {
-                        return length * 0.1
-                    } else {
-                        return length * 0.25
-                    }
-                }
-            }
-        }
-    }
-    
-    var paletteButton: some View {
-        ZStack {
-            if (selectedOption == .palettes) {
-                Button {
-                    
-                } label: {
-                    ZStack {
-                        Image("buttonSelectedPost")
-                            .resizable()
                         
-                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                                if axis == .vertical {
-                                    return length * 0.1
-                                } else {
-                                    return length * 0.25
+                        
+                        if #available(iOS 26.0, *) {
+                            ToolbarItem(placement: .topBarLeading) {
+                                NavigationLink(destination: CreateAvatarView()) {
+                                    Button {
+                                        self.presentationMode.wrappedValue.dismiss()
+                                    } label: {
+                                        Image("chevron_left_button")
+                                    }
+                                    .shadow(radius: 2, y: 2)
                                 }
                             }
-                        Image("paletteButton")
-                    }
-                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                        if axis == .vertical {
-                            return length * 0.1
+                            .sharedBackgroundVisibility(.hidden)
                         } else {
-                            return length * 0.25
+                            ToolbarItem(placement: .topBarLeading) {
+                                NavigationLink(destination: CreateAvatarView()) {
+                                    Button {
+                                        self.presentationMode.wrappedValue.dismiss()
+                                    } label: {
+                                        Image("chevron_left_button")
+                                    }
+                                    .shadow(radius: 2, y: 2)
+                                }
+                            }
                         }
+                        
+                        //                    if #available(iOS 26.0, *) {
+                        //                        ToolbarItem(placement: .topBarTrailing) {
+                        //                            HStack {
+                        //                                ShareLink(
+                        //                                    item: renderedImage,
+                        //                                    preview: SharePreview(
+                        //                                        Text("Post"),
+                        //                                        image: renderedImage
+                        //                                    )
+                        //                                ) {
+                        //                                    Image("share_button")
+                        //                                }
+                        //                                .id(changes)
+                        //                            }
+                        //                        }
+                        //                        .sharedBackgroundVisibility(.hidden)
+                        //                    } else {
+                        //                        ToolbarItem(placement: .topBarTrailing) {
+                        //                            HStack {
+                        //                                ShareLink(
+                        //                                    item: renderedImage,
+                        //                                    preview: SharePreview(
+                        //                                        Text("Post"),
+                        //                                        image: renderedImage
+                        //                                    )
+                        //                                ) {
+                        //                                    Image("share_button")
+                        //                                }
+                        //                                .id(changes)
+                        //                            }
+                        //                        }
+                        //                    }
+                        //                    if #available(iOS 26.0, *) {
+                        //                        ToolbarItem(placement: .topBarTrailing) {
+                        //                            HStack {
+                        //                                ShareLink(
+                        //                                    item: renderedDoll,
+                        //                                    preview: SharePreview(
+                        //                                        Text("Post"),
+                        //                                        image: renderedDoll
+                        //                                    )
+                        //                                ) {
+                        //                                    Image("share_button")
+                        //                                }
+                        //                                .id(changes)
+                        //                            }
+                        //                        }
+                        //                        .sharedBackgroundVisibility(.hidden)
+                        //                    } else {
+                        //                        ToolbarItem(placement: .topBarTrailing) {
+                        //                            HStack {
+                        //                                ShareLink(
+                        //                                    item: renderedDoll,
+                        //                                    preview: SharePreview(
+                        //                                        Text("Post"),
+                        //                                        image: renderedDoll
+                        //                                    )
+                        //                                ) {
+                        //                                    Image("share_button")
+                        //                                }
+                        //                                .id(changes)
+                        //                            }
+                        //                        }
+                        //                    }
                     }
-                    .border(Color.borderPink, width: 1)
+//                        .navigationBarBackButtonHidden(true)
                 }
-                .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                    if axis == .vertical {
-                        return length * 0.1
-                    } else {
-                        return length * 0.25
-                    }
-                }
-                
-                
-            } else {
-                Button {
-                    selectedOption = .palettes
-                } label: {
-                    ZStack {
-                        Image("paletteButton")
-                    }
-                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                        if axis == .vertical {
-                            return length * 0.1
-                        } else {
-                            return length * 0.25
-                        }
-                    }
-                    .background(.white)
-                    .border(Color.borderPink, width: 1)
-                }
-                
+                //            .ignoresSafeArea()
+//                .background(.lightgreenGradient)
             }
         }
     }
-    
-    var bubbleButton: some View {
-        ZStack {
-            if (selectedOption == .bubbles) {
-                Button {
-                    
-                } label: {
-                    ZStack {
-                        Image("buttonSelectedPost")
-                            .resizable()
-                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                                if axis == .vertical {
-                                    return length * 0.1
-                                } else {
-                                    return length * 0.25
-                                }
-                            }
-                        Image("bubbleButton")
-                    }
-                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                        if axis == .vertical {
-                            return length * 0.1
-                        } else {
-                            return length * 0.25
-                        }
-                    }
-                    .border(Color.borderPink, width: 1)
-                }
-                .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                    if axis == .vertical {
-                        return length * 0.1
-                    } else {
-                        return length * 0.25
-                    }
-                }
-            } else {
-                Button {
-                    selectedOption = .bubbles
-                } label: {
-                    ZStack {
-                        Image("bubbleButton")
-                    }
-                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                        if axis == .vertical {
-                            return length * 0.1
-                        } else {
-                            return length * 0.25
-                        }
-                    }
-                    .background(.white)
-                    .border(Color.borderPink, width: 1)
-                }
-                .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                    if axis == .vertical {
-                        return length * 0.1
-                    } else {
-                        return length * 0.25
-                    }
-                }
-            }
-        }
-    }
-    
-    var textButton: some View {
-        ZStack {
-            if (selectedOption == .texts) {
-                Button {
-                    
-                } label: {
-                    ZStack {
-                        Image("buttonSelectedPost")
-                            .resizable()
-                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                                if axis == .vertical {
-                                    return length * 0.1
-                                } else {
-                                    return length * 0.25
-                                }
-                            }
-                        Image("textButton")
-                    }
-                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                        if axis == .vertical {
-                            return length * 0.1
-                        } else {
-                            return length * 0.25
-                        }
-                    }
-                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                        if axis == .vertical {
-                            return length * 0.1
-                        } else {
-                            return length * 0.25
-                        }
-                    }
-                    .border(Color.borderPink, width: 1)
-                }
-            } else {
-                Button {
-                    selectedOption = .texts
-                } label: {
-                    ZStack {
-                        Image("textButton")
-                    }
-                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                        if axis == .vertical {
-                            return length * 0.1
-                        } else {
-                            return length * 0.25
-                        }
-                    }
-                    .background(.white)
-                    .border(Color.borderPink, width: 1)
-                }
-            }
-        }
-    }
-    
-    var postGroup: some View {
         
-        ZStack {
+        var renderedDoll: Image {
+            let renderer = ImageRenderer(content: onlyDoll)
+            renderer.scale = displayScale
             
-            DollView(doll: doll)
-            
-        }
-        .frame(width: 400, height: 400)
-        .background(Image("Background\(background.wallpaper)"))
-        //        .ignoresSafeArea()
-        .overlay {
-            ForEach(selectedItens) { item in
-                
-                item.imageName
+            if let uiImage = renderer.uiImage {
+                return Image(uiImage: uiImage)
                     .resizable()
-                    .scaledToFit()
-                    .frame(width: 70, height: 70)
-                    .position(item.position)
-                    .gesture(
-                        DragGesture()
-                            .onChanged { gesture in
-                                item.position = gesture.location
+            }
+            
+            return Image("Doll1")
+        }
+        
+        var renderedImage: Image {
+            let renderer = ImageRenderer(content: postGroup)
+            renderer.scale = displayScale
+            
+            if let uiImage = renderer.uiImage {
+                return Image(uiImage: uiImage)
+                    .resizable()
+            }
+            
+            return Image("Doll1")
+        }
+        
+        var stickerButton: some View {
+            ZStack {
+                if (selectedOption == .stickers) {
+                    Button {
+                        
+                    } label: {
+                        ZStack {
+                            Image("buttonSelectedPost")
+                                .resizable()
+                                .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                    if axis == .vertical {
+                                        return length * 0.1
+                                    } else {
+                                        return length * 0.25
+                                    }
+                                }
+                            Image("stickerButton")
+                        }
+                        .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                            if axis == .vertical {
+                                return length * 0.1
+                            } else {
+                                return length * 0.25
                             }
-                            .onEnded { _ in
-                                changes += 1
+                        }
+                        .border(Color.borderPink, width: 1)
+                    }
+                } else {
+                    Button {
+                        selectedOption = .stickers
+                    } label: {
+                        ZStack {
+                            Image("stickerButton")
+                        }
+                        .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                            if axis == .vertical {
+                                return length * 0.1
+                            } else {
+                                return length * 0.25
                             }
-                    )
+                        }
+                        .background(.white)
+                        .border(Color.borderPink, width: 1)
+                    }
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.1
+                        } else {
+                            return length * 0.25
+                        }
+                    }
+                }
             }
         }
-        .overlay{
-            VStack {
-                Image("Dolliu_marca")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 80, height: 80, alignment: .bottomTrailing)
-                    .padding(.leading, 400 * 0.7)
-                    .padding(.top, 400 * 0.7)
+        
+        var paletteButton: some View {
+            ZStack {
+                if (selectedOption == .palettes) {
+                    Button {
+                        
+                    } label: {
+                        ZStack {
+                            Image("buttonSelectedPost")
+                                .resizable()
+                            
+                                .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                    if axis == .vertical {
+                                        return length * 0.1
+                                    } else {
+                                        return length * 0.25
+                                    }
+                                }
+                            Image("paletteButton")
+                        }
+                        .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                            if axis == .vertical {
+                                return length * 0.1
+                            } else {
+                                return length * 0.25
+                            }
+                        }
+                        .border(Color.borderPink, width: 1)
+                    }
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.1
+                        } else {
+                            return length * 0.25
+                        }
+                    }
+                    
+                    
+                } else {
+                    Button {
+                        selectedOption = .palettes
+                    } label: {
+                        ZStack {
+                            Image("paletteButton")
+                        }
+                        .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                            if axis == .vertical {
+                                return length * 0.1
+                            } else {
+                                return length * 0.25
+                            }
+                        }
+                        .background(.white)
+                        .border(Color.borderPink, width: 1)
+                    }
+                    
+                }
+            }
+        }
+        
+        var bubbleButton: some View {
+            ZStack {
+                if (selectedOption == .bubbles) {
+                    Button {
+                        
+                    } label: {
+                        ZStack {
+                            Image("buttonSelectedPost")
+                                .resizable()
+                                .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                    if axis == .vertical {
+                                        return length * 0.1
+                                    } else {
+                                        return length * 0.25
+                                    }
+                                }
+                            Image("bubbleButton")
+                        }
+                        .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                            if axis == .vertical {
+                                return length * 0.1
+                            } else {
+                                return length * 0.25
+                            }
+                        }
+                        .border(Color.borderPink, width: 1)
+                    }
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.1
+                        } else {
+                            return length * 0.25
+                        }
+                    }
+                } else {
+                    Button {
+                        selectedOption = .bubbles
+                    } label: {
+                        ZStack {
+                            Image("bubbleButton")
+                        }
+                        .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                            if axis == .vertical {
+                                return length * 0.1
+                            } else {
+                                return length * 0.25
+                            }
+                        }
+                        .background(.white)
+                        .border(Color.borderPink, width: 1)
+                    }
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.1
+                        } else {
+                            return length * 0.25
+                        }
+                    }
+                }
+            }
+        }
+        
+        var textButton: some View {
+            ZStack {
+                if (selectedOption == .texts) {
+                    Button {
+                        
+                    } label: {
+                        ZStack {
+                            Image("buttonSelectedPost")
+                                .resizable()
+                                .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                    if axis == .vertical {
+                                        return length * 0.1
+                                    } else {
+                                        return length * 0.25
+                                    }
+                                }
+                            Image("textButton")
+                        }
+                        .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                            if axis == .vertical {
+                                return length * 0.1
+                            } else {
+                                return length * 0.25
+                            }
+                        }
+                        .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                            if axis == .vertical {
+                                return length * 0.1
+                            } else {
+                                return length * 0.25
+                            }
+                        }
+                        .border(Color.borderPink, width: 1)
+                    }
+                } else {
+                    Button {
+                        selectedOption = .texts
+                    } label: {
+                        ZStack {
+                            Image("textButton")
+                        }
+                        .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                            if axis == .vertical {
+                                return length * 0.1
+                            } else {
+                                return length * 0.25
+                            }
+                        }
+                        .background(.white)
+                        .border(Color.borderPink, width: 1)
+                    }
+                }
+            }
+        }
+        
+        var onlyDoll: some View {
+            DollView(doll: doll)
+        }
+        
+        var postGroup: some View {
+            ZStack {
+                DollView(doll: doll)
+            }
+            .frame(width: 400, height: 400)
+            .background(Image("Background\(background.wallpaper)"))
+            //        .ignoresSafeArea()
+            .overlay {
+                
+                ForEach(selectedItens) { item in
+                    
+                    item.imageName
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 70, height: 70)
+                        .position(item.position)
+                        .gesture(
+                            DragGesture()
+                                .onChanged { gesture in
+                                    item.position = gesture.location
+                                }
+                                .onEnded { _ in
+                                    changes += 1
+                                }
+                        )
+                }
+            }
+            .overlay{
+                VStack {
+                    Image("Dolliu_marca")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 80, height: 80, alignment: .bottomTrailing)
+                        .padding(.leading, 400 * 0.7)
+                        .padding(.top, 400 * 0.7)
+                }
             }
         }
     }
-}
-
-
-//#Preview {
-//    CreatePostView()
-//}
+    
+    
+    //#Preview {
+    //    CreatePostView()
+    //}

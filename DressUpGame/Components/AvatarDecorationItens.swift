@@ -71,6 +71,7 @@ struct AvatarDecorationItens: View {
                                             
                                         }
                                     }
+                                
                                     .padding(.top, 0.65 * sizeScreen)
                             }
                             if self.selectedCustomization == .top {
