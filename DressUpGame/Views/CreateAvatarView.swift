@@ -18,7 +18,8 @@ struct CreateAvatarView: View {
     var shoes: Image = Image("Shoes1")
     var accessories: Image = Image("Accessories1")
     
-    @State var doll = DollClass(face: 1, hair: 0, top: 0, bottom: 0, shoes: 0, accessories: 0)
+    @State var doll = DollClass(face: Asset(image: UIImage(resource: .doll1)), hair: Asset(image: UIImage()), top: Asset(image: UIImage()), bottom: Asset(image: UIImage()), shoes: Asset(image: UIImage()), accessories: Asset(image: UIImage()))
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -95,22 +96,22 @@ struct CreateAvatarView: View {
                         
                         AvatarDecorationItens(selectedCustomization: $selectedCustomization) { tapped in
                             if selectedCustomization == .face {
-                                doll.setDoll(face: tapped)
+                                doll.setDoll(face: Asset(image: tapped))
                             }
                             if selectedCustomization == .hair {
-                                doll.setHair(hair: tapped)
+                                doll.setHair(hair: Asset(image: tapped))
                             }
                             if selectedCustomization == .top {
-                                doll.setTop(top: tapped)
+                                doll.setTop(top: Asset(image: tapped))
                             }
                             if selectedCustomization == .bottom {
-                                doll.setBottom(bottom: tapped)
+                                doll.setBottom(bottom: Asset(image: tapped))
                             }
                             if selectedCustomization == .shoes {
-                                doll.setShoes(shoes: tapped)
+                                doll.setShoes(shoes: Asset(image: tapped))
                             }
                             if selectedCustomization == .accessories {
-                                doll.setAccessories(accessories: tapped)
+                                doll.setAccessories(accessories: Asset(image: tapped))
                             }
                         }
                         .containerRelativeFrame([.horizontal, .vertical]) { length, axis in

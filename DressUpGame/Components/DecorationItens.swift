@@ -8,11 +8,6 @@
 import SwiftUI
 
 
-struct Asset: Hashable {
-    let id = UUID()
-    let image: UIImage
-}
-
 struct DecorationItens: View {
     
     @Binding var selectedOption: PostOptions

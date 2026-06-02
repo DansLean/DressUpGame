@@ -23,6 +23,11 @@ enum AvatarOptions {
     case accessories
 }
 
+struct Asset: Hashable {
+    let id = UUID()
+    let image: UIImage
+}
+
 @main
 struct DressUpGameApp: App {
     var body: some Scene {
