@@ -120,10 +120,11 @@ struct AvatarDecorationItens: View {
                                             return length * 8
                                         } else {
                                             return length * 0.25
-                                            
                                         }
                                     }
                                     .padding(.top, 0.75 * sizeScreen)
+                                    .colorMultiply(.grayColorNew)
+                                    .saturation(3)
                             }
                             if self.selectedCustomization == .top {
                                 Image(uiImage: tab.image)
@@ -134,7 +135,6 @@ struct AvatarDecorationItens: View {
                                             return length * 2
                                         } else {
                                             return length * 0.5
-                                            
                                         }
                                     }
                                     .padding(.top, 0.25 * sizeScreen)

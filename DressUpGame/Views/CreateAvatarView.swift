@@ -11,6 +11,7 @@ import SwiftUI
 struct CreateAvatarView: View {
     @Environment(\.presentationMode) var presentationMode
     @State var selectedCustomization: AvatarOptions = .face
+    @State var selectedColor: Color = .grayColorNew
     @State var selectedItens: [ModelTest] = []
     var face: Image = Image("Doll1")
     var hair: Image = Image("Hair1")
@@ -19,7 +20,7 @@ struct CreateAvatarView: View {
     var shoes: Image = Image("Shoes1")
     var accessories: Image = Image("Accessories1")
     
-    @State var doll = DollClass(face: Asset(image: UIImage(resource: .doll1)), hair: Asset(image: UIImage()), top: Asset(image: UIImage()), bottom: Asset(image: UIImage()), shoes: Asset(image: UIImage()), accessories: Asset(image: UIImage()))
+    @State var doll = DollClass(face: Asset(image: UIImage(resource: .doll1)), hair: Asset(image: UIImage()), hairColor: .grayColorNew, top: Asset(image: UIImage()), bottom: Asset(image: UIImage()), shoes: Asset(image: UIImage()), accessories: Asset(image: UIImage()))
     
     var body: some View {
         NavigationStack {
@@ -71,7 +72,7 @@ struct CreateAvatarView: View {
                         
                         if selectedCustomization == .hair {
                             ColorDecorationItens() { tapped in
-                                
+                                doll.setHairColor(hairColor: tapped)
                             }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                                 if axis == .vertical {

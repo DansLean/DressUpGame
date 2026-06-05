@@ -12,14 +12,16 @@ import SwiftUI
 class DollClass: Identifiable {
     var face: Asset
     var hair: Asset
+    var hairColor: Color
     var top: Asset
     var bottom: Asset
     var shoes: Asset
     var accessories: Asset
     
-    init(face: Asset, hair: Asset, top: Asset, bottom: Asset, shoes: Asset, accessories: Asset) {
+    init(face: Asset, hair: Asset, hairColor: Color, top: Asset, bottom: Asset, shoes: Asset, accessories: Asset) {
         self.face = face
         self.hair = hair
+        self.hairColor = hairColor
         self.top = top
         self.bottom = bottom
         self.shoes = shoes
@@ -32,6 +34,11 @@ class DollClass: Identifiable {
     
     func setHair(hair: Asset) {
         self.hair = hair
+    }
+    
+    func setHairColor(hairColor: Color) {
+        self.hairColor = hairColor
+        self.hair = self.hair
     }
     
     func setTop(top: Asset) {
@@ -53,38 +60,37 @@ class DollClass: Identifiable {
 
 struct DollView: View {
     let doll: DollClass
+    
     var body: some View {
         ZStack(alignment: .center) {
             Image(uiImage: doll.face.image) // Boneca
-                    .resizable()
-                    .scaledToFit()
-                    
-                
+                .resizable()
+                .scaledToFit()
+            
+            
             Image(uiImage: doll.hair.image)   // Cabelo
-                    .resizable()
-                    .scaledToFit()
-                    .offset(x: -1, y: -15)
-                
+                .resizable()
+                .scaledToFit()
+                .colorMultiply(doll.hairColor)
+                .saturation(3)
+                .offset(x: -1, y: -15)
+            
             Image(uiImage: doll.shoes.image)   // Calçado
-                    .resizable()
-                    .scaledToFit()
-                
+                .resizable()
+                .scaledToFit()
+            
             Image(uiImage: doll.bottom.image)   // Bottom
-                    .resizable()
-                    .scaledToFit()
-                
+                .resizable()
+                .scaledToFit()
+            
             Image(uiImage: doll.top.image)   // Top
-                    .resizable()
-                    .scaledToFit()
-                
+                .resizable()
+                .scaledToFit()
+            
             Image(uiImage: doll.accessories.image)   // Acessórios
-                    .resizable()
-                    .scaledToFit()
-            }
+                .resizable()
+                .scaledToFit()
+        }
         .scaleEffect(0.7)
     }
-}
-
-#Preview {
-    DollView(doll: DollClass(face: Asset(image: UIImage(resource: .doll1)), hair: Asset(image: UIImage()), top: Asset(image: UIImage()), bottom: Asset(image: UIImage()), shoes: Asset(image: UIImage()), accessories: Asset(image: UIImage())))
 }
