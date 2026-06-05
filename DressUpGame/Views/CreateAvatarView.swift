@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct CreateAvatarView: View {
     @Environment(\.presentationMode) var presentationMode
     @State var selectedCustomization: AvatarOptions = .face
@@ -64,51 +65,95 @@ struct CreateAvatarView: View {
                         //                    }
                         .background(Color.white)
                         
-                        
-                        
                         Rectangle()
                             .frame(height: 0.5, alignment: .top)
                             .foregroundColor(Color.borderPink)
                         
-                        ColorDecorationItens()
+                        if selectedCustomization == .hair {
+                            ColorDecorationItens() { tapped in
+                                
+                            }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                            if axis == .vertical {
-                                return length * 0.1
-                            } else {
-                                return length
+                                if axis == .vertical {
+                                    return length * 0.1
+                                } else {
+                                    return length
+                                }
                             }
                         }
                         
-                        AvatarDecorationItens(selectedCustomization: $selectedCustomization) { tapped in
-                            if selectedCustomization == .face {
-                                doll.setDoll(face: Asset(image: tapped))
+                        Rectangle()
+                            .frame(height: 1.6, alignment: .top)
+                            .foregroundColor(Color.borderPink)
+                        
+                        if selectedCustomization == .hair {
+                            AvatarDecorationItens(selectedCustomization: $selectedCustomization) { tapped in
+                                if selectedCustomization == .face {
+                                    doll.setDoll(face: Asset(image: tapped))
+                                }
+                                
+                                if selectedCustomization == .hair {
+                                    doll.setHair(hair: Asset(image: tapped))
+                                }
+                                
+                                if selectedCustomization == .top {
+                                    doll.setTop(top: Asset(image: tapped))
+                                }
+                                
+                                if selectedCustomization == .bottom {
+                                    doll.setBottom(bottom: Asset(image: tapped))
+                                }
+                                
+                                if selectedCustomization == .shoes {
+                                    doll.setShoes(shoes: Asset(image: tapped))
+                                }
+                                
+                                if selectedCustomization == .accessories {
+                                    doll.setAccessories(accessories: Asset(image: tapped))
+                                }
                             }
-                            if selectedCustomization == .hair {
-                                doll.setHair(hair: Asset(image: tapped))
+                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                if axis == .vertical {
+                                    return length * 0.2
+                                } else {
+                                    return length
+                                }
                             }
-                            if selectedCustomization == .top {
-                                doll.setTop(top: Asset(image: tapped))
+                        } else {
+                            AvatarDecorationItens(selectedCustomization: $selectedCustomization) { tapped in
+                                if selectedCustomization == .face {
+                                    doll.setDoll(face: Asset(image: tapped))
+                                }
+                                
+                                if selectedCustomization == .hair {
+                                    doll.setHair(hair: Asset(image: tapped))
+                                }
+                                
+                                if selectedCustomization == .top {
+                                    doll.setTop(top: Asset(image: tapped))
+                                }
+                                
+                                if selectedCustomization == .bottom {
+                                    doll.setBottom(bottom: Asset(image: tapped))
+                                }
+                                
+                                if selectedCustomization == .shoes {
+                                    doll.setShoes(shoes: Asset(image: tapped))
+                                }
+                                
+                                if selectedCustomization == .accessories {
+                                    doll.setAccessories(accessories: Asset(image: tapped))
+                                }
                             }
-                            if selectedCustomization == .bottom {
-                                doll.setBottom(bottom: Asset(image: tapped))
-                            }
-                            if selectedCustomization == .shoes {
-                                doll.setShoes(shoes: Asset(image: tapped))
-                            }
-                            if selectedCustomization == .accessories {
-                                doll.setAccessories(accessories: Asset(image: tapped))
-                            }
-                        }
-                        .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                            if axis == .vertical {
-                                return length * 0.3
-                            } else {
-                                return length
+                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                if axis == .vertical {
+                                    return length * 0.3
+                                } else {
+                                    return length
+                                }
                             }
                         }
                     }
-                    
-                    
                 }
                 .toolbar {
                     if #available(iOS 26.0, *) {
@@ -116,9 +161,7 @@ struct CreateAvatarView: View {
                             Button {
                                 self.presentationMode.wrappedValue.dismiss()
                             } label: {
-                                
                                 Image("chevron_left_button")
-                                
                             }
                             .shadow(radius: 2, y: 2)
                         }
@@ -128,18 +171,14 @@ struct CreateAvatarView: View {
                             Button {
                                 self.presentationMode.wrappedValue.dismiss()
                             } label: {
-                                
                                 Image("chevron_left_button")
-                                
                             }
                             .shadow(radius: 2, y: 2)
                         }
                     }
                     
-                    
                     if #available(iOS 26.0, *) {
                         ToolbarItem(placement: .topBarTrailing) {
-                            
                             Button {
                                 
                             } label: {
@@ -148,12 +187,10 @@ struct CreateAvatarView: View {
                                 }
                             }
                             .shadow(radius: 2, y: 2)
-                            
                         }
                         .sharedBackgroundVisibility(.hidden)
                     } else {
                         ToolbarItem(placement: .topBarTrailing) {
-                            
                             Button {
                                 
                             } label: {
@@ -162,16 +199,14 @@ struct CreateAvatarView: View {
                                 }
                             }
                             .shadow(radius: 2, y: 2)
-                            
                         }
                     }
                 }
-                //.ignoresSafeArea()
                 .navigationBarBackButtonHidden(true)
             }
-            
         }
     }
+    
     var faceButton: some View {
         ZStack {
             if (selectedCustomization == .face) {
@@ -267,8 +302,6 @@ struct CreateAvatarView: View {
                 }
             }
         }
-        
-        
     }
     
     var topButton: some View {
@@ -474,7 +507,6 @@ struct CreateAvatarView: View {
         
         
     }
-    
     
 }
 
