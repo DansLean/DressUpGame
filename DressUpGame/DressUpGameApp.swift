@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 enum PostOptions {
     case stickers
     case palettes
@@ -30,7 +31,7 @@ struct Asset: Hashable {
 
 struct AssetColor: Hashable {
     let id = UUID()
-    let color: UIColor
+    let color: Color
 }
 
 @main
@@ -41,5 +42,3 @@ struct DressUpGameApp: App {
         }
     }
 }
-
-
