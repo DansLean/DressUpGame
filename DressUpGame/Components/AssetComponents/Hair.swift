@@ -7,17 +7,32 @@
 
 import SwiftUI
 
-struct Cabelo1: View {
+
+struct Hair: View {
+    
+    @Binding var hair: Asset
+    @Binding var hairColor: AssetColor
+    
     var body: some View {
-        ZStack(alignment: .center) {
-            Image("Cabelo1B")
-                .foregroundStyle(.brownColorNew)
-            Image("Cabelo1F")
-                .foregroundStyle(.beigeColorNew)
+        VStack(alignment: .center) {
+            Image(uiImage: hair.image)
+                .colorMultiply(hairColor.color)
+                .saturation(3)
         }
     }
 }
 
 #Preview {
-    Cabelo1()
+    @Previewable @State var hair = Asset(
+        image: UIImage(resource: .cabeloTeste),
+    )
+    
+    @Previewable @State var hairColor = AssetColor(
+        color: .grayColorNew,
+    )
+    
+    Hair(
+        hair: $hair,
+        hairColor: $hairColor
+    )
 }

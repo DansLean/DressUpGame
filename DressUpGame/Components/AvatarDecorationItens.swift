@@ -123,7 +123,7 @@ struct AvatarDecorationItens: View {
                                             
                                         }
                                     }
-                                    .padding(.top, 0.65 * sizeScreen)
+                                    .padding(.top, 0.75 * sizeScreen)
                             }
                             if self.selectedCustomization == .top {
                                 Image(uiImage: tab.image)
