@@ -32,6 +32,19 @@ struct HomeView: View {
                     }
                 }
                 
+                .overlay{
+                    VStack {
+                        Image("pisoFundo")
+                            .resizable()
+                            .scaledToFit()
+//                            .frame(width: 80, height: 80, alignment: .center)
+//                            .padding(.leading, 400 * 0.7)
+//                            .padding(.top, 400 * 0.7)
+//                            .blendMode(.darken)
+        //                    .opacity(0.8)
+                    }
+                }
+                
                 Button {
                     
                 } label: {
@@ -50,9 +63,9 @@ struct HomeView: View {
                             }
                         }
                     }
-                    .overlay(Rectangle()
-                        .frame(width: nil, height: 3, alignment: .top)
-                        .foregroundColor(.separator), alignment: .top)
+//                    .overlay(Rectangle()
+//                        .frame(width: nil, height: 3, alignment: .top)
+//                        .foregroundColor(.separator), alignment: .top)
                 }
                 
             }

@@ -124,7 +124,7 @@ struct AvatarDecorationItens: View {
                                     }
                                     .padding(.top, 0.75 * sizeScreen)
                                     .colorMultiply(.grayColorNew)
-                                    .saturation(3)
+                                    .saturation(1)
                             }
                             if self.selectedCustomization == .top {
                                 Image(uiImage: tab.image)

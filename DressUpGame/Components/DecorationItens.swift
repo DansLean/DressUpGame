@@ -7,6 +7,23 @@
 
 import SwiftUI
 
+struct Sticker: Identifiable {
+    let id = UUID()
+    let image: UIImage
+}
+
+
+//struct DecorationItens: View {
+//
+//    @State var stickers = [
+//        Sticker(image: UIImage(resource: .sticker1)),
+//        Sticker(image: UIImage(resource: .sticker2)),
+//        Sticker(image: UIImage(resource: .sticker3)),
+//        Sticker(image: UIImage(resource: .sticker4)),
+//        Sticker(image: UIImage(resource: .sticker5)),
+//        Sticker(image: UIImage(resource: .sticker6)),
+//        Sticker(image: UIImage(resource: .sticker7)),
+//    ]
 
 struct DecorationItens: View {
     
@@ -89,11 +106,14 @@ struct DecorationItens: View {
         }
     }
     
+    @State private var text: String = ""
     @State var isShowingCustomStickerPicker = false
     
     var body: some View {
         ScrollView(.horizontal) {
             LazyHGrid(rows: Array(repeating: GridItem(.flexible()), count: 1)) {
+                
+                
                 if selectedOption == .stickers {
                     Button {
                         isShowingCustomStickerPicker = true
