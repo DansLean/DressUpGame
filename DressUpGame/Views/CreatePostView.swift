@@ -228,9 +228,8 @@ struct CreatePostView: View {
                     }
                     
                 }
-//                .ignoresSafeArea()
-                //            .ignoresSafeArea()
-                //                .background(.lightgreenGradient)
+                .ignoresSafeArea()
+                .background(.lightgreenGradient)
             }
         }
     }
