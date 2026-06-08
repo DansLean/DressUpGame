@@ -12,7 +12,6 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .center)  {
-                
                 VStack(alignment: .center) {
                     Image("Doll1")
                         .resizable()

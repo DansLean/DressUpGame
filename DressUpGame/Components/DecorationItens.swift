@@ -25,11 +25,6 @@ struct Sticker: Identifiable {
 //        Sticker(image: UIImage(resource: .sticker7)),
 //    ]
 
-struct Asset: Hashable {
-    let id = UUID()
-    let image: UIImage
-}
-
 struct DecorationItens: View {
     
     @Binding var selectedOption: PostOptions

@@ -10,33 +10,85 @@ struct AvatarDecorationItens: View {
     
     @Binding var selectedCustomization: AvatarOptions
     
-    var tap: (Int) -> Void
+    var tap: (UIImage) -> Void
     
-    let faceImages = [1, 2, 3, 4, 5, 6, 7, 8]
-    let hairImages = [1, 2, 3, 4, 5, 6, 7, 8]
-    let topImages = [1, 2, 3, 4, 5, 6, 7]
-    let bottomImages = [1, 2, 3]
-    let shoesImages = [1, 2, 3, 4]
-    let accessoriesImages = [1, 2, 3, 4, 5, 6, 7, 8, 9 , 10, 11, 12]
+    @State var faces = [
+        Asset(image: UIImage(resource: .doll1)),
+        Asset(image: UIImage(resource: .doll2)),
+        Asset(image: UIImage(resource: .doll3)),
+        Asset(image: UIImage(resource: .doll4)),
+        Asset(image: UIImage(resource: .doll5)),
+        Asset(image: UIImage(resource: .doll6)),
+        Asset(image: UIImage(resource: .doll7)),
+        Asset(image: UIImage(resource: .doll8))
+    ]
+    
+    @State var hairs = [
+        Asset(image: UIImage(resource: .cabelo1)),
+        Asset(image: UIImage(resource: .cabelo2)),
+        Asset(image: UIImage(resource: .cabelo3)),
+        Asset(image: UIImage(resource: .cabelo4)),
+        Asset(image: UIImage(resource: .cabelo5)),
+        Asset(image: UIImage(resource: .cabelo6)),
+        Asset(image: UIImage(resource: .cabelo7)),
+        Asset(image: UIImage(resource: .cabelo8))
+    ]
+    
+    @State var tops = [
+        Asset(image: UIImage(resource: .top1)),
+        Asset(image: UIImage(resource: .top2)),
+        Asset(image: UIImage(resource: .top3)),
+        Asset(image: UIImage(resource: .top4)),
+        Asset(image: UIImage(resource: .top5)),
+        Asset(image: UIImage(resource: .top6)),
+        Asset(image: UIImage(resource: .top7))
+    ]
+    
+    @State var bottoms = [
+        Asset(image: UIImage(resource: .bottom1)),
+        Asset(image: UIImage(resource: .bottom2)),
+        Asset(image: UIImage(resource: .bottom3))
+    ]
+    
+    @State var shoes = [
+        Asset(image: UIImage(resource: .shoes1)),
+        Asset(image: UIImage(resource: .shoes2)),
+        Asset(image: UIImage(resource: .shoes3)),
+        Asset(image: UIImage(resource: .shoes4))
+    ]
+    
+    @State var accessories = [
+        Asset(image: UIImage(resource: .acessorio1)),
+        Asset(image: UIImage(resource: .acessorio2)),
+        Asset(image: UIImage(resource: .acessorio3)),
+        Asset(image: UIImage(resource: .acessorio4)),
+        Asset(image: UIImage(resource: .acessorio5)),
+        Asset(image: UIImage(resource: .acessorio6)),
+        Asset(image: UIImage(resource: .acessorio7)),
+        Asset(image: UIImage(resource: .acessorio8)),
+        Asset(image: UIImage(resource: .acessorio9)),
+        Asset(image: UIImage(resource: .acessorio10)),
+        Asset(image: UIImage(resource: .acessorio11)),
+        Asset(image: UIImage(resource: .acessorio12))
+    ]
     
     let sizeScreen: CGFloat = UIScreen.main.bounds.width + UIScreen.main.bounds.height / UIScreen.main.bounds.width
     
-    var selectedTab: [Int] {
+    var selectedTab: [Asset] {
         switch (selectedCustomization) {
         case .face:
-            return faceImages
+            return faces
         case .hair:
-            return hairImages
+            return hairs
         case .top:
-            return topImages
+            return tops
         case .bottom:
-            return bottomImages
+            return bottoms
         case .shoes:
-            return shoesImages
+            return shoes
         case .accessories:
-            return accessoriesImages
+            return accessories
         }
-        
     }
     
     var body: some View {
@@ -46,7 +98,7 @@ struct AvatarDecorationItens: View {
                     Rectangle()
                         .overlay {
                             if self.selectedCustomization == .face {
-                                Image("Doll\(tab)")
+                                Image(uiImage: tab.image)
                                     .resizable()
                                     .scaledToFit()
                                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -60,7 +112,7 @@ struct AvatarDecorationItens: View {
                                     .padding(.top, 0.45 * sizeScreen)
                             }
                             if self.selectedCustomization == .hair {
-                                Image("Cabelo\(tab)")
+                                Image(uiImage: tab.image)
                                     .resizable()
                                     .scaledToFit()
                                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -68,14 +120,14 @@ struct AvatarDecorationItens: View {
                                             return length * 8
                                         } else {
                                             return length * 0.25
-                                            
                                         }
                                     }
-                                
-                                    .padding(.top, 0.65 * sizeScreen)
+                                    .padding(.top, 0.75 * sizeScreen)
+                                    .colorMultiply(.grayColorNew)
+                                    .saturation(1)
                             }
                             if self.selectedCustomization == .top {
-                                Image("Top\(tab)")
+                                Image(uiImage: tab.image)
                                     .resizable()
                                     .scaledToFit()
                                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -83,13 +135,12 @@ struct AvatarDecorationItens: View {
                                             return length * 2
                                         } else {
                                             return length * 0.5
-                                            
                                         }
                                     }
                                     .padding(.top, 0.25 * sizeScreen)
                             }
                             if self.selectedCustomization == .bottom {
-                                Image("Bottom\(tab)")
+                                Image(uiImage: tab.image)
                                     .resizable()
                                     .scaledToFit()
                                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -103,7 +154,7 @@ struct AvatarDecorationItens: View {
                                     .padding(.top, -0.2 * sizeScreen)
                             }
                             if self.selectedCustomization == .shoes {
-                                Image("Shoes\(tab)")
+                                Image(uiImage: tab.image)
                                     .resizable()
                                     .scaledToFit()
                                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -117,7 +168,7 @@ struct AvatarDecorationItens: View {
                                     .padding(.top, -0.75 * sizeScreen)
                             }
                             if self.selectedCustomization == .accessories {
-                                Image("Acessorio\(tab)")
+                                Image(uiImage: tab.image)
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 200, height: 320)
@@ -126,7 +177,7 @@ struct AvatarDecorationItens: View {
                         }
                         .aspectRatio(0.0013 * sizeScreen, contentMode: .fit)
                         .onTapGesture {
-                            tap(tab)
+                            tap(tab.image)
                         }
                 }
             }

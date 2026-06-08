@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 enum PostOptions {
     case stickers
     case palettes
@@ -23,6 +24,16 @@ enum AvatarOptions {
     case accessories
 }
 
+struct Asset: Hashable {
+    let id = UUID()
+    let image: UIImage
+}
+
+struct AssetColor: Hashable {
+    let id = UUID()
+    let color: Color
+}
+
 @main
 struct DressUpGameApp: App {
     var body: some Scene {
@@ -31,5 +42,3 @@ struct DressUpGameApp: App {
         }
     }
 }
-
-
