@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-struct ColorDecorationItens: View {
+struct ColorHairsItens: View {
     
     var tap: (Color) -> Void
     

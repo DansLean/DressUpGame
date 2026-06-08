@@ -137,7 +137,9 @@ struct AvatarDecorationItens: View {
                                             return length * 0.5
                                         }
                                     }
-                                    .padding(.top, 0.25 * sizeScreen)
+                                    .padding(.top, 0.175 * sizeScreen)
+                                    .colorMultiply(.lightBlueColorClothes)
+                                    .saturation(1)
                             }
                             if self.selectedCustomization == .bottom {
                                 Image(uiImage: tab.image)
@@ -152,6 +154,8 @@ struct AvatarDecorationItens: View {
                                         }
                                     }
                                     .padding(.top, -0.2 * sizeScreen)
+                                    .colorMultiply(.lightBlueColorClothes)
+                                    .saturation(1)
                             }
                             if self.selectedCustomization == .shoes {
                                 Image(uiImage: tab.image)
@@ -183,6 +187,7 @@ struct AvatarDecorationItens: View {
             }
             .background(Color.white)
             .foregroundStyle(.white)
+            .padding(.horizontal, 10)
         }
     }
 }
