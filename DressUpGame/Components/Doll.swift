@@ -14,16 +14,20 @@ class DollClass: Identifiable {
     var hair: Asset
     var hairColor: Color
     var top: Asset
+    var topColor: Color
     var bottom: Asset
+    var bottomColor: Color
     var shoes: Asset
     var accessories: Asset
     
-    init(face: Asset, hair: Asset, hairColor: Color, top: Asset, bottom: Asset, shoes: Asset, accessories: Asset) {
+    init(face: Asset, hair: Asset, hairColor: Color, top: Asset, topColor: Color, bottom: Asset, bottomColor: Color, shoes: Asset, accessories: Asset) {
         self.face = face
         self.hair = hair
         self.hairColor = hairColor
         self.top = top
+        self.topColor = topColor
         self.bottom = bottom
+        self.bottomColor = bottomColor
         self.shoes = shoes
         self.accessories = accessories
     }
@@ -45,8 +49,18 @@ class DollClass: Identifiable {
         self.top = top
     }
     
+    func setTopColor(topColor: Color) {
+        self.topColor = topColor
+        self.top = self.top
+    }
+    
     func setBottom(bottom: Asset) {
         self.bottom = bottom
+    }
+    
+    func setBottomColor(bottomColor: Color) {
+        self.bottomColor = bottomColor
+        self.bottom = self.bottom
     }
     
     func setShoes(shoes: Asset) {
@@ -82,10 +96,14 @@ struct DollView: View {
             Image(uiImage: doll.bottom.image)   // Bottom
                 .resizable()
                 .scaledToFit()
+                .colorMultiply(doll.bottomColor)
+                .saturation(1)
             
             Image(uiImage: doll.top.image)   // Top
                 .resizable()
                 .scaledToFit()
+                .colorMultiply(doll.topColor)
+                .saturation(1)
             
             Image(uiImage: doll.accessories.image)   // Acessórios
                 .resizable()

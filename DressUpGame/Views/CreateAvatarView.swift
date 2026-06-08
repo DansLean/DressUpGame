@@ -20,7 +20,7 @@ struct CreateAvatarView: View {
     var shoes: Image = Image("Shoes1")
     var accessories: Image = Image("Accessories1")
     
-    @State var doll = DollClass(face: Asset(image: UIImage(resource: .doll1)), hair: Asset(image: UIImage()), hairColor: .grayColorNew, top: Asset(image: UIImage()), bottom: Asset(image: UIImage()), shoes: Asset(image: UIImage()), accessories: Asset(image: UIImage()))
+    @State var doll = DollClass(face: Asset(image: UIImage(resource: .doll1)), hair: Asset(image: UIImage()), hairColor: .grayColorNew, top: Asset(image: UIImage()), topColor: .lightBlueColorClothes, bottom: Asset(image: UIImage()), bottomColor: .lightBlueColorClothes, shoes: Asset(image: UIImage()), accessories: Asset(image: UIImage()))
     
     var body: some View {
         NavigationStack {
@@ -71,7 +71,7 @@ struct CreateAvatarView: View {
                             .foregroundColor(Color.borderPink)
                         
                         if selectedCustomization == .hair {
-                            ColorDecorationItens() { tapped in
+                            ColorHairsItens() { tapped in
                                 doll.setHairColor(hairColor: tapped)
                             }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -81,13 +81,48 @@ struct CreateAvatarView: View {
                                     return length
                                 }
                             }
+                            
+                            Rectangle()
+                                .frame(height: 1.6, alignment: .top)
+                                .foregroundColor(Color.borderPink)
                         }
                         
-                        Rectangle()
-                            .frame(height: 1.6, alignment: .top)
-                            .foregroundColor(Color.borderPink)
+                        if selectedCustomization == .top {
+                            ColorClothesItens() { tapped in
+                                doll.setTopColor(topColor: tapped)
+                            }
+                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                if axis == .vertical {
+                                    return length * 0.1
+                                } else {
+                                    return length
+                                }
+                            }
+                            
+                            Rectangle()
+                                .frame(height: 1.6, alignment: .top)
+                                .foregroundColor(Color.borderPink)
+                        }
                         
-                        if selectedCustomization == .hair {
+                        if selectedCustomization == .bottom {
+                            ColorClothesItens() { tapped in
+                                doll.setBottomColor(bottomColor: tapped)
+                            }
+                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                if axis == .vertical {
+                                    return length * 0.1
+                                } else {
+                                    return length
+                                }
+                            }
+                            
+                            Rectangle()
+                                .frame(height: 1.6, alignment: .top)
+                                .foregroundColor(Color.borderPink)
+                        }
+
+                        
+                        if selectedCustomization == .hair || selectedCustomization == .top || selectedCustomization == .bottom {
                             AvatarDecorationItens(selectedCustomization: $selectedCustomization) { tapped in
                                 if selectedCustomization == .face {
                                     doll.setDoll(face: Asset(image: tapped))

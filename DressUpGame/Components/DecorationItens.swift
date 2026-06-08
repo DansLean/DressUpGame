@@ -95,7 +95,7 @@ struct DecorationItens: View {
         Asset(image: UIImage(resource: .alphabet31)),
         Asset(image: UIImage(resource: .alphabet32)),
         Asset(image: UIImage(resource: .alphabet33)),
-        Asset(image: UIImage(resource: .alphabet34)),
+        Asset(image: UIImage(resource: .alphabet34))
     ]
     
     let sizeScreen: CGFloat = UIScreen.main.bounds.width + UIScreen.main.bounds.height / UIScreen.main.bounds.width
