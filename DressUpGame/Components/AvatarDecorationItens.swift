@@ -31,7 +31,12 @@ struct AvatarDecorationItens: View {
         Asset(image: UIImage(resource: .cabelo5)),
         Asset(image: UIImage(resource: .cabelo6)),
         Asset(image: UIImage(resource: .cabelo7)),
-        Asset(image: UIImage(resource: .cabelo8))
+        Asset(image: UIImage(resource: .cabelo8)),
+        Asset(image: UIImage(resource: .cabelo9)),
+        Asset(image: UIImage(resource: .cabelo10)),
+        Asset(image: UIImage(resource: .cabelo11)),
+        Asset(image: UIImage(resource: .cabelo12)),
+        Asset(image: UIImage(resource: .cabelo13))
     ]
     
     @State var tops = [
