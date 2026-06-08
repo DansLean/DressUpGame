@@ -28,7 +28,7 @@ struct ColorClothesItens: View {
         AssetColor(color: .blueGrayColorClothes),
         AssetColor(color: .blueGrayColorClothes),
         AssetColor(color: .lightDarkGreenColorClothes),
-        AssetColor(color: .lightBlueColorClothes),
+        AssetColor(color: .lightBlueColorClothes)
     ]
     
     let sizeScreen: CGFloat = UIScreen.main.bounds.width + UIScreen.main.bounds.height / UIScreen.main.bounds.width
