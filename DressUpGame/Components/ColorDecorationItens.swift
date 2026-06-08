@@ -20,7 +20,8 @@ struct ColorDecorationItens: View {
         AssetColor(color: .brownColorNew),
         AssetColor(color: .blueColorNew),
         AssetColor(color: .pinkColorNew),
-        AssetColor(color: .purpleColorNew)
+        AssetColor(color: .purpleColorNew),
+        AssetColor(color: .salmonColorNew)
     ]
     
     let sizeScreen: CGFloat = UIScreen.main.bounds.width + UIScreen.main.bounds.height / UIScreen.main.bounds.width
