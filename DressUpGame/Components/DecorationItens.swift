@@ -48,6 +48,9 @@ struct DecorationItens: View {
         Asset(image: UIImage(resource: .background3)),
         Asset(image: UIImage(resource: .background4)),
         Asset(image: UIImage(resource: .background5)),
+        Asset(image: UIImage(resource: .background6)),
+        Asset(image: UIImage(resource: .background7)),
+        Asset(image: UIImage(resource: .background8)),
     ]
     
     
@@ -89,6 +92,10 @@ struct DecorationItens: View {
         Asset(image: UIImage(resource: .alphabet28)),
         Asset(image: UIImage(resource: .alphabet29)),
         Asset(image: UIImage(resource: .alphabet30)),
+        Asset(image: UIImage(resource: .alphabet31)),
+        Asset(image: UIImage(resource: .alphabet32)),
+        Asset(image: UIImage(resource: .alphabet33)),
+        Asset(image: UIImage(resource: .alphabet34)),
     ]
     
     let sizeScreen: CGFloat = UIScreen.main.bounds.width + UIScreen.main.bounds.height / UIScreen.main.bounds.width
