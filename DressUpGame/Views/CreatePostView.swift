@@ -133,26 +133,52 @@ struct CreatePostView: View {
                             }
                         }
                     }
-                    
                     if #available(iOS 26.0, *) {
-                        ToolbarItem(placement: .topBarTrailing) {
-                            HStack {
+                        ToolbarItem(placement: .automatic) {
+                            Menu{
+                                ShareLink(
+                                    item: renderedDoll,
+                                    preview: SharePreview(
+                                        Text("Doll"),
+                                        image: renderedDoll
+                                    )
+                                ) {
+                                    Label("Compartilhar Doll", systemImage: "person.fill")
+                                }
+                                .id(changes)
                                 ShareLink(
                                     item: renderedImage,
                                     preview: SharePreview(
                                         Text("Post"),
                                         image: renderedImage
                                     )
-                                ) {
-                                    Image("share_button")
+                                )
+                                {
+                                    Label("Compartilhar Post", systemImage: "person.crop.square.on.square.angled")
+                                        .foregroundStyle(Color(.systemGray))
                                 }
                                 .id(changes)
+                                
                             }
+                            label:{
+                                Image("share_button")
+                            }
+                            .navigationBarBackButtonHidden(true)
                         }
                         .sharedBackgroundVisibility(.hidden)
                     } else {
-                        ToolbarItem(placement: .topBarTrailing) {
-                            HStack {
+                        ToolbarItem(placement: .automatic) {
+                            Menu{
+                                ShareLink(
+                                    item: renderedDoll,
+                                    preview: SharePreview(
+                                        Text("Doll"),
+                                        image: renderedDoll
+                                    )
+                                ) {
+                                    Label("Compartilhar Doll", systemImage: "person.fill")
+                                }
+                                .id(changes)
                                 ShareLink(
                                     item: renderedImage,
                                     preview: SharePreview(
@@ -160,18 +186,68 @@ struct CreatePostView: View {
                                         image: renderedImage
                                     )
                                 ) {
-                                    Image("share_button")
+                                    Label("Compartilhar Post", systemImage: "person.crop.square.on.square.angled")
                                 }
                                 .id(changes)
+                                
+                            }
+                            label:{
+                                Image("share_button")
+                            }
+                        }
+                        
+                        
+                        if #available(iOS 26.0, *) {
+                            ToolbarItem(placement: .topBarTrailing) {
+                                HStack {
+                                    ShareLink(
+                                        item: renderedImage,
+                                        preview: SharePreview(
+                                            Text("Post"),
+                                            image: renderedImage
+                                        )
+                                    ) {
+                                        Image("share_button")
+                                    }
+                                    .id(changes)
+                                }
+                            }
+                            .sharedBackgroundVisibility(.hidden)
+                        } else {
+                            ToolbarItem(placement: .topBarTrailing) {
+                                HStack {
+                                    ShareLink(
+                                        item: renderedImage,
+                                        preview: SharePreview(
+                                            Text("Post"),
+                                            image: renderedImage
+                                        )
+                                    ) {
+                                        Image("share_button")
+                                    }
+                                    .id(changes)
+                                }
                             }
                         }
                     }
+                    
                 }
-                .navigationBarBackButtonHidden(true)
+//                .ignoresSafeArea()
+                .background(.white)
             }
-            //            .ignoresSafeArea()
-            .background(.lightgreenGradient)
         }
+    }
+    
+    var renderedDoll: Image {
+        let renderer = ImageRenderer(content: onlyDoll)
+        renderer.scale = displayScale
+        
+        if let uiImage = renderer.uiImage {
+            return Image(uiImage: uiImage)
+                .resizable()
+        }
+        
+        return Image("Doll1")
     }
     
     var renderedImage: Image {
@@ -417,6 +493,13 @@ struct CreatePostView: View {
         }
     }
     
+    var onlyDoll: some View {
+        ZStack{
+            DollView(doll: doll)
+        }
+        .frame(width: 200, height: 400)
+    }
+    
     var postGroup: some View {
         ZStack {
             DollView(doll: doll)
@@ -424,6 +507,7 @@ struct CreatePostView: View {
         .frame(width: 400, height: 400)
         .background(Image(uiImage: background.wallpaper))
         .overlay {
+            
             ForEach(selectedItens) { item in
                 item.imageName
                     .resizable()
@@ -449,6 +533,8 @@ struct CreatePostView: View {
                     .frame(width: 80, height: 80, alignment: .bottomTrailing)
                     .padding(.leading, 400 * 0.7)
                     .padding(.top, 400 * 0.7)
+                    .blendMode(.darken)
+                //                    .opacity(0.8)
             }
         }
     }
