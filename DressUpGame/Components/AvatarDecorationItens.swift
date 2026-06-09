@@ -9,6 +9,9 @@ import SwiftUI
 struct AvatarDecorationItens: View {
     
     @Binding var selectedCustomization: AvatarOptions
+    @Binding var assetHairColor: Color
+    @Binding var assetTopColor: Color
+    @Binding var assetBottomColor: Color
     
     var tap: (UIImage) -> Void
     
@@ -122,13 +125,14 @@ struct AvatarDecorationItens: View {
                                     .scaledToFit()
                                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                                         if axis == .vertical {
-                                            return length * 8
+                                            return length * 4
                                         } else {
-                                            return length * 0.25
+                                            return length * 0.2
                                         }
                                     }
-                                    .padding(.top, 0.75 * sizeScreen)
-                                    .colorMultiply(.grayColorNew)
+                                    .padding(.top, 0.55 * sizeScreen)
+                                    
+                                    .colorMultiply(assetHairColor)
                                     .saturation(1)
                             }
                             if self.selectedCustomization == .top {
@@ -142,8 +146,8 @@ struct AvatarDecorationItens: View {
                                             return length * 0.5
                                         }
                                     }
-                                    .padding(.top, 0.175 * sizeScreen)
-                                    .colorMultiply(.lightBlueColorClothes)
+                                    .padding(.top, 0.08 * sizeScreen)
+                                    .colorMultiply(assetTopColor)
                                     .saturation(1)
                             }
                             if self.selectedCustomization == .bottom {
@@ -159,7 +163,7 @@ struct AvatarDecorationItens: View {
                                         }
                                     }
                                     .padding(.top, -0.2 * sizeScreen)
-                                    .colorMultiply(.lightBlueColorClothes)
+                                    .colorMultiply(assetBottomColor)
                                     .saturation(1)
                             }
                             if self.selectedCustomization == .shoes {
@@ -190,9 +194,9 @@ struct AvatarDecorationItens: View {
                         }
                 }
             }
+            .padding(.horizontal, 10)
             .background(Color.white)
             .foregroundStyle(.white)
-            .padding(.horizontal, 10)
         }
     }
 }

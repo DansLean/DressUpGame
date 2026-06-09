@@ -11,7 +11,9 @@ import SwiftUI
 struct CreateAvatarView: View {
     @Environment(\.presentationMode) var presentationMode
     @State var selectedCustomization: AvatarOptions = .face
-    @State var selectedColor: Color = .grayColorNew
+    @State var selectedHairColor: Color = .grayColorNew
+    @State var selectedTopColor: Color = .grayColorNew
+    @State var selectedBottomColor: Color = .grayColorNew
     @State var selectedItens: [ModelTest] = []
     var face: Image = Image("Doll1")
     var hair: Image = Image("Hair1")
@@ -73,6 +75,7 @@ struct CreateAvatarView: View {
                         if selectedCustomization == .hair {
                             ColorHairsItens() { tapped in
                                 doll.setHairColor(hairColor: tapped)
+                                selectedHairColor = tapped
                             }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                                 if axis == .vertical {
@@ -90,6 +93,7 @@ struct CreateAvatarView: View {
                         if selectedCustomization == .top {
                             ColorClothesItens() { tapped in
                                 doll.setTopColor(topColor: tapped)
+                                selectedTopColor = tapped
                             }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                                 if axis == .vertical {
@@ -107,6 +111,7 @@ struct CreateAvatarView: View {
                         if selectedCustomization == .bottom {
                             ColorClothesItens() { tapped in
                                 doll.setBottomColor(bottomColor: tapped)
+                                selectedBottomColor = tapped
                             }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                                 if axis == .vertical {
@@ -123,7 +128,7 @@ struct CreateAvatarView: View {
 
                         
                         if selectedCustomization == .hair || selectedCustomization == .top || selectedCustomization == .bottom {
-                            AvatarDecorationItens(selectedCustomization: $selectedCustomization) { tapped in
+                            AvatarDecorationItens(selectedCustomization: $selectedCustomization, assetHairColor: $selectedHairColor, assetTopColor: $selectedTopColor, assetBottomColor: $selectedBottomColor) { tapped in
                                 if selectedCustomization == .face {
                                     doll.setDoll(face: Asset(image: tapped))
                                 }
@@ -156,7 +161,7 @@ struct CreateAvatarView: View {
                                 }
                             }
                         } else {
-                            AvatarDecorationItens(selectedCustomization: $selectedCustomization) { tapped in
+                            AvatarDecorationItens(selectedCustomization: $selectedCustomization, assetHairColor: $selectedHairColor, assetTopColor: $selectedTopColor, assetBottomColor: $selectedBottomColor) { tapped in
                                 if selectedCustomization == .face {
                                     doll.setDoll(face: Asset(image: tapped))
                                 }
