@@ -6,8 +6,8 @@
 //
 import SwiftUI
 
+
 struct AvatarDecorationItens: View {
-    
     @Binding var selectedCustomization: AvatarOptions
     @Binding var assetHairColor: Color
     @Binding var assetTopColor: Color
@@ -18,12 +18,12 @@ struct AvatarDecorationItens: View {
     @State var faces = [
         Asset(image: UIImage(resource: .doll1)),
         Asset(image: UIImage(resource: .doll2)),
+        Asset(image: UIImage(resource: .doll7)),
+        Asset(image: UIImage(resource: .doll8)),
         Asset(image: UIImage(resource: .doll3)),
         Asset(image: UIImage(resource: .doll4)),
         Asset(image: UIImage(resource: .doll5)),
-        Asset(image: UIImage(resource: .doll6)),
-        Asset(image: UIImage(resource: .doll7)),
-        Asset(image: UIImage(resource: .doll8))
+        Asset(image: UIImage(resource: .doll6))
     ]
     
     @State var hairs = [
@@ -114,7 +114,6 @@ struct AvatarDecorationItens: View {
                                             return length * 2
                                         } else {
                                             return length * 0.25
-                                            
                                         }
                                     }
                                     .padding(.top, 0.45 * sizeScreen)
@@ -131,7 +130,6 @@ struct AvatarDecorationItens: View {
                                         }
                                     }
                                     .padding(.top, 0.55 * sizeScreen)
-                                    
                                     .colorMultiply(assetHairColor)
                                     .saturation(1)
                             }
@@ -159,7 +157,6 @@ struct AvatarDecorationItens: View {
                                             return length * 1.6
                                         } else {
                                             return length * 0.2
-                                            
                                         }
                                     }
                                     .padding(.top, -0.2 * sizeScreen)
@@ -175,7 +172,6 @@ struct AvatarDecorationItens: View {
                                             return length * 1.8
                                         } else {
                                             return length * 0.3
-                                            
                                         }
                                     }
                                     .padding(.top, -0.75 * sizeScreen)
