@@ -9,6 +9,9 @@ import SwiftUI
 struct AvatarDecorationItens: View {
     
     @Binding var selectedCustomization: AvatarOptions
+    @Binding var assetHairColor: Color
+    @Binding var assetTopColor: Color
+    @Binding var assetBottomColor: Color
     
     var tap: (UIImage) -> Void
     
@@ -128,7 +131,7 @@ struct AvatarDecorationItens: View {
                                         }
                                     }
                                     .padding(.top, 0.75 * sizeScreen)
-                                    .colorMultiply(.grayColorNew)
+                                    .colorMultiply(assetHairColor)
                                     .saturation(1)
                             }
                             if self.selectedCustomization == .top {
@@ -143,7 +146,7 @@ struct AvatarDecorationItens: View {
                                         }
                                     }
                                     .padding(.top, 0.175 * sizeScreen)
-                                    .colorMultiply(.lightBlueColorClothes)
+                                    .colorMultiply(assetTopColor)
                                     .saturation(1)
                             }
                             if self.selectedCustomization == .bottom {
@@ -159,7 +162,7 @@ struct AvatarDecorationItens: View {
                                         }
                                     }
                                     .padding(.top, -0.2 * sizeScreen)
-                                    .colorMultiply(.lightBlueColorClothes)
+                                    .colorMultiply(assetBottomColor)
                                     .saturation(1)
                             }
                             if self.selectedCustomization == .shoes {
