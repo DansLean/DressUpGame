@@ -147,6 +147,7 @@ struct CreatePostView: View {
                             label:{
                                 Image("share_button")
                             }
+                            .shadow(radius: 2, y: 2)
                             .navigationBarBackButtonHidden(true)
                         }
                         .sharedBackgroundVisibility(.hidden)
