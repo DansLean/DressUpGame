@@ -91,7 +91,7 @@ struct CreatePostView: View {
                         }
                     }
                 }
-                .background(.lightgreenGradient)
+                .background(.white)
                 .toolbar {
                     if #available(iOS 26.0, *) {
                         ToolbarItem(placement: .topBarLeading) {
