@@ -24,8 +24,6 @@ struct ColorClothesItens: View {
         AssetColor(color: .salmonColorNew),
         AssetColor(color: .lightSalmonColorClothes),
         AssetColor(color: .evenLighterPuplerColorClothes),
-        AssetColor(color: .evenLighterPuplerColorClothes),
-        AssetColor(color: .blueGrayColorClothes),
         AssetColor(color: .blueGrayColorClothes),
         AssetColor(color: .lightDarkGreenColorClothes),
         AssetColor(color: .lightBlueColorClothes)
