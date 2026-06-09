@@ -44,28 +44,15 @@ struct CreatePostView: View {
     var body: some View {
         NavigationStack {
             ZStack (alignment: .center) {
-                VStack (spacing: sizeScreenHeight * 0.04) {
-                    VStack (spacing: 0) {
-                        Group {
-                            Rectangle()
-                                .frame(height: 1)
-                                .foregroundColor(Color.borderPink)
-                            
-                            postGroup
-                                .clipShape(.rect(cornerRadius: 6))
-                            
-                            Rectangle()
-                                .frame(height: 1)
-                                .foregroundColor(Color.borderPink)
+                VStack (alignment: .center, spacing: 0) {
+                    postGroup
+                        .clipShape(.rect(cornerRadius: 6))
+                        .border(.borderPink)
+                        .containerRelativeFrame(.vertical, alignment: .center) { length, axis in
+                            return length * 0.615
                         }
-                    }
-                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                        if axis == .vertical {
-                            return length * 0.675
-                        } else {
-                            return length
-                        }
-                    }
+                    
+                    Spacer(minLength: 40)
                     
                     VStack (spacing: 0) {
                         Rectangle()
@@ -99,15 +86,12 @@ struct CreatePostView: View {
                                 selectedItens.append(newItem)
                             }
                         }
-                        .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                            if axis == .vertical {
-                                return length * 0.325
-                            } else {
-                                return length
-                            }
+                        .containerRelativeFrame(.vertical) { length, axis in
+                            return length * 0.325
                         }
                     }
                 }
+                .background(.lightgreenGradient)
                 .toolbar {
                     if #available(iOS 26.0, *) {
                         ToolbarItem(placement: .topBarLeading) {
@@ -133,6 +117,7 @@ struct CreatePostView: View {
                             }
                         }
                     }
+                    
                     if #available(iOS 26.0, *) {
                         ToolbarItem(placement: .automatic) {
                             Menu{
@@ -158,7 +143,6 @@ struct CreatePostView: View {
                                         .foregroundStyle(Color(.systemGray))
                                 }
                                 .id(changes)
-                                
                             }
                             label:{
                                 Image("share_button")
@@ -189,13 +173,11 @@ struct CreatePostView: View {
                                     Label("Compartilhar Post", systemImage: "person.crop.square.on.square.angled")
                                 }
                                 .id(changes)
-                                
                             }
                             label:{
                                 Image("share_button")
                             }
                         }
-                        
                         
                         if #available(iOS 26.0, *) {
                             ToolbarItem(placement: .topBarTrailing) {
@@ -230,10 +212,7 @@ struct CreatePostView: View {
                             }
                         }
                     }
-                    
                 }
-//                .ignoresSafeArea()
-                .background(.white)
             }
         }
     }
@@ -260,6 +239,26 @@ struct CreatePostView: View {
         }
         
         return Image("Doll1")
+    }
+    
+    var postWidth: CGFloat {
+        let postWidth = sizeScreenWidth
+        
+        if (postWidth < 400) {
+            return 400
+        }
+        
+        return postWidth
+    }
+    
+    var postHeight: CGFloat {
+        let postHeight = sizeScreenHeight * 0.5
+        
+        if (postHeight < 400) {
+            return 400
+        }
+        
+        return postWidth
     }
     
     var stickerButton: some View {
@@ -326,7 +325,6 @@ struct CreatePostView: View {
                     ZStack {
                         Image("buttonSelectedPost")
                             .resizable()
-                        
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                                 if axis == .vertical {
                                     return length * 0.1
@@ -352,8 +350,6 @@ struct CreatePostView: View {
                         return length * 0.25
                     }
                 }
-                
-                
             } else {
                 Button {
                     selectedOption = .palettes
@@ -371,7 +367,6 @@ struct CreatePostView: View {
                     .background(.white)
                     .border(Color.borderPink, width: 1)
                 }
-                
             }
         }
     }
@@ -504,10 +499,13 @@ struct CreatePostView: View {
         ZStack {
             DollView(doll: doll)
         }
-        .frame(width: 400, height: 400)
-        .background(Image(uiImage: background.wallpaper))
+        .frame(width: postWidth, height: postHeight)
+        .background(
+            Image(uiImage: background.wallpaper)
+                .resizable()
+                .scaledToFill()
+        )
         .overlay {
-            
             ForEach(selectedItens) { item in
                 item.imageName
                     .resizable()
@@ -525,16 +523,15 @@ struct CreatePostView: View {
                     )
             }
         }
-        .overlay{
+        .overlay {
             VStack {
                 Image("Dolliu_marca")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 80, height: 80, alignment: .bottomTrailing)
-                    .padding(.leading, 400 * 0.7)
-                    .padding(.top, 400 * 0.7)
+                    .padding(.leading, sizeScreenWidth * 0.7)
+                    .padding(.top, postHeight * 0.65)
                     .blendMode(.darken)
-                //                    .opacity(0.8)
             }
         }
     }
