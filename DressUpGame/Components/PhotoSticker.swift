@@ -10,18 +10,32 @@ import PhotosUI
 
 
 struct PhotoSticker: View {
-    
     @Environment(\.dismiss) var dismiss
     
     @State private var selection: PhotosPickerItem? = nil
     @State private var image: UIImage? = nil
-    
     @State private var sticker: UIImage?
     
     var onSelect: (UIImage) -> Void
     
     var body: some View {
         NavigationStack {
+            VStack(alignment: .leading) {
+                Text("Choose your photo")
+                    .foregroundColor(.primaryPink)
+                    .font(.title)
+                    .bold()
+                    .padding(.top, 150)
+                    .padding(.leading, 30)
+                    .padding(.bottom, 5)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Text("Upload a photo to remove the background")
+                    .foregroundColor(.gray)
+                    .font(.footnote)
+                    .padding(.leading, 30)
+            }
+            
             VStack (spacing: 5) {
                 PhotosPicker(selection: $selection) {
                     VStack {
@@ -30,26 +44,38 @@ struct PhotoSticker: View {
                             .scaledToFit()
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                                 if axis == .vertical {
-                                    return length * 0.2
+                                    return length * 0.1
                                 } else {
-                                    return length * 0.25
+                                    return length * 0.20
                                 }
                             }
-                            .font(.title)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .foregroundColor(.primaryPink)
-                        
-                        Text("Selecione uma imagem para criar um sticker")
-                            .foregroundColor(.primaryPink)
+                        //                            .font(.body)
+                        //    .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                if axis == .vertical {
+                                    return length * 0.30
+                                } else {
+                                    return length * 0.85
+                                }
+                            }
+                            .foregroundColor(.gray4)
+                        //                            .frame(maxWidth: .infinity, alignment: .center)
+                            .background(.gray6)
+                            .cornerRadius(20)
+                        //                            .border(.gray)
                     }
-                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                        if axis == .vertical {
-                            return length * 0.4
-                        } else {
-                            return length * 1
-                        }
-                    }
+                    //                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                    //                        if axis == .vertical {
+                    //                            return length * 1.4
+                    //                        } else {
+                    //                            return length * 1
+                    //                        }
+                    //                    }
                 }
+                .foregroundColor(.gray4)
+                .background(.gray6)
+                .cornerRadius(20)
+                //                            .border(.gray)
                 .onChange(of: selection) {
                     guard let selection else { return }
                     Task { @MainActor in
@@ -86,18 +112,18 @@ struct PhotoSticker: View {
                     }
                 }
                 
-                    VStack {
-                        if let image {
-                            ImageLift(image: image, subject: $sticker)
-                        }
+                VStack {
+                    if let image {
+                        ImageLift(image: image, subject: $sticker)
                     }
-                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                        if axis == .vertical {
-                            return length * 0.4
-                        } else {
-                            return length  * 1
-                        }
+                }
+                .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                    if axis == .vertical {
+                        return length * 0.4
+                    } else {
+                        return length  * 1
                     }
+                }
             }
             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                 if axis == .vertical {
@@ -106,7 +132,7 @@ struct PhotoSticker: View {
                     return length * 1
                 }
             }
-            .background(.lightgreenGradient)
+            //            .background(.lightgreenGradient)
             
             .toolbar {
                 if #available(iOS 26.0, *) {
@@ -118,7 +144,23 @@ struct PhotoSticker: View {
                                 .padding(.top, 25)
                         }
                         .foregroundColor(.primaryPink)
-                        .cornerRadius(50)
+                        //                        .cornerRadius(50)
+                    }
+                    .sharedBackgroundVisibility(.hidden)
+                    
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            if let sticker {
+                                onSelect(sticker)
+                                dismiss()
+                            }
+                        } label: {
+                            Image("Checkmark")
+                                .padding(.top, 25)
+                        }
+                        .foregroundColor(.primaryPink)
+                        //                    .cornerRadius(50)
+                        .disabled(submitPermission())
                     }
                     .sharedBackgroundVisibility(.hidden)
                 } else {
@@ -130,23 +172,22 @@ struct PhotoSticker: View {
                                 .padding(.top, 25)
                         }
                         .foregroundColor(.primaryPink)
-                        .cornerRadius(50)
+                        //                        .cornerRadius(50)
                     }
-                }
-                
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        if let sticker {
-                            onSelect(sticker)
-                            dismiss()
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            if let sticker {
+                                onSelect(sticker)
+                                dismiss()
+                            }
+                        } label: {
+                            Image("Checkmark")
+                                .padding(.top, 25)
                         }
-                    } label: {
-                        Image("Checkmark")
-                            .padding(.top, 25)
+                        .foregroundColor(.primaryPink)
+                        //                    .cornerRadius(50)
+                        .disabled(submitPermission())
                     }
-                    .foregroundColor(.primaryPink)
-                    .cornerRadius(50)
-                    .disabled(submitPermission())
                 }
             }
             .interactiveDismissDisabled(true)
