@@ -26,51 +26,63 @@ struct PhotoSticker: View {
                     .font(.title)
                     .bold()
                     .padding(.top, 150)
-                    .padding(.leading, 30)
-                    .padding(.bottom, 5)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    
                 
                 Text("Upload a photo to remove the background")
                     .foregroundColor(.gray)
                     .font(.footnote)
-                    .padding(.leading, 30)
             }
+            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                if axis == .vertical {
+                    return length * 0.4
+                } else {
+                    return length * 1
+                }
+            }
+            .padding(.trailing, 80)
+            .padding(.top, 30)
             
-            VStack (spacing: 5) {
+            VStack {
                 PhotosPicker(selection: $selection) {
                     VStack {
-                        Image(systemName: "photo.badge.plus.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                                if axis == .vertical {
-                                    return length * 0.1
-                                } else {
-                                    return length * 0.20
-                                }
+                        if image != nil {
+                            if let image {
+                                ImageLift(image: image, subject: $sticker)
+                                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                        if axis == .vertical {
+                                            return length * 0.30
+                                        } else {
+                                            return length * 0.85
+                                        }
+                                    }
                             }
-                        //                            .font(.body)
-                        //    .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                                if axis == .vertical {
-                                    return length * 0.30
-                                } else {
-                                    return length * 0.85
+                        }
+                        else {
+                            Image(systemName: "photo.badge.plus.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                    if axis == .vertical {
+                                        return length * 0.1
+                                    } else {
+                                        return length * 0.20
+                                    }
                                 }
-                            }
-                            .foregroundColor(.gray4)
-                        //                            .frame(maxWidth: .infinity, alignment: .center)
-                            .background(.gray6)
-                            .cornerRadius(20)
-                        //                            .border(.gray)
+                            
+                                .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                    if axis == .vertical {
+                                        return length * 0.30
+                                    } else {
+                                        return length * 0.85
+                                    }
+                                }
+                                .foregroundColor(.gray4)
+                            
+                                .background(.gray6)
+                                .cornerRadius(20)
+                        }
                     }
-                    //                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                    //                        if axis == .vertical {
-                    //                            return length * 1.4
-                    //                        } else {
-                    //                            return length * 1
-                    //                        }
-                    //                    }
+ 
                 }
                 .foregroundColor(.gray4)
                 .background(.gray6)
@@ -90,13 +102,27 @@ struct PhotoSticker: View {
                         submitPermission()
                     }
                 }
+                .padding(.bottom, 60)
                 
                 ZStack {
                     if let sticker {
                         Image(uiImage: sticker)
                             .resizable()
                             .scaledToFit()
-                            .border(.red)
+                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                if axis == .vertical {
+                                    return length * 0.3
+                                } else {
+                                    return length * 0.85
+                                }
+                            }
+                            
+                            .background(.clear)
+                            .cornerRadius(20)
+                            .overlay (
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(.gray6, lineWidth: 2)
+                            )
                     } else {
                         if image != nil {
                             ProgressView()
@@ -112,27 +138,41 @@ struct PhotoSticker: View {
                     }
                 }
                 
-                VStack {
-                    if let image {
-                        ImageLift(image: image, subject: $sticker)
-                    }
-                }
-                .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                    if axis == .vertical {
-                        return length * 0.4
-                    } else {
-                        return length  * 1
-                    }
-                }
+                
+//                VStack {
+//                    if let image {
+//                        ImageLift(image: image, subject: $sticker)
+//                    }
+//                }
+//                .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+//                    if axis == .vertical {
+//                        return length * 0.4
+//                    } else {
+//                        return length  * 1
+//                    }
+//                }
             }
             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                 if axis == .vertical {
-                    return length * 1
+                    return length * 0.7
                 } else {
                     return length * 1
                 }
             }
+            
             //            .background(.lightgreenGradient)
+            VStack {
+                Text("")
+                    .foregroundColor(.gray)
+                    .font(.footnote)
+            }
+            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                if axis == .vertical {
+                    return length * 0.4
+                } else {
+                    return length * 1
+                }
+            }
             
             .toolbar {
                 if #available(iOS 26.0, *) {
