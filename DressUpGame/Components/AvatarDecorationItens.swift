@@ -125,12 +125,13 @@ struct AvatarDecorationItens: View {
                                     .scaledToFit()
                                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                                         if axis == .vertical {
-                                            return length * 8
+                                            return length * 4
                                         } else {
-                                            return length * 0.25
+                                            return length * 0.2
                                         }
                                     }
-                                    .padding(.top, 0.75 * sizeScreen)
+                                    .padding(.top, 0.55 * sizeScreen)
+                                    
                                     .colorMultiply(assetHairColor)
                                     .saturation(1)
                             }
@@ -145,7 +146,7 @@ struct AvatarDecorationItens: View {
                                             return length * 0.5
                                         }
                                     }
-                                    .padding(.top, 0.175 * sizeScreen)
+                                    .padding(.top, 0.08 * sizeScreen)
                                     .colorMultiply(assetTopColor)
                                     .saturation(1)
                             }
@@ -193,9 +194,9 @@ struct AvatarDecorationItens: View {
                         }
                 }
             }
+            .padding(.horizontal, 10)
             .background(Color.white)
             .foregroundStyle(.white)
-            .padding(.horizontal, 10)
         }
     }
 }
