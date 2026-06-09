@@ -22,7 +22,7 @@ struct CreateAvatarView: View {
     var shoes: Image = Image("Shoes1")
     var accessories: Image = Image("Accessories1")
     
-    @State var doll = DollClass(face: Asset(image: UIImage(resource: .doll1)), hair: Asset(image: UIImage()), hairColor: .grayColorNew, top: Asset(image: UIImage()), topColor: .lightBlueColorClothes, bottom: Asset(image: UIImage()), bottomColor: .lightBlueColorClothes, shoes: Asset(image: UIImage()), accessories: Asset(image: UIImage()))
+    @State var doll = DollClass(face: Asset(image: UIImage(resource: .doll1)), hair: Asset(image: UIImage()), hairColor: .grayColorNew, top: Asset(image: UIImage()), topColor: .grayColorNew, bottom: Asset(image: UIImage()), bottomColor: .grayColorNew, shoes: Asset(image: UIImage()), accessories: Asset(image: UIImage()))
     
     var body: some View {
         NavigationStack {
@@ -125,7 +125,7 @@ struct CreateAvatarView: View {
                                 .frame(height: 1.6, alignment: .top)
                                 .foregroundColor(Color.borderPink)
                         }
-
+                        
                         
                         if selectedCustomization == .hair || selectedCustomization == .top || selectedCustomization == .bottom {
                             AvatarDecorationItens(selectedCustomization: $selectedCustomization, assetHairColor: $selectedHairColor, assetTopColor: $selectedTopColor, assetBottomColor: $selectedBottomColor) { tapped in
