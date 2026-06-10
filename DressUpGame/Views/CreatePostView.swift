@@ -507,7 +507,7 @@ struct CreatePostView: View {
                 .scaledToFill()
         )
         .overlay {
-            ForEach(selectedItens) { item in
+            ForEach(selectedItens.enumerated(), id: \.offset) { index, item in
                 item.imageName
                     .resizable()
                     .scaledToFit()
@@ -521,6 +521,14 @@ struct CreatePostView: View {
                             .onEnded { _ in
                                 changes += 1
                             }
+                    )
+                    .overlay(
+                        Button{
+                            selectedItens.remove(at: index)
+                        }
+                        label: {
+                            Image(systemName: "trash")
+                        }
                     )
             }
         }
