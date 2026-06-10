@@ -12,11 +12,28 @@ import SwiftUI
 class ModelTest: Identifiable {
     let id = UUID()
     var imageName: Image
+    var imageSize: CGFloat = 70
     var position: CGPoint
+    var borderStickerWidth: CGFloat = 0
     
     init(imageName: Image, position: CGPoint) {
         self.imageName = imageName
         self.position = position
+    }
+    
+    func setBorder(borderStickerWidth: CGFloat) {
+        self.borderStickerWidth = borderStickerWidth
+        self.imageName = imageName
+    }
+    
+    func increaseSize(size: CGFloat) {
+        self.imageSize = imageSize + size
+        self.imageName = imageName
+    }
+    
+    func decreaseSize(size: CGFloat) {
+        self.imageSize = imageSize - size
+        self.imageName = imageName
     }
     
     static func == (lhs: ModelTest, rhs: ModelTest) -> Bool {
@@ -27,10 +44,11 @@ class ModelTest: Identifiable {
 struct CreatePostView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.displayScale) var displayScale
+    @Binding var doll: DollClass
     @State var selectedOption: PostOptions = .stickers
     @State private var showActivityControllerView: Bool = false
     @State var selectedItens: [ModelTest] = []
-    @Binding var doll: DollClass
+    @State var indexTapped: Int?
     
     var wallpaper: UIImage = UIImage(resource: .background0)
     
@@ -120,7 +138,7 @@ struct CreatePostView: View {
                     
                     if #available(iOS 26.0, *) {
                         ToolbarItem(placement: .automatic) {
-                            Menu{
+                            Menu {
                                 ShareLink(
                                     item: renderedDoll,
                                     preview: SharePreview(
@@ -132,6 +150,7 @@ struct CreatePostView: View {
                                 }
                                 .id(changes)
                                 ShareLink(
+                                    
                                     item: renderedImage,
                                     preview: SharePreview(
                                         Text("Post"),
@@ -146,14 +165,21 @@ struct CreatePostView: View {
                             }
                             label:{
                                 Image("share_button")
+                                    .onTapGesture {
+                                        indexTapped = nil
+                                        updateList(stickerID: UUID())
+                                    }
                             }
                             .shadow(radius: 2, y: 2)
                             .navigationBarBackButtonHidden(true)
+                            
                         }
                         .sharedBackgroundVisibility(.hidden)
+                        
+                        
                     } else {
                         ToolbarItem(placement: .automatic) {
-                            Menu{
+                            Menu {
                                 ShareLink(
                                     item: renderedDoll,
                                     preview: SharePreview(
@@ -175,7 +201,7 @@ struct CreatePostView: View {
                                 }
                                 .id(changes)
                             }
-                            label:{
+                            label: {
                                 Image("share_button")
                             }
                         }
@@ -496,6 +522,16 @@ struct CreatePostView: View {
         .frame(width: 200, height: 400)
     }
     
+    func updateList(stickerID: UUID) {
+        for sticker in selectedItens {
+            if (sticker.id == stickerID) {
+                sticker.setBorder(borderStickerWidth: 1.5)
+            } else {
+                sticker.setBorder(borderStickerWidth: 0)
+            }
+        }
+    }
+    
     var postGroup: some View {
         ZStack {
             DollView(doll: doll)
@@ -506,22 +542,82 @@ struct CreatePostView: View {
                 .resizable()
                 .scaledToFill()
         )
+        .onTapGesture { apGesture in
+            indexTapped = nil
+            updateList(stickerID: UUID())
+        }
         .overlay {
-            ForEach(selectedItens) { item in
+            ForEach(selectedItens.enumerated(), id: \.offset) { index, item in
                 item.imageName
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 70, height: 70)
+                    .frame(width: item.imageSize, height: item.imageSize)
+                    .padding(8)
+                    .border(.primaryPink, width: item.borderStickerWidth)
+                
                     .position(item.position)
                     .gesture(
                         DragGesture()
                             .onChanged { gesture in
+                                indexTapped = index
+                                updateList(stickerID: item.id)
                                 item.position = gesture.location
                             }
                             .onEnded { _ in
                                 changes += 1
                             }
                     )
+                    .onTapGesture { apGesture in
+                        indexTapped = index
+                        updateList(stickerID: item.id)
+                    }
+                    .overlay {
+                        if (index == indexTapped) {
+                            Button {
+                                selectedItens.remove(at: index)
+                                indexTapped = nil
+                                item.setBorder(borderStickerWidth: 0)
+                            }
+                            label: {
+                                Image(systemName: "trash")
+                                    .bold()
+                                    .foregroundStyle(.white)
+                                    .frame(width: 35, height: 35)
+                                    .background(.primaryPink)
+                                    .clipShape(Circle())
+                            }
+                            .padding(.leading, sizeScreenWidth * 0.82)
+                            .padding(.top, postHeight * 0.55)
+                            
+                            Button {
+                                item.decreaseSize(size: 10)
+                            }
+                            label: {
+                                Image(systemName: "minus")
+                                    .bold()
+                                    .foregroundStyle(.white)
+                                    .frame(width: 35, height: 35)
+                                    .background(.primaryPink)
+                                    .clipShape(Circle())
+                            }
+                            .padding(.leading, sizeScreenWidth * 0.82)
+                            .padding(.top, postHeight * 0.35)
+                            
+                            Button {
+                                item.increaseSize(size: 10)
+                            }
+                            label: {
+                                Image(systemName: "plus")
+                                    .bold()
+                                    .foregroundStyle(.white)
+                                    .frame(width: 35, height: 35)
+                                    .background(.primaryPink)
+                                    .clipShape(Circle())
+                            }
+                            .padding(.leading, sizeScreenWidth * 0.82)
+                            .padding(.top, postHeight * 0.15)
+                        }
+                    }
             }
         }
         .overlay {
