@@ -12,6 +12,7 @@ import SwiftUI
 class ModelTest: Identifiable {
     let id = UUID()
     var imageName: Image
+    var imageSize: CGFloat = 70
     var position: CGPoint
     var borderStickerWidth: CGFloat = 0
     
@@ -22,6 +23,16 @@ class ModelTest: Identifiable {
     
     func setBorder(borderStickerWidth: CGFloat) {
         self.borderStickerWidth = borderStickerWidth
+        self.imageName = imageName
+    }
+    
+    func increaseSize(size: CGFloat) {
+        self.imageSize = imageSize + size
+        self.imageName = imageName
+    }
+    
+    func decreaseSize(size: CGFloat) {
+        self.imageSize = imageSize - size
         self.imageName = imageName
     }
     
@@ -514,7 +525,7 @@ struct CreatePostView: View {
     func updateList(stickerID: UUID) {
         for sticker in selectedItens {
             if (sticker.id == stickerID) {
-                sticker.setBorder(borderStickerWidth: 3)
+                sticker.setBorder(borderStickerWidth: 1.5)
             } else {
                 sticker.setBorder(borderStickerWidth: 0)
             }
@@ -540,10 +551,9 @@ struct CreatePostView: View {
                 item.imageName
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 70, height: 70)
+                    .frame(width: item.imageSize, height: item.imageSize)
                     .border(.primaryPink, width: item.borderStickerWidth)
                     .position(item.position)
-                
                     .gesture(
                         DragGesture()
                             .onChanged { gesture in
@@ -568,7 +578,42 @@ struct CreatePostView: View {
                             }
                             label: {
                                 Image(systemName: "trash")
+                                    .bold()
+                                    .foregroundStyle(.white)
+                                    .frame(width: 35, height: 35)
+                                    .background(.primaryPink)
+                                    .clipShape(Circle())
                             }
+                            .padding(.leading, sizeScreenWidth * 0.82)
+                            .padding(.top, postHeight * 0.55)
+                            
+                            Button {
+                                item.decreaseSize(size: 10)
+                            }
+                            label: {
+                                Image(systemName: "minus")
+                                    .bold()
+                                    .foregroundStyle(.white)
+                                    .frame(width: 35, height: 35)
+                                    .background(.primaryPink)
+                                    .clipShape(Circle())
+                            }
+                            .padding(.leading, sizeScreenWidth * 0.82)
+                            .padding(.top, postHeight * 0.35)
+                            
+                            Button {
+                                item.increaseSize(size: 10)
+                            }
+                            label: {
+                                Image(systemName: "plus")
+                                    .bold()
+                                    .foregroundStyle(.white)
+                                    .frame(width: 35, height: 35)
+                                    .background(.primaryPink)
+                                    .clipShape(Circle())
+                            }
+                            .padding(.leading, sizeScreenWidth * 0.82)
+                            .padding(.top, postHeight * 0.15)
                         }
                     }
             }
