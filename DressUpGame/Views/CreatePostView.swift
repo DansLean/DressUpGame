@@ -552,7 +552,9 @@ struct CreatePostView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: item.imageSize, height: item.imageSize)
+                    .padding(8)
                     .border(.primaryPink, width: item.borderStickerWidth)
+                
                     .position(item.position)
                     .gesture(
                         DragGesture()
