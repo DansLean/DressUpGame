@@ -200,8 +200,16 @@ struct PhotoSticker: View {
                                 dismiss()
                             }
                         } label: {
-                            Image("Checkmark")
-                                .padding(.top, 25)
+                            if (image != nil) {
+                                Image("Checkmark")
+                                    .padding(.top, 25)
+                            }
+                            else {
+                                Image("Checkmark")
+                                    .padding(.top, 25)
+                                    .opacity(0.5)
+                            }
+                            
                         }
                         .foregroundColor(.primaryPink)
                         //                    .cornerRadius(50)
@@ -226,8 +234,16 @@ struct PhotoSticker: View {
                                 dismiss()
                             }
                         } label: {
-                            Image("Checkmark")
-                                .padding(.top, 25)
+                            if (image != nil) {
+                                Image("Checkmark")
+                                    .padding(.top, 25)
+                            }
+                            else {
+                                Image("Checkmark")
+                                    .padding(.top, 25)
+                                    .opacity(0.5)
+                            }
+                            
                         }
                         .foregroundColor(.primaryPink)
                         //                    .cornerRadius(50)
@@ -239,8 +255,10 @@ struct PhotoSticker: View {
         }
     }
     
+    
     func submitPermission() -> Bool {
         if (image != nil) {
+            
             return false
         } else {
             return true
