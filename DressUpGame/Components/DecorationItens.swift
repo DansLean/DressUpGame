@@ -99,6 +99,7 @@ struct DecorationItens: View {
     ]
     
     let sizeScreen: CGFloat = UIScreen.main.bounds.width + UIScreen.main.bounds.height / UIScreen.main.bounds.width
+    let sizeScreenHeight: CGFloat = UIScreen.main.bounds.height
     
     var selectedNumbers: [Asset] {
         switch (selectedOption) {

@@ -146,7 +146,7 @@ struct CreatePostView: View {
                                         image: renderedDoll
                                     )
                                 ) {
-                                    Label("Compartilhar Doll", systemImage: "person.fill")
+                                    Label("Share Doll", systemImage: "person.fill")
                                 }
                                 .id(changes)
                                 ShareLink(
@@ -158,7 +158,7 @@ struct CreatePostView: View {
                                     )
                                 )
                                 {
-                                    Label("Compartilhar Post", systemImage: "person.crop.square.on.square.angled")
+                                    Label("Share Post", systemImage: "person.crop.square.on.square.angled")
                                         .foregroundStyle(Color(.systemGray))
                                 }
                                 .id(changes)
@@ -187,7 +187,7 @@ struct CreatePostView: View {
                                         image: renderedDoll
                                     )
                                 ) {
-                                    Label("Compartilhar Doll", systemImage: "person.fill")
+                                    Label("Share Doll", systemImage: "person.fill")
                                 }
                                 .id(changes)
                                 ShareLink(
@@ -197,7 +197,7 @@ struct CreatePostView: View {
                                         image: renderedImage
                                     )
                                 ) {
-                                    Label("Compartilhar Post", systemImage: "person.crop.square.on.square.angled")
+                                    Label("Share Post", systemImage: "person.crop.square.on.square.angled")
                                 }
                                 .id(changes)
                             }
