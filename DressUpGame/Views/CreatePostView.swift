@@ -584,6 +584,7 @@ struct CreatePostView: View {
                                     .foregroundStyle(.primaryPink)
                                     .frame(width: 35, height: 35)
                                     .background(.white)
+                                    .border(.borderPink, width: 2)
 //                                    .clipShape(Circle())
                             }
                             .padding(.leading, sizeScreenWidth * 0.82)
@@ -598,6 +599,7 @@ struct CreatePostView: View {
                                     .foregroundStyle(.primaryPink)
                                     .frame(width: 35, height: 35)
                                     .background(.white)
+                                    .border(.borderPink, width: 2)
 //                                    .clipShape(Circle())
                             }
                             .padding(.leading, sizeScreenWidth * 0.82)
@@ -612,6 +614,7 @@ struct CreatePostView: View {
                                     .foregroundStyle(.primaryPink)
                                     .frame(width: 35, height: 35)
                                     .background(.white)
+                                    .border(.borderPink, width: 2)
 //                                    .clipShape(Circle())
                             }
                             .padding(.leading, sizeScreenWidth * 0.82)

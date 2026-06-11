@@ -49,20 +49,29 @@ struct AvatarDecorationItens: View {
         Asset(image: UIImage(resource: .top4)),
         Asset(image: UIImage(resource: .top5)),
         Asset(image: UIImage(resource: .top6)),
-        Asset(image: UIImage(resource: .top7))
+        Asset(image: UIImage(resource: .top7)),
+        Asset(image: UIImage(resource: .top8)),
+        Asset(image: UIImage(resource: .top9)),
+        Asset(image: UIImage(resource: .top10))
     ]
     
     @State var bottoms = [
         Asset(image: UIImage(resource: .bottom1)),
         Asset(image: UIImage(resource: .bottom2)),
-        Asset(image: UIImage(resource: .bottom3))
+        Asset(image: UIImage(resource: .bottom3)),
+        Asset(image: UIImage(resource: .bottom4)),
+        Asset(image: UIImage(resource: .bottom5)),
+        Asset(image: UIImage(resource: .bottom6)),
+        Asset(image: UIImage(resource: .bottom7)),
+        Asset(image: UIImage(resource: .bottom8))
     ]
     
     @State var shoes = [
         Asset(image: UIImage(resource: .shoes1)),
         Asset(image: UIImage(resource: .shoes2)),
         Asset(image: UIImage(resource: .shoes3)),
-        Asset(image: UIImage(resource: .shoes4))
+        Asset(image: UIImage(resource: .shoes4)),
+        Asset(image: UIImage(resource: .shoes5))
     ]
     
     @State var accessories = [
@@ -124,7 +133,7 @@ struct AvatarDecorationItens: View {
                                     .scaledToFit()
                                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                                         if axis == .vertical {
-                                            return length * 4
+                                            return length * 2
                                         } else {
                                             return length * 0.2
                                         }
