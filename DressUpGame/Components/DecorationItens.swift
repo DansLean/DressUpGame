@@ -125,12 +125,27 @@ struct DecorationItens: View {
                     Button {
                         isShowingCustomStickerPicker = true
                     } label: {
-                        Image(systemName: "photo.badge.plus.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .font(.body)
-                            .frame(width: 50, height: 50)
-                            .foregroundColor(.primaryPink)
+                        VStack (spacing: 10) {
+                            Image("AddStickerButton")
+                                .resizable()
+                                .scaledToFit()
+                                .font(.body)
+                                .frame(width: 50, height: 50)
+                                .foregroundColor(.primaryPink)
+                            Text("Add Sticker")
+                                .foregroundStyle(.primaryPink)
+                                .font(.system(.body, weight: .semibold))
+                        }
+                        
+                        //                        VStack (spacing: 8) {
+                        //                            Label("Add Sticker",systemImage: "plus.circle.fill")
+                        //                                .labelStyle(.iconOnly)
+                        //                                .foregroundStyle(Color(.primaryPink))
+                        //                                .font(.system(size: 50))
+                        //                            Text("Add Sticker")
+                        //                                .foregroundStyle(.primaryPink)
+                        //                                .font(.system(.body, weight: .semibold))
+                        //                        }
                     }
                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                         if axis == .vertical {
