@@ -16,68 +16,68 @@ struct AvatarDecorationItens: View {
     var tap: (UIImage) -> Void
     
     @State var faces = [
-        Asset(image: UIImage(resource: .doll1)),
-        Asset(image: UIImage(resource: .doll2)),
-        Asset(image: UIImage(resource: .doll7)),
-        Asset(image: UIImage(resource: .doll8)),
-        Asset(image: UIImage(resource: .doll3)),
-        Asset(image: UIImage(resource: .doll4)),
-        Asset(image: UIImage(resource: .doll5)),
-        Asset(image: UIImage(resource: .doll6))
+        Asset(image: UIImage(resource: .doll1), description: "Boneca com traços femininos de tom claro"),
+        Asset(image: UIImage(resource: .doll2), description: "Boneca com traços masculinos de tom claro"),
+        Asset(image: UIImage(resource: .doll7), description: "Boneca com traços femininos de tom médio claro"),
+        Asset(image: UIImage(resource: .doll8), description: "Boneca com traços masculinos de tom médio claro"),
+        Asset(image: UIImage(resource: .doll3), description: "Boneca com traços femininos de tom médio escuro"),
+        Asset(image: UIImage(resource: .doll4), description: "Boneca com traços masculinos de tom médio escuro"),
+        Asset(image: UIImage(resource: .doll5), description: "Boneca com traços femininos de tom escuro"),
+        Asset(image: UIImage(resource: .doll6), description: "Boneca com traços masculinos de tom escuro")
     ]
     
     @State var hairs = [
-        Asset(image: UIImage(resource: .cabelo1)),
-        Asset(image: UIImage(resource: .cabelo2)),
-        Asset(image: UIImage(resource: .cabelo3)),
-        Asset(image: UIImage(resource: .cabelo4)),
-        Asset(image: UIImage(resource: .cabelo5)),
-        Asset(image: UIImage(resource: .cabelo6)),
-        Asset(image: UIImage(resource: .cabelo7)),
-        Asset(image: UIImage(resource: .cabelo8)),
-        Asset(image: UIImage(resource: .cabelo9)),
-        Asset(image: UIImage(resource: .cabelo10)),
-        Asset(image: UIImage(resource: .cabelo11)),
-        Asset(image: UIImage(resource: .cabelo12)),
-        Asset(image: UIImage(resource: .cabelo13))
+        Asset(image: UIImage(resource: .cabelo1), description: "Cabelo masculino curto e ondulado"),
+        Asset(image: UIImage(resource: .cabelo2), description: "Cabelo masculino curto, liso com franjas emoldurando o rosto"),
+        Asset(image: UIImage(resource: .cabelo3), description: "Cabelo masculino curto, liso sem franja"),
+        Asset(image: UIImage(resource: .cabelo4), description: "Cabelo masculino curto cacheado com suíças descendo até a orelha"),
+        Asset(image: UIImage(resource: .cabelo5), description: "Cabelo masculino curto, crespo"),
+        Asset(image: UIImage(resource: .cabelo6), description: "Cabelo feminino médio, liso com franja reta"),
+        Asset(image: UIImage(resource: .cabelo7), description: "Cabelo feminino longo, liso com franja reta"),
+        Asset(image: UIImage(resource: .cabelo8), description: "Cabelo feminino crespo com franja emoldurando o rosto e dois coques nas laterais."),
+        Asset(image: UIImage(resource: .cabelo9), description: "Cabelo feminino curto, liso com franja reta"),
+        Asset(image: UIImage(resource: .cabelo10), description: "Cabelo feminino curto, liso com franja lateral"),
+        Asset(image: UIImage(resource: .cabelo11), description: "Cabelo feminino longo, ondulado com franja curta repicada"),
+        Asset(image: UIImage(resource: .cabelo12), description: "Cabelo feminino longo cacheado"),
+        Asset(image: UIImage(resource: .cabelo13), description: "Cabelo feminino curto cacheado")
     ]
     
     @State var tops = [
-        Asset(image: UIImage(resource: .top1)),
-        Asset(image: UIImage(resource: .top2)),
-        Asset(image: UIImage(resource: .top3)),
-        Asset(image: UIImage(resource: .top4)),
-        Asset(image: UIImage(resource: .top5)),
-        Asset(image: UIImage(resource: .top6)),
-        Asset(image: UIImage(resource: .top7))
+        Asset(image: UIImage(resource: .top1), description: ""),
+        Asset(image: UIImage(resource: .top2), description: ""),
+        Asset(image: UIImage(resource: .top3), description: ""),
+        Asset(image: UIImage(resource: .top4), description: ""),
+        Asset(image: UIImage(resource: .top5), description: ""),
+        Asset(image: UIImage(resource: .top6), description: ""),
+        Asset(image: UIImage(resource: .top7), description: "")
     ]
     
     @State var bottoms = [
-        Asset(image: UIImage(resource: .bottom1)),
-        Asset(image: UIImage(resource: .bottom2)),
-        Asset(image: UIImage(resource: .bottom3))
+        Asset(image: UIImage(resource: .bottom1), description: ""),
+        Asset(image: UIImage(resource: .bottom2), description: ""),
+        Asset(image: UIImage(resource: .bottom3), description: "")
     ]
     
     @State var shoes = [
-        Asset(image: UIImage(resource: .shoes1)),
-        Asset(image: UIImage(resource: .shoes2)),
-        Asset(image: UIImage(resource: .shoes3)),
-        Asset(image: UIImage(resource: .shoes4))
+        Asset(image: UIImage(resource: .shoes1), description: ""),
+        Asset(image: UIImage(resource: .shoes2), description: ""),
+        Asset(image: UIImage(resource: .shoes3), description: ""),
+        Asset(image: UIImage(resource: .shoes4), description: "")
     ]
     
     @State var accessories = [
-        Asset(image: UIImage(resource: .acessorio1)),
-        Asset(image: UIImage(resource: .acessorio2)),
-        Asset(image: UIImage(resource: .acessorio3)),
-        Asset(image: UIImage(resource: .acessorio4)),
-        Asset(image: UIImage(resource: .acessorio5)),
-        Asset(image: UIImage(resource: .acessorio6)),
-        Asset(image: UIImage(resource: .acessorio7)),
-        Asset(image: UIImage(resource: .acessorio8)),
-        Asset(image: UIImage(resource: .acessorio9)),
-        Asset(image: UIImage(resource: .acessorio10)),
-        Asset(image: UIImage(resource: .acessorio11)),
-        Asset(image: UIImage(resource: .acessorio12))
+        Asset(image: UIImage(resource: .acessorio1), description: ""),
+        Asset(image: UIImage(resource: .acessorio2), description: ""),
+        Asset(image: UIImage(resource: .acessorio3), description: ""),
+        Asset(image: UIImage(resource: .acessorio4), description: ""),
+        Asset(image: UIImage(resource: .acessorio5), description: ""),
+        Asset(image: UIImage(resource: .acessorio6), description: ""),
+        Asset(image: UIImage(resource: .acessorio7), description: ""),
+        Asset(image: UIImage(resource: .acessorio8), description: ""),
+        Asset(image: UIImage(resource: .acessorio9), description: ""),
+        Asset(image: UIImage(resource: .acessorio10), description: ""),
+        Asset(image: UIImage(resource: .acessorio11), description: ""),
+        Asset(image: UIImage(resource: .acessorio12), description: "")
     ]
     
     let sizeScreen: CGFloat = UIScreen.main.bounds.width + UIScreen.main.bounds.height / UIScreen.main.bounds.width
