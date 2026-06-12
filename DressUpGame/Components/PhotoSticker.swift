@@ -15,7 +15,7 @@ struct PhotoSticker: View {
     @State private var selection: PhotosPickerItem? = nil
     @State private var image: UIImage? = nil
     @State private var sticker: UIImage?
-    
+    let sizeScreenWidth: CGFloat = UIScreen.main.bounds.width
     var onSelect: (UIImage) -> Void
     
     var body: some View {
@@ -26,21 +26,26 @@ struct PhotoSticker: View {
                     .font(.title)
                     .bold()
                     .padding(.top, 150)
+                    .alignmentGuide(HorizontalAlignment.leading) { _ in
+                        0.5
+                    }
                     
                 
                 Text("Upload a photo to remove the background")
                     .foregroundColor(.gray)
                     .font(.footnote)
             }
-            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                if axis == .vertical {
-                    return length * 0.4
-                } else {
-                    return length * 1
-                }
-            }
-            .padding(.trailing, 80)
+            .frame(maxWidth: .infinity, alignment: .leading)
+//            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+//                if axis == .vertical {
+//                    return length * 0.4
+//                } else {
+//                    return length * 2
+//                }
+//            }
+//            .padding(.leading, sizeScreenWidth / 10)
             .padding(.top, 30)
+            .padding(.leading, sizeScreenWidth * 0.07)
             
             VStack {
                 PhotosPicker(selection: $selection) {
@@ -195,8 +200,16 @@ struct PhotoSticker: View {
                                 dismiss()
                             }
                         } label: {
-                            Image("Checkmark")
-                                .padding(.top, 25)
+                            if (image != nil) {
+                                Image("Checkmark")
+                                    .padding(.top, 25)
+                            }
+                            else {
+                                Image("Checkmark")
+                                    .padding(.top, 25)
+                                    .opacity(0.5)
+                            }
+                            
                         }
                         .foregroundColor(.primaryPink)
                         //                    .cornerRadius(50)
@@ -221,8 +234,16 @@ struct PhotoSticker: View {
                                 dismiss()
                             }
                         } label: {
-                            Image("Checkmark")
-                                .padding(.top, 25)
+                            if (image != nil) {
+                                Image("Checkmark")
+                                    .padding(.top, 25)
+                            }
+                            else {
+                                Image("Checkmark")
+                                    .padding(.top, 25)
+                                    .opacity(0.5)
+                            }
+                            
                         }
                         .foregroundColor(.primaryPink)
                         //                    .cornerRadius(50)
@@ -234,8 +255,10 @@ struct PhotoSticker: View {
         }
     }
     
+    
     func submitPermission() -> Bool {
         if (image != nil) {
+            
             return false
         } else {
             return true

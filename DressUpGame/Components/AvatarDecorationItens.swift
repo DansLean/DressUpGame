@@ -124,7 +124,7 @@ struct AvatarDecorationItens: View {
                                     .scaledToFit()
                                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                                         if axis == .vertical {
-                                            return length * 4
+                                            return length * 2
                                         } else {
                                             return length * 0.2
                                         }

@@ -87,8 +87,7 @@ struct DollView: View {
                 .scaledToFit()
                 .colorMultiply(doll.hairColor)
                 .saturation(1)
-                .offset(x: -3, y: -10.8)
-                .accessibilityLabel("Cabelo")
+                .offset(x: 0, y: -5)
             
             Image(uiImage: doll.shoes.image)   // Calçado
                 .resizable()

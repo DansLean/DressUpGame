@@ -146,7 +146,7 @@ struct CreatePostView: View {
                                         image: renderedDoll
                                     )
                                 ) {
-                                    Label("Compartilhar Doll", systemImage: "person.fill")
+                                    Label("Share Doll", systemImage: "person.fill")
                                 }
                                 .id(changes)
                                 ShareLink(
@@ -158,7 +158,7 @@ struct CreatePostView: View {
                                     )
                                 )
                                 {
-                                    Label("Compartilhar Post", systemImage: "person.crop.square.on.square.angled")
+                                    Label("Share Post", systemImage: "person.crop.square.on.square.angled")
                                         .foregroundStyle(Color(.systemGray))
                                 }
                                 .id(changes)
@@ -187,7 +187,7 @@ struct CreatePostView: View {
                                         image: renderedDoll
                                     )
                                 ) {
-                                    Label("Compartilhar Doll", systemImage: "person.fill")
+                                    Label("Share Doll", systemImage: "person.fill")
                                 }
                                 .id(changes)
                                 ShareLink(
@@ -197,7 +197,7 @@ struct CreatePostView: View {
                                         image: renderedImage
                                     )
                                 ) {
-                                    Label("Compartilhar Post", systemImage: "person.crop.square.on.square.angled")
+                                    Label("Share Post", systemImage: "person.crop.square.on.square.angled")
                                 }
                                 .id(changes)
                             }
@@ -581,13 +581,14 @@ struct CreatePostView: View {
                             label: {
                                 Image(systemName: "trash")
                                     .bold()
-                                    .foregroundStyle(.white)
+                                    .foregroundStyle(.primaryPink)
                                     .frame(width: 35, height: 35)
-                                    .background(.primaryPink)
-                                    .clipShape(Circle())
+                                    .background(.white)
+                                    .border(.borderPink, width: 2)
+//                                    .clipShape(Circle())
                             }
                             .padding(.leading, sizeScreenWidth * 0.82)
-                            .padding(.top, postHeight * 0.55)
+                            .padding(.top, postHeight * 0.16)
                             
                             Button {
                                 item.decreaseSize(size: 10)
@@ -595,13 +596,14 @@ struct CreatePostView: View {
                             label: {
                                 Image(systemName: "minus")
                                     .bold()
-                                    .foregroundStyle(.white)
+                                    .foregroundStyle(.primaryPink)
                                     .frame(width: 35, height: 35)
-                                    .background(.primaryPink)
-                                    .clipShape(Circle())
+                                    .background(.white)
+                                    .border(.borderPink, width: 2)
+//                                    .clipShape(Circle())
                             }
                             .padding(.leading, sizeScreenWidth * 0.82)
-                            .padding(.top, postHeight * 0.35)
+                            .padding(.top, postHeight * -0.03)
                             
                             Button {
                                 item.increaseSize(size: 10)
@@ -609,13 +611,14 @@ struct CreatePostView: View {
                             label: {
                                 Image(systemName: "plus")
                                     .bold()
-                                    .foregroundStyle(.white)
+                                    .foregroundStyle(.primaryPink)
                                     .frame(width: 35, height: 35)
-                                    .background(.primaryPink)
-                                    .clipShape(Circle())
+                                    .background(.white)
+                                    .border(.borderPink, width: 2)
+//                                    .clipShape(Circle())
                             }
                             .padding(.leading, sizeScreenWidth * 0.82)
-                            .padding(.top, postHeight * 0.15)
+                            .padding(.top, postHeight * -0.15)
                         }
                     }
             }
