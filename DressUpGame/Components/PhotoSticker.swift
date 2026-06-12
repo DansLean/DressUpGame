@@ -9,17 +9,21 @@ import SwiftUI
 import PhotosUI
 
 
+
 struct PhotoSticker: View {
     @Environment(\.dismiss) var dismiss
-    
+    @Binding var showingAlert: Bool
     @State private var selection: PhotosPickerItem? = nil
     @State private var image: UIImage? = nil
     @State private var sticker: UIImage?
     let sizeScreenWidth: CGFloat = UIScreen.main.bounds.width
     var onSelect: (UIImage) -> Void
+    @State private var authorizationStatus = PHAuthorizationStatus.notDetermined
     
     var body: some View {
         NavigationStack {
+            
+            
             VStack(alignment: .leading) {
                 Text("Choose your photo")
                     .foregroundColor(.primaryPink)
@@ -29,30 +33,57 @@ struct PhotoSticker: View {
                     .alignmentGuide(HorizontalAlignment.leading) { _ in
                         0.5
                     }
-                    
+                
                 
                 Text("Upload a photo to remove the background")
                     .foregroundColor(.gray)
                     .font(.footnote)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-//            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-//                if axis == .vertical {
-//                    return length * 0.4
-//                } else {
-//                    return length * 2
-//                }
-//            }
-//            .padding(.leading, sizeScreenWidth / 10)
+            //            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+            //                if axis == .vertical {
+            //                    return length * 0.4
+            //                } else {
+            //                    return length * 2
+            //                }
+            //            }
+            //            .padding(.leading, sizeScreenWidth / 10)
             .padding(.top, 30)
             .padding(.leading, sizeScreenWidth * 0.07)
             
+
+            
             VStack {
+                
+                
                 PhotosPicker(selection: $selection) {
-                    VStack {
-                        if image != nil {
-                            if let image {
-                                ImageLift(image: image, subject: $sticker)
+                        
+                        VStack {
+                            
+                            if image != nil {
+                                if let image {
+                                    ImageLift(image: image, subject: $sticker)
+                                        .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                            if axis == .vertical {
+                                                return length * 0.30
+                                            } else {
+                                                return length * 0.85
+                                            }
+                                        }
+                                }
+                            }
+                            else {
+                                Image(systemName: "photo.badge.plus.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                        if axis == .vertical {
+                                            return length * 0.1
+                                        } else {
+                                            return length * 0.20
+                                        }
+                                    }
+                                
                                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                                         if axis == .vertical {
                                             return length * 0.30
@@ -60,36 +91,30 @@ struct PhotoSticker: View {
                                             return length * 0.85
                                         }
                                     }
+                                    .foregroundColor(.gray4)
+                                
+                                    .background(.gray6)
+                                    .cornerRadius(20)
                             }
                         }
-                        else {
-                            Image(systemName: "photo.badge.plus.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                                    if axis == .vertical {
-                                        return length * 0.1
-                                    } else {
-                                        return length * 0.20
-                                    }
-                                }
-                            
-                                .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                                    if axis == .vertical {
-                                        return length * 0.30
-                                    } else {
-                                        return length * 0.85
-                                    }
-                                }
-                                .foregroundColor(.gray4)
-                            
-                                .background(.gray6)
-                                .cornerRadius(20)
-                        }
-                    }
- 
+                    
+                    
                 }
                 .foregroundColor(.gray4)
+                .disabled(showingAlert)
+                .alert(isPresented: $showingAlert) {
+                    Alert (
+                        title: Text("Permissão negada."),
+                        message: Text("Para acessar essa função é necessário permitir o acesso à sua galeria de fotos."),
+                        dismissButton: .default(Text("Ok")) {
+                            if let settingURL = URL(string: UIApplication.openSettingsURLString),
+                               UIApplication.shared.canOpenURL(settingURL) {
+                                UIApplication.shared.open(settingURL)
+                            }
+                        }
+                    )
+                }
+                
                 .background(.gray6)
                 .cornerRadius(20)
                 //                            .border(.gray)
@@ -121,7 +146,7 @@ struct PhotoSticker: View {
                                     return length * 0.85
                                 }
                             }
-                            
+                        
                             .background(.clear)
                             .cornerRadius(20)
                             .overlay (
@@ -144,18 +169,18 @@ struct PhotoSticker: View {
                 }
                 
                 
-//                VStack {
-//                    if let image {
-//                        ImageLift(image: image, subject: $sticker)
-//                    }
-//                }
-//                .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-//                    if axis == .vertical {
-//                        return length * 0.4
-//                    } else {
-//                        return length  * 1
-//                    }
-//                }
+                //                VStack {
+                //                    if let image {
+                //                        ImageLift(image: image, subject: $sticker)
+                //                    }
+                //                }
+                //                .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                //                    if axis == .vertical {
+                //                        return length * 0.4
+                //                    } else {
+                //                        return length  * 1
+                //                    }
+                //                }
             }
             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                 if axis == .vertical {
@@ -264,4 +289,8 @@ struct PhotoSticker: View {
             return true
         }
     }
+    
+    
 }
+
+

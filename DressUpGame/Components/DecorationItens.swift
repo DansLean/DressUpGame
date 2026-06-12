@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct Sticker: Identifiable {
     let id = UUID()
@@ -28,7 +29,8 @@ struct Sticker: Identifiable {
 struct DecorationItens: View {
     
     @Binding var selectedOption: PostOptions
-    
+    @State private var showingAlert = false
+    @State private var authorizationStatus = PHAuthorizationStatus.notDetermined
     var tap: (UIImage) -> Void
     
     @State var stickers = [
@@ -123,9 +125,16 @@ struct DecorationItens: View {
                 
                 
                 if selectedOption == .stickers {
-                    Button {
+                    Button (action: {
                         isShowingCustomStickerPicker = true
-                    } label: {
+                        PHPhotoLibrary.requestAuthorization(for: .addOnly) {
+                            status in authorizationStatus = status
+                            if status == .denied {
+                                showingAlert = true
+                            }
+                        }
+                    }) {
+                        
                         VStack (spacing: 10) {
                             Image("AddStickerButton")
                                 .resizable()
@@ -148,6 +157,7 @@ struct DecorationItens: View {
                         //                                .font(.system(.body, weight: .semibold))
                         //                        }
                     }
+                    
                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                         if axis == .vertical {
                             return length * 1
@@ -155,6 +165,19 @@ struct DecorationItens: View {
                             return length * 0.4
                         }
                     }
+                    .alert(isPresented: $showingAlert) {
+                        Alert (
+                            title: Text("Permissão negada."),
+                            message: Text("Para acessar essa função é necessário permitir o acesso à sua galeria de fotos."),
+                            dismissButton: .default(Text("Ok")) {
+                                if let settingURL = URL(string: UIApplication.openSettingsURLString),
+                                   UIApplication.shared.canOpenURL(settingURL) {
+                                    UIApplication.shared.open(settingURL)
+                                }
+                            }
+                        )
+                    }
+                    
                 }
                 ForEach(selectedNumbers, id: \.self) { number in
                     Rectangle()
@@ -171,7 +194,7 @@ struct DecorationItens: View {
                                         }
                                     }
                                     .sheet(isPresented: $isShowingCustomStickerPicker) {
-                                        PhotoSticker {
+                                        PhotoSticker(showingAlert: $showingAlert) {
                                             stickers.insert(Asset(image: $0), at: 0)
                                         }
                                     }
