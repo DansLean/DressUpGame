@@ -167,9 +167,9 @@ struct DecorationItens: View {
                     }
                     .alert(isPresented: $showingAlert) {
                         Alert (
-                            title: Text("Permissão negada."),
-                            message: Text("Para acessar essa função é necessário permitir o acesso à sua galeria de fotos."),
-                            dismissButton: .default(Text("Ok")) {
+                            title: Text("Permission denied."),
+                            message: Text("To use this feature, you must grant access to your photo gallery."),
+                            dismissButton: .default(Text("Allow")) {
                                 if let settingURL = URL(string: UIApplication.openSettingsURLString),
                                    UIApplication.shared.canOpenURL(settingURL) {
                                     UIApplication.shared.open(settingURL)
