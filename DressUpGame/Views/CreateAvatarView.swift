@@ -22,7 +22,7 @@ struct CreateAvatarView: View {
     var shoes: Image = Image("Shoes1")
     var accessories: Image = Image("Accessories1")
     
-    @State var doll = DollClass(face: Asset(image: UIImage(resource: .doll1)), hair: Asset(image: UIImage()), hairColor: .grayColorNew, top: Asset(image: UIImage()), topColor: .grayColorNew, bottom: Asset(image: UIImage()), bottomColor: .grayColorNew, shoes: Asset(image: UIImage()), accessories: Asset(image: UIImage()))
+    @State var doll = DollClass(face: Asset(image: UIImage(resource: .doll1), description: <#String#>), hair: Asset(image: UIImage(), description: <#String#>), hairColor: .grayColorNew, top: Asset(image: UIImage(), description: <#String#>), topColor: .grayColorNew, bottom: Asset(image: UIImage(), description: <#String#>), bottomColor: .grayColorNew, shoes: Asset(image: UIImage(), description: <#String#>), accessories: Asset(image: UIImage(), description: <#String#>))
     
     var body: some View {
         NavigationStack {
@@ -31,6 +31,7 @@ struct CreateAvatarView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .ignoresSafeArea()
+                    .accessibilityHidden(true)
                 
                 VStack (spacing: 0) {
                     VStack(alignment: .center) {
@@ -42,6 +43,7 @@ struct CreateAvatarView: View {
                                     return length
                                 }
                             }
+                        //                            .accessibilityElement(children: .ignore)
                     }
                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                         if axis == .vertical {
@@ -67,6 +69,7 @@ struct CreateAvatarView: View {
                         }
                         //                    }
                         .background(Color.white)
+                        .accessibilityElement(children: .contain)
                         
                         Rectangle()
                             .frame(height: 0.5, alignment: .top)
@@ -130,27 +133,27 @@ struct CreateAvatarView: View {
                         if selectedCustomization == .hair || selectedCustomization == .top || selectedCustomization == .bottom {
                             AvatarDecorationItens(selectedCustomization: $selectedCustomization, assetHairColor: $selectedHairColor, assetTopColor: $selectedTopColor, assetBottomColor: $selectedBottomColor) { tapped in
                                 if selectedCustomization == .face {
-                                    doll.setDoll(face: Asset(image: tapped))
+                                    doll.setDoll(face: Asset(image: tapped, description: <#String#>))
                                 }
                                 
                                 if selectedCustomization == .hair {
-                                    doll.setHair(hair: Asset(image: tapped))
+                                    doll.setHair(hair: Asset(image: tapped, description: <#String#>))
                                 }
                                 
                                 if selectedCustomization == .top {
-                                    doll.setTop(top: Asset(image: tapped))
+                                    doll.setTop(top: Asset(image: tapped, description: <#String#>))
                                 }
                                 
                                 if selectedCustomization == .bottom {
-                                    doll.setBottom(bottom: Asset(image: tapped))
+                                    doll.setBottom(bottom: Asset(image: tapped, description: <#String#>))
                                 }
                                 
                                 if selectedCustomization == .shoes {
-                                    doll.setShoes(shoes: Asset(image: tapped))
+                                    doll.setShoes(shoes: Asset(image: tapped, description: <#String#>))
                                 }
                                 
                                 if selectedCustomization == .accessories {
-                                    doll.setAccessories(accessories: Asset(image: tapped))
+                                    doll.setAccessories(accessories: Asset(image: tapped, description: <#String#>))
                                 }
                             }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -163,27 +166,27 @@ struct CreateAvatarView: View {
                         } else {
                             AvatarDecorationItens(selectedCustomization: $selectedCustomization, assetHairColor: $selectedHairColor, assetTopColor: $selectedTopColor, assetBottomColor: $selectedBottomColor) { tapped in
                                 if selectedCustomization == .face {
-                                    doll.setDoll(face: Asset(image: tapped))
+                                    doll.setDoll(face: Asset(image: tapped, description: <#String#>))
                                 }
                                 
                                 if selectedCustomization == .hair {
-                                    doll.setHair(hair: Asset(image: tapped))
+                                    doll.setHair(hair: Asset(image: tapped, description: <#String#>))
                                 }
                                 
                                 if selectedCustomization == .top {
-                                    doll.setTop(top: Asset(image: tapped))
+                                    doll.setTop(top: Asset(image: tapped, description: <#String#>))
                                 }
                                 
                                 if selectedCustomization == .bottom {
-                                    doll.setBottom(bottom: Asset(image: tapped))
+                                    doll.setBottom(bottom: Asset(image: tapped, description: <#String#>))
                                 }
                                 
                                 if selectedCustomization == .shoes {
-                                    doll.setShoes(shoes: Asset(image: tapped))
+                                    doll.setShoes(shoes: Asset(image: tapped, description: <#String#>))
                                 }
                                 
                                 if selectedCustomization == .accessories {
-                                    doll.setAccessories(accessories: Asset(image: tapped))
+                                    doll.setAccessories(accessories: Asset(image: tapped, description: <#String#>))
                                 }
                             }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -203,6 +206,8 @@ struct CreateAvatarView: View {
                                 self.presentationMode.wrappedValue.dismiss()
                             } label: {
                                 Image("chevron_left_button")
+                                    .accessibilityLabel("Voltar")
+                                    .accessibilityHint("Toque duas vezes para voltar à tela inicial.")
                             }
                             .shadow(radius: 2, y: 2)
                         }
@@ -213,6 +218,8 @@ struct CreateAvatarView: View {
                                 self.presentationMode.wrappedValue.dismiss()
                             } label: {
                                 Image("chevron_left_button")
+                                    .accessibilityLabel("Voltar")
+                                    .accessibilityHint("Toque duas vezes para voltar à tela inicial.")
                             }
                             .shadow(radius: 2, y: 2)
                         }
@@ -225,6 +232,8 @@ struct CreateAvatarView: View {
                             } label: {
                                 NavigationLink(destination: CreatePostView(doll: $doll)) {
                                     Image("chevron_right_button")
+                                        .accessibilityLabel("Avançar")
+                                        .accessibilityHint("Toque duas vezes para avançar para a criação de post.")
                                 }
                             }
                             .shadow(radius: 2, y: 2)
@@ -237,6 +246,8 @@ struct CreateAvatarView: View {
                             } label: {
                                 NavigationLink(destination: CreatePostView(doll: $doll)) {
                                     Image("chevron_right_button")
+                                        .accessibilityLabel("Avançar")
+                                        .accessibilityHint("Toque duas vezes para avançar para a criação de post.")
                                 }
                             }
                             .shadow(radius: 2, y: 2)

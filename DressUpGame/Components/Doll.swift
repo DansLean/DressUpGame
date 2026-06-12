@@ -80,7 +80,7 @@ struct DollView: View {
             Image(uiImage: doll.face.image) // Boneca
                 .resizable()
                 .scaledToFit()
-            
+                .accessibilityLabel("Boneca")
             
             Image(uiImage: doll.hair.image)   // Cabelo
                 .resizable()
@@ -92,23 +92,29 @@ struct DollView: View {
             Image(uiImage: doll.shoes.image)   // Calçado
                 .resizable()
                 .scaledToFit()
+                .accessibilityLabel("Calçado")
             
             Image(uiImage: doll.bottom.image)   // Bottom
                 .resizable()
                 .scaledToFit()
                 .colorMultiply(doll.bottomColor)
                 .saturation(1)
+                .accessibilityLabel("Parte de baixo")
             
             Image(uiImage: doll.top.image)   // Top
                 .resizable()
                 .scaledToFit()
                 .colorMultiply(doll.topColor)
                 .saturation(1)
+                .accessibilityLabel("Parte de cima")
             
             Image(uiImage: doll.accessories.image)   // Acessórios
                 .resizable()
                 .scaledToFit()
+                .accessibilityLabel("Acessórios")
         }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("\(doll.face.description) com \(doll.hair.description) de \(doll.top.description) e \(doll.bottom.description) usando \(doll.shoes.description)")
         .scaleEffect(0.7)
     }
 }
