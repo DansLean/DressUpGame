@@ -63,7 +63,8 @@ struct AvatarDecorationItens: View {
         Asset(image: UIImage(resource: .bottom5)),
         Asset(image: UIImage(resource: .bottom6)),
         Asset(image: UIImage(resource: .bottom7)),
-        Asset(image: UIImage(resource: .bottom8))
+        Asset(image: UIImage(resource: .bottom8)),
+        Asset(image: UIImage(resource: .bottom9))
     ]
     
     @State var shoes = [
