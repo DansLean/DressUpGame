@@ -45,7 +45,7 @@ struct HomeView: View {
                                     .foregroundStyle(Color(.primaryPink))
                                     .font(.system(size: 58))
                                     .accessibilityHidden(true)
-                                Text("buttonTitle")
+                                Text("New Look")
                                     .foregroundStyle(.primaryPink)
                                     .font(.system(.body, weight: .semibold))
                             }

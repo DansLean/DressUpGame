@@ -33,6 +33,7 @@ struct Asset: Hashable {
 struct AssetColor: Hashable {
     let id = UUID()
     let color: Color
+    let name: String
 }
 
 @main
