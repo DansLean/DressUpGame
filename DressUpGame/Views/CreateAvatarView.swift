@@ -22,7 +22,7 @@ struct CreateAvatarView: View {
     var shoes: Image = Image("Shoes1")
     var accessories: Image = Image("Accessories1")
     
-    @State var doll = DollClass(face: Asset(image: UIImage(resource: .doll1), description: <#String#>), hair: Asset(image: UIImage(), description: <#String#>), hairColor: .grayColorNew, top: Asset(image: UIImage(), description: <#String#>), topColor: .grayColorNew, bottom: Asset(image: UIImage(), description: <#String#>), bottomColor: .grayColorNew, shoes: Asset(image: UIImage(), description: <#String#>), accessories: Asset(image: UIImage(), description: <#String#>))
+    @State var doll = DollClass(face: Asset(image: UIImage(resource: .doll1), description: "Boneca com traços femininos de tom claro"), hair: Asset(image: UIImage(), description: ""), hairColor: .grayColorNew, top: Asset(image: UIImage(), description: ""), topColor: .grayColorNew, bottom: Asset(image: UIImage(), description: ""), bottomColor: .grayColorNew, shoes: Asset(image: UIImage(), description: ""), accessories: Asset(image: UIImage(), description: ""))
     
     var body: some View {
         NavigationStack {
@@ -43,7 +43,6 @@ struct CreateAvatarView: View {
                                     return length
                                 }
                             }
-                        //                            .accessibilityElement(children: .ignore)
                     }
                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                         if axis == .vertical {
@@ -133,27 +132,27 @@ struct CreateAvatarView: View {
                         if selectedCustomization == .hair || selectedCustomization == .top || selectedCustomization == .bottom {
                             AvatarDecorationItens(selectedCustomization: $selectedCustomization, assetHairColor: $selectedHairColor, assetTopColor: $selectedTopColor, assetBottomColor: $selectedBottomColor) { tapped in
                                 if selectedCustomization == .face {
-                                    doll.setDoll(face: Asset(image: tapped, description: <#String#>))
+                                    doll.setDoll(face: Asset(image: tapped.image, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .hair {
-                                    doll.setHair(hair: Asset(image: tapped, description: <#String#>))
+                                    doll.setHair(hair: Asset(image: tapped.image, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .top {
-                                    doll.setTop(top: Asset(image: tapped, description: <#String#>))
+                                    doll.setTop(top: Asset(image: tapped.image, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .bottom {
-                                    doll.setBottom(bottom: Asset(image: tapped, description: <#String#>))
+                                    doll.setBottom(bottom: Asset(image: tapped.image, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .shoes {
-                                    doll.setShoes(shoes: Asset(image: tapped, description: <#String#>))
+                                    doll.setShoes(shoes: Asset(image: tapped.image, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .accessories {
-                                    doll.setAccessories(accessories: Asset(image: tapped, description: <#String#>))
+                                    doll.setAccessories(accessories: Asset(image: tapped.image, description: tapped.description))
                                 }
                             }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -166,27 +165,27 @@ struct CreateAvatarView: View {
                         } else {
                             AvatarDecorationItens(selectedCustomization: $selectedCustomization, assetHairColor: $selectedHairColor, assetTopColor: $selectedTopColor, assetBottomColor: $selectedBottomColor) { tapped in
                                 if selectedCustomization == .face {
-                                    doll.setDoll(face: Asset(image: tapped, description: <#String#>))
+                                    doll.setDoll(face: Asset(image: tapped.image, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .hair {
-                                    doll.setHair(hair: Asset(image: tapped, description: <#String#>))
+                                    doll.setHair(hair: Asset(image: tapped.image, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .top {
-                                    doll.setTop(top: Asset(image: tapped, description: <#String#>))
+                                    doll.setTop(top: Asset(image: tapped.image, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .bottom {
-                                    doll.setBottom(bottom: Asset(image: tapped, description: <#String#>))
+                                    doll.setBottom(bottom: Asset(image: tapped.image, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .shoes {
-                                    doll.setShoes(shoes: Asset(image: tapped, description: <#String#>))
+                                    doll.setShoes(shoes: Asset(image: tapped.image, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .accessories {
-                                    doll.setAccessories(accessories: Asset(image: tapped, description: <#String#>))
+                                    doll.setAccessories(accessories: Asset(image: tapped.image, description: tapped.description))
                                 }
                             }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -275,7 +274,15 @@ struct CreateAvatarView: View {
                                     return length * 0.2
                                 }
                             }
+                            .accessibilityHidden(true)
                         Image("AvatarHead")
+                            .accessibilityLabel("Côrpo")
+                            .accessibilityValue(
+                                selectedCustomization == .face
+                                ? "Selecionado"
+                                : "Não selecionado"
+                            )
+                            .accessibilityHint("Deslize para baixo para selecionar boneca e tom de pele.")
                     }
                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                         if axis == .vertical {
@@ -293,6 +300,13 @@ struct CreateAvatarView: View {
                 } label: {
                     ZStack {
                         Image("AvatarHead")
+                            .accessibilityLabel("Côrpo")
+                            .accessibilityValue(
+                                selectedCustomization == .face
+                                ? "Selecionado"
+                                : "Não selecionado"
+                            )
+                            .accessibilityHint("Toque duas vezes para selecionar boneca e tom de pele.")
                     }
                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                         if axis == .vertical {
@@ -305,6 +319,7 @@ struct CreateAvatarView: View {
                 }
             }
         }
+        .accessibilityElement(children: .combine)
     }
     
     var hairButton: some View {
@@ -323,7 +338,15 @@ struct CreateAvatarView: View {
                                     return length * 0.2
                                 }
                             }
+                            .accessibilityHidden(true)
                         Image("AvatarHair")
+                            .accessibilityLabel("Cabelo")
+                            .accessibilityValue(
+                                selectedCustomization == .hair
+                                ? "Selecionado"
+                                : "Não selecionado"
+                            )
+                            .accessibilityHint("Deslize para baixo para selecionar e colorir cabelo.")
                     }
                     .background()
                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -342,6 +365,13 @@ struct CreateAvatarView: View {
                 } label: {
                     ZStack {
                         Image("AvatarHair")
+                            .accessibilityLabel("Cabelo")
+                            .accessibilityValue(
+                                selectedCustomization == .hair
+                                ? "Selecionado"
+                                : "Não selecionado"
+                            )
+                            .accessibilityHint("Toque duas vezes para selecionar e colorir cabelo.")
                     }
                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                         if axis == .vertical {
@@ -372,7 +402,15 @@ struct CreateAvatarView: View {
                                     return length * 0.2
                                 }
                             }
+                            .accessibilityHidden(true)
                         Image("AvatarTop")
+                            .accessibilityLabel("Partes de cima")
+                            .accessibilityValue(
+                                selectedCustomization == .top
+                                ? "Selecionado"
+                                : "Não selecionado"
+                            )
+                            .accessibilityHint("Deslize para baixo para selecionar e colorir roupas da parte de cima da boneca.")
                     }
                     .background()
                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -391,6 +429,13 @@ struct CreateAvatarView: View {
                 } label: {
                     ZStack {
                         Image("AvatarTop")
+                            .accessibilityLabel("Partes de cima")
+                            .accessibilityValue(
+                                selectedCustomization == .top
+                                ? "Selecionado"
+                                : "Não selecionado"
+                            )
+                            .accessibilityHint("Toque duas vezes para selecionar e colorir roupas da parte de cima da boneca.")
                     }
                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                         if axis == .vertical {
@@ -403,8 +448,6 @@ struct CreateAvatarView: View {
                 }
             }
         }
-        
-        
     }
     
     var bottomButton: some View {
@@ -423,7 +466,15 @@ struct CreateAvatarView: View {
                                     return length * 0.2
                                 }
                             }
+                            .accessibilityHidden(true)
                         Image("AvatarBottom")
+                            .accessibilityLabel("Partes de baixo")
+                            .accessibilityValue(
+                                selectedCustomization == .bottom
+                                ? "Selecionado"
+                                : "Não selecionado"
+                            )
+                            .accessibilityHint("Deslize para baixo para selecionar e colorir roupas da parte de baixo da boneca.")
                     }
                     .background()
                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -442,6 +493,13 @@ struct CreateAvatarView: View {
                 } label: {
                     ZStack {
                         Image("AvatarBottom")
+                            .accessibilityLabel("Partes de baixo")
+                            .accessibilityValue(
+                                selectedCustomization == .bottom
+                                ? "Selecionado"
+                                : "Não selecionado"
+                            )
+                            .accessibilityHint("Toque duas vezes para selecionar e colorir roupas da parte de baixo da boneca.")
                     }
                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                         if axis == .vertical {
@@ -474,7 +532,15 @@ struct CreateAvatarView: View {
                                     return length * 0.2
                                 }
                             }
+                            .accessibilityHidden(true)
                         Image("AvatarShoes")
+                            .accessibilityLabel("Sapatos")
+                            .accessibilityValue(
+                                selectedCustomization == .shoes
+                                ? "Selecionado"
+                                : "Não selecionado"
+                            )
+                            .accessibilityHint("Deslize para baixo para selecionar sapatos.")
                     }
                     .background()
                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -493,6 +559,13 @@ struct CreateAvatarView: View {
                 } label: {
                     ZStack {
                         Image("AvatarShoes")
+                            .accessibilityLabel("Sapatos")
+                            .accessibilityValue(
+                                selectedCustomization == .shoes
+                                ? "Selecionado"
+                                : "Não selecionado"
+                            )
+                            .accessibilityHint("Toque duas vezes para selecionar sapatos.")
                     }
                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                         if axis == .vertical {

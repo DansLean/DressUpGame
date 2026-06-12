@@ -32,70 +32,70 @@ struct DecorationItens: View {
     var tap: (UIImage) -> Void
     
     @State var stickers = [
-        Asset(image: UIImage(resource: .sticker1)),
-        Asset(image: UIImage(resource: .sticker2)),
-        Asset(image: UIImage(resource: .sticker3)),
-        Asset(image: UIImage(resource: .sticker4)),
-        Asset(image: UIImage(resource: .sticker5)),
-        Asset(image: UIImage(resource: .sticker6)),
-        Asset(image: UIImage(resource: .sticker7)),
+        Asset(image: UIImage(resource: .sticker1), description: ""),
+        Asset(image: UIImage(resource: .sticker2), description: ""),
+        Asset(image: UIImage(resource: .sticker3), description: ""),
+        Asset(image: UIImage(resource: .sticker4), description: ""),
+        Asset(image: UIImage(resource: .sticker5), description: ""),
+        Asset(image: UIImage(resource: .sticker6), description: ""),
+        Asset(image: UIImage(resource: .sticker7), description: ""),
     ]
     
     @State var palettes = [
-        Asset(image: UIImage(resource: .background0)),
-        Asset(image: UIImage(resource: .background1)),
-        Asset(image: UIImage(resource: .background2)),
-        Asset(image: UIImage(resource: .background3)),
-        Asset(image: UIImage(resource: .background4)),
-        Asset(image: UIImage(resource: .background5)),
-        Asset(image: UIImage(resource: .background6)),
-        Asset(image: UIImage(resource: .background7)),
-        Asset(image: UIImage(resource: .background8)),
+        Asset(image: UIImage(resource: .background0), description: ""),
+        Asset(image: UIImage(resource: .background1), description: ""),
+        Asset(image: UIImage(resource: .background2), description: ""),
+        Asset(image: UIImage(resource: .background3), description: ""),
+        Asset(image: UIImage(resource: .background4), description: ""),
+        Asset(image: UIImage(resource: .background5), description: ""),
+        Asset(image: UIImage(resource: .background6), description: ""),
+        Asset(image: UIImage(resource: .background7), description: ""),
+        Asset(image: UIImage(resource: .background8), description: ""),
     ]
     
     
     @State var bubbles = [
-        Asset(image: UIImage(resource: .bubble1)),
-        Asset(image: UIImage(resource: .bubble2)),
-        Asset(image: UIImage(resource: .bubble3)),
-        Asset(image: UIImage(resource: .bubble4)),
+        Asset(image: UIImage(resource: .bubble1), description: ""),
+        Asset(image: UIImage(resource: .bubble2), description: ""),
+        Asset(image: UIImage(resource: .bubble3), description: ""),
+        Asset(image: UIImage(resource: .bubble4), description: ""),
     ]
     
     @State var texts = [
-        Asset(image: UIImage(resource: .alphabet1)),
-        Asset(image: UIImage(resource: .alphabet2)),
-        Asset(image: UIImage(resource: .alphabet3)),
-        Asset(image: UIImage(resource: .alphabet4)),
-        Asset(image: UIImage(resource: .alphabet5)),
-        Asset(image: UIImage(resource: .alphabet6)),
-        Asset(image: UIImage(resource: .alphabet7)),
-        Asset(image: UIImage(resource: .alphabet8)),
-        Asset(image: UIImage(resource: .alphabet9)),
-        Asset(image: UIImage(resource: .alphabet10)),
-        Asset(image: UIImage(resource: .alphabet11)),
-        Asset(image: UIImage(resource: .alphabet12)),
-        Asset(image: UIImage(resource: .alphabet13)),
-        Asset(image: UIImage(resource: .alphabet14)),
-        Asset(image: UIImage(resource: .alphabet15)),
-        Asset(image: UIImage(resource: .alphabet16)),
-        Asset(image: UIImage(resource: .alphabet17)),
-        Asset(image: UIImage(resource: .alphabet18)),
-        Asset(image: UIImage(resource: .alphabet19)),
-        Asset(image: UIImage(resource: .alphabet20)),
-        Asset(image: UIImage(resource: .alphabet21)),
-        Asset(image: UIImage(resource: .alphabet22)),
-        Asset(image: UIImage(resource: .alphabet23)),
-        Asset(image: UIImage(resource: .alphabet24)),
-        Asset(image: UIImage(resource: .alphabet25)),
-        Asset(image: UIImage(resource: .alphabet26)),
-        Asset(image: UIImage(resource: .alphabet27)),
-        Asset(image: UIImage(resource: .alphabet28)),
-        Asset(image: UIImage(resource: .alphabet29)),
-        Asset(image: UIImage(resource: .alphabet30)),
-        Asset(image: UIImage(resource: .alphabet31)),
-        Asset(image: UIImage(resource: .alphabet32)),
-        Asset(image: UIImage(resource: .alphabet33)),
-        Asset(image: UIImage(resource: .alphabet34))
+        Asset(image: UIImage(resource: .alphabet1), description: ""),
+        Asset(image: UIImage(resource: .alphabet2), description: ""),
+        Asset(image: UIImage(resource: .alphabet3), description: ""),
+        Asset(image: UIImage(resource: .alphabet4), description: ""),
+        Asset(image: UIImage(resource: .alphabet5), description: ""),
+        Asset(image: UIImage(resource: .alphabet6), description: ""),
+        Asset(image: UIImage(resource: .alphabet7), description: ""),
+        Asset(image: UIImage(resource: .alphabet8), description: ""),
+        Asset(image: UIImage(resource: .alphabet9), description: ""),
+        Asset(image: UIImage(resource: .alphabet10), description: ""),
+        Asset(image: UIImage(resource: .alphabet11), description: ""),
+        Asset(image: UIImage(resource: .alphabet12), description: ""),
+        Asset(image: UIImage(resource: .alphabet13), description: ""),
+        Asset(image: UIImage(resource: .alphabet14), description: ""),
+        Asset(image: UIImage(resource: .alphabet15), description: ""),
+        Asset(image: UIImage(resource: .alphabet16), description: ""),
+        Asset(image: UIImage(resource: .alphabet17), description: ""),
+        Asset(image: UIImage(resource: .alphabet18), description: ""),
+        Asset(image: UIImage(resource: .alphabet19), description: ""),
+        Asset(image: UIImage(resource: .alphabet20), description: ""),
+        Asset(image: UIImage(resource: .alphabet21), description: ""),
+        Asset(image: UIImage(resource: .alphabet22), description: ""),
+        Asset(image: UIImage(resource: .alphabet23), description: ""),
+        Asset(image: UIImage(resource: .alphabet24), description: ""),
+        Asset(image: UIImage(resource: .alphabet25), description: ""),
+        Asset(image: UIImage(resource: .alphabet26), description: ""),
+        Asset(image: UIImage(resource: .alphabet27), description: ""),
+        Asset(image: UIImage(resource: .alphabet28), description: ""),
+        Asset(image: UIImage(resource: .alphabet29), description: ""),
+        Asset(image: UIImage(resource: .alphabet30), description: ""),
+        Asset(image: UIImage(resource: .alphabet31), description: ""),
+        Asset(image: UIImage(resource: .alphabet32), description: ""),
+        Asset(image: UIImage(resource: .alphabet33), description: ""),
+        Asset(image: UIImage(resource: .alphabet34), description: "")
     ]
     
     let sizeScreen: CGFloat = UIScreen.main.bounds.width + UIScreen.main.bounds.height / UIScreen.main.bounds.width
@@ -172,7 +172,7 @@ struct DecorationItens: View {
                                     }
                                     .sheet(isPresented: $isShowingCustomStickerPicker) {
                                         PhotoSticker {
-                                            stickers.insert(Asset(image: $0), at: 0)
+                                            stickers.insert(Asset(image: $0, description: ""), at: 0)
                                         }
                                     }
                             }

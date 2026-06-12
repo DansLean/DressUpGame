@@ -13,20 +13,20 @@ struct ColorClothesItens: View {
     var tap: (Color) -> Void
     
     @State var colors = [
-        AssetColor(color: .grayColorNew),
-        AssetColor(color: .brownColorNew),
-        AssetColor(color: .lightGrayColorClothes),
-        AssetColor(color: .yellowColorClothes),
-        AssetColor(color: .greenColorClothes),
-        AssetColor(color: .blueColorNew),
-        AssetColor(color: .pinkColorNew),
-        AssetColor(color: .lightPurpleColorClothes),
-        AssetColor(color: .salmonColorNew),
-        AssetColor(color: .lightSalmonColorClothes),
-        AssetColor(color: .evenLighterPuplerColorClothes),
-        AssetColor(color: .blueGrayColorClothes),
-        AssetColor(color: .lightDarkGreenColorClothes),
-        AssetColor(color: .lightBlueColorClothes)
+        AssetColor(color: .grayColorNew, name: "Preto"),
+        AssetColor(color: .brownColorNew, name: "Marrom"),
+        AssetColor(color: .lightGrayColorClothes, name: "Cinza"),
+        AssetColor(color: .yellowColorClothes, name: "Amarelo"),
+        AssetColor(color: .greenColorClothes, name: "Verde"),
+        AssetColor(color: .blueColorNew, name: "Turquesa"),
+        AssetColor(color: .pinkColorNew, name: "Rosa"),
+        AssetColor(color: .lightPurpleColorClothes, name: "Roxo"),
+        AssetColor(color: .salmonColorNew, name: "Rosa cereja"),
+        AssetColor(color: .lightSalmonColorClothes, name: "Rosa claro"),
+        AssetColor(color: .evenLighterPuplerColorClothes, name: "Roxo claro"),
+        AssetColor(color: .blueGrayColorClothes, name: "Azul escuro"),
+        AssetColor(color: .lightDarkGreenColorClothes, name: "Verde azulado"),
+        AssetColor(color: .lightBlueColorClothes, name: "Azul claro")
     ]
     
     let sizeScreen: CGFloat = UIScreen.main.bounds.width + UIScreen.main.bounds.height / UIScreen.main.bounds.width
@@ -43,6 +43,8 @@ struct ColorClothesItens: View {
                                 .onTapGesture {
                                     tap(colorOption.color)
                                 }
+                                .accessibilityLabel(colorOption.name)
+                                .accessibilityHint("Toque duas vezes para selecionar a cor")
                         }
                         .aspectRatio(0.00173 * sizeScreen, contentMode: .fit)
                 }

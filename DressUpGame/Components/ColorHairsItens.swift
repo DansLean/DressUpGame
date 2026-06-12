@@ -13,15 +13,15 @@ struct ColorHairsItens: View {
     var tap: (Color) -> Void
     
     @State var colors = [
-        AssetColor(color: .grayColorNew),
-        AssetColor(color: .beigeColorNew),
-        AssetColor(color: .orangeColorNew),
-        AssetColor(color: .redColorNew),
-        AssetColor(color: .brownColorNew),
-        AssetColor(color: .blueColorNew),
-        AssetColor(color: .pinkColorNew),
-        AssetColor(color: .purpleColorNew),
-        AssetColor(color: .salmonColorNew)
+        AssetColor(color: .grayColorNew, name: "Preto"),
+        AssetColor(color: .beigeColorNew, name: "Loiro"),
+        AssetColor(color: .orangeColorNew, name: "Ruivo médio"),
+        AssetColor(color: .redColorNew, name: "Ruivo escuro"),
+        AssetColor(color: .brownColorNew, name: "Castanho"),
+        AssetColor(color: .blueColorNew, name: "Turquesa"),
+        AssetColor(color: .pinkColorNew, name: "Rosa claro"),
+        AssetColor(color: .purpleColorNew, name: "Roxo"),
+        AssetColor(color: .salmonColorNew, name: "Rosa cereja")
     ]
     
     let sizeScreen: CGFloat = UIScreen.main.bounds.width + UIScreen.main.bounds.height / UIScreen.main.bounds.width
@@ -38,6 +38,8 @@ struct ColorHairsItens: View {
                                 .onTapGesture {
                                     tap(colorOption.color)
                                 }
+                                .accessibilityLabel(colorOption.name)
+                                .accessibilityHint("Toque duas vezes para selecionar a cor")
                         }
                         .aspectRatio(0.00173 * sizeScreen, contentMode: .fit)
                 }
