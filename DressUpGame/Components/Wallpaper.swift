@@ -10,24 +10,27 @@ import SwiftUI
 
 @Observable
 class WallpaperClass: Identifiable {
-    var wallpaper: UIImage
+    var wallpaper: Asset
+    var description: String
     
-    init(wallpaper: UIImage) {
+    init(wallpaper: Asset) {
         self.wallpaper = wallpaper
+        self.description = wallpaper.description
     }
     
-    func setWallpaper(wallpaper: UIImage) {
+    func setWallpaper(wallpaper: Asset) {
         self.wallpaper = wallpaper
+        self.description = wallpaper.description
     }
 }
 
 struct WallpaperView: View {
     let wallpaper: WallpaperClass
     var body: some View {
-        Image(uiImage: wallpaper.wallpaper)
+        Image(uiImage: wallpaper.wallpaper.image)
             .resizable()
             .aspectRatio(contentMode: .fill)
             .ignoresSafeArea()
+            .accessibilityLabel(wallpaper.description)
     }
 }
-

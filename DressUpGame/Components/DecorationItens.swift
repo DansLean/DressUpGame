@@ -8,30 +8,17 @@
 import SwiftUI
 import PhotosUI
 
+
 struct Sticker: Identifiable {
     let id = UUID()
     let image: UIImage
 }
 
-
-//struct DecorationItens: View {
-//
-//    @State var stickers = [
-//        Sticker(image: UIImage(resource: .sticker1)),
-//        Sticker(image: UIImage(resource: .sticker2)),
-//        Sticker(image: UIImage(resource: .sticker3)),
-//        Sticker(image: UIImage(resource: .sticker4)),
-//        Sticker(image: UIImage(resource: .sticker5)),
-//        Sticker(image: UIImage(resource: .sticker6)),
-//        Sticker(image: UIImage(resource: .sticker7)),
-//    ]
-
 struct DecorationItens: View {
-    
     @Binding var selectedOption: PostOptions
     @State private var showingAlert = false
     @State private var authorizationStatus = PHAuthorizationStatus.notDetermined
-    var tap: (UIImage) -> Void
+    var tap: (Asset) -> Void
     
     @State var stickers = [
         Asset(image: UIImage(resource: .sticker1), description: ""),
@@ -40,27 +27,26 @@ struct DecorationItens: View {
         Asset(image: UIImage(resource: .sticker4), description: ""),
         Asset(image: UIImage(resource: .sticker5), description: ""),
         Asset(image: UIImage(resource: .sticker6), description: ""),
-        Asset(image: UIImage(resource: .sticker7), description: ""),
+        Asset(image: UIImage(resource: .sticker7), description: "")
     ]
     
     @State var palettes = [
-        Asset(image: UIImage(resource: .background0), description: ""),
-        Asset(image: UIImage(resource: .background1), description: ""),
-        Asset(image: UIImage(resource: .background2), description: ""),
-        Asset(image: UIImage(resource: .background3), description: ""),
-        Asset(image: UIImage(resource: .background4), description: ""),
-        Asset(image: UIImage(resource: .background5), description: ""),
-        Asset(image: UIImage(resource: .background6), description: ""),
-        Asset(image: UIImage(resource: .background7), description: ""),
-        Asset(image: UIImage(resource: .background8), description: ""),
+        Asset(image: UIImage(resource: .background0), description: "Papel de parede com degradê que transiciona entre as cores rosa e branco com formas hexagonais em branco"),
+        Asset(image: UIImage(resource: .background1), description: "Papel de parede com degradê que transiciona entre tons de rosa com bolinhas pequenas em rosa"),
+        Asset(image: UIImage(resource: .background2), description: "Papel de parede com degradê que transiciona entre cores lilás e branco com formas hexagonais em branco"),
+        Asset(image: UIImage(resource: .background3), description: "Papel de parede amarelo com bolinhas pequenas em rosa pêssego"),
+        Asset(image: UIImage(resource: .background4), description: "Papel de parede rosa com linhas diagonais rosa escuro"),
+        Asset(image: UIImage(resource: .background5), description: "Papel de parede azul com formas de estrela de quatro pontas azuis escuro"),
+        Asset(image: UIImage(resource: .background6), description: "Papel de parede verde menta com bolinhas pequenas em verde escuro"),
+        Asset(image: UIImage(resource: .background7), description: "Papel de parede com degradê que transiciona entre tons de rosa com linhas verticais em rosa escuro"),
+        Asset(image: UIImage(resource: .background8), description: "Papel de parede com degradê que transiciona entre tons de lilás com quadriculado em lilás escuro")
     ]
-    
     
     @State var bubbles = [
         Asset(image: UIImage(resource: .bubble1), description: ""),
         Asset(image: UIImage(resource: .bubble2), description: ""),
         Asset(image: UIImage(resource: .bubble3), description: ""),
-        Asset(image: UIImage(resource: .bubble4), description: ""),
+        Asset(image: UIImage(resource: .bubble4), description: "")
     ]
     
     @State var texts = [
@@ -122,8 +108,6 @@ struct DecorationItens: View {
     var body: some View {
         ScrollView(.horizontal) {
             LazyHGrid(rows: Array(repeating: GridItem(.flexible()), count: 1)) {
-                
-                
                 if selectedOption == .stickers {
                     Button (action: {
                         isShowingCustomStickerPicker = true
@@ -134,7 +118,6 @@ struct DecorationItens: View {
                             }
                         }
                     }) {
-                        
                         VStack (spacing: 10) {
                             Image("AddStickerButton")
                                 .resizable()
@@ -146,18 +129,7 @@ struct DecorationItens: View {
                                 .foregroundStyle(.primaryPink)
                                 .font(.system(.body, weight: .semibold))
                         }
-                        
-                        //                        VStack (spacing: 8) {
-                        //                            Label("Add Sticker",systemImage: "plus.circle.fill")
-                        //                                .labelStyle(.iconOnly)
-                        //                                .foregroundStyle(Color(.primaryPink))
-                        //                                .font(.system(size: 50))
-                        //                            Text("Add Sticker")
-                        //                                .foregroundStyle(.primaryPink)
-                        //                                .font(.system(.body, weight: .semibold))
-                        //                        }
                     }
-                    
                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                         if axis == .vertical {
                             return length * 1
@@ -177,7 +149,6 @@ struct DecorationItens: View {
                             }
                         )
                     }
-                    
                 }
                 ForEach(selectedNumbers, id: \.self) { number in
                     Rectangle()
@@ -198,6 +169,8 @@ struct DecorationItens: View {
                                             stickers.insert(Asset(image: $0, description: ""), at: 0)
                                         }
                                     }
+                                    .accessibilityLabel(number.description)
+                                    .accessibilityHint("Toque duas vezes para selecionar esse item.")
                             }
                             
                             if self.selectedOption == .palettes {
@@ -212,6 +185,8 @@ struct DecorationItens: View {
                                         }
                                     }
                                     .padding(.bottom, 0.02 * sizeScreen)
+                                    .accessibilityLabel(number.description)
+                                    .accessibilityHint("Toque duas vezes para selecionar esse item.")
                             }
                             
                             if self.selectedOption == .bubbles {
@@ -226,6 +201,8 @@ struct DecorationItens: View {
                                         }
                                     }
                                     .padding(.bottom, 0.02 * sizeScreen)
+                                    .accessibilityLabel(number.description)
+                                    .accessibilityHint("Toque duas vezes para selecionar esse item.")
                             }
                             
                             if self.selectedOption == .texts {
@@ -240,13 +217,14 @@ struct DecorationItens: View {
                                         }
                                     }
                                     .padding(.bottom, 0.02 * sizeScreen)
+                                    .accessibilityLabel(number.description)
+                                    .accessibilityHint("Toque duas vezes para selecionar esse item.")
                             }
                         }
                         .aspectRatio(0.7, contentMode: .fit)
                         .onTapGesture {
-                            tap(number.image)
+                            tap(number)
                         }
-                    
                 }
             }
             .border(Color.borderPink, width: 0.5)
