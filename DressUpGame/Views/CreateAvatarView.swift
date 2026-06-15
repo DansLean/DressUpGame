@@ -232,7 +232,7 @@ struct CreateAvatarView: View {
                                 NavigationLink(destination: CreatePostView(doll: $doll)) {
                                     Image("chevron_right_button")
                                         .accessibilityLabel("Avançar")
-                                        .accessibilityHint("Toque duas vezes para avançar para a criação de post.")
+                                        .accessibilityHint("Toque três vezes para avançar para a criação de post.")
                                 }
                             }
                             .shadow(radius: 2, y: 2)
@@ -246,7 +246,7 @@ struct CreateAvatarView: View {
                                 NavigationLink(destination: CreatePostView(doll: $doll)) {
                                     Image("chevron_right_button")
                                         .accessibilityLabel("Avançar")
-                                        .accessibilityHint("Toque duas vezes para avançar para a criação de post.")
+                                        .accessibilityHint("Toque três vezes para avançar para a criação de post.")
                                 }
                             }
                             .shadow(radius: 2, y: 2)

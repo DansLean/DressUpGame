@@ -54,7 +54,7 @@ struct CreatePostView: View {
     
     @State var changes = 0
     
-    @State var background = WallpaperClass(wallpaper: UIImage(resource: .background0))
+    @State var background = WallpaperClass(wallpaper: Asset(image: .background0, description: "Papel de parede com degradê que transiciona entre as cores rosa e branco com formas hexagonais em branco"))
     
     let sizeScreenHeight: CGFloat = UIScreen.main.bounds.height
     let sizeScreenWidth: CGFloat = UIScreen.main.bounds.width
@@ -69,6 +69,8 @@ struct CreatePostView: View {
                         .containerRelativeFrame(.vertical, alignment: .center) { length, axis in
                             return length * 0.615
                         }
+                        .accessibilityElement(children: .ignore)
+                        .accessibilityLabel("\(doll.face.description) \(doll.hair.description != "" ? "com " + doll.hair.description : "" )\(doll.top.description != "" ? ", vestindo " + doll.top.description : "")\(doll.bottom.description != "" ? ", e " + doll.bottom.description : "")\(doll.shoes.description != "" ? ", usando " + doll.shoes.description : ""). Ao fundo, \(background.description).")
                     
                     Spacer(minLength: 40)
                     
@@ -79,10 +81,14 @@ struct CreatePostView: View {
                         
                         HStack (spacing: 0) {
                             stickerButton
+                                .accessibilityHidden(true)
                             paletteButton
                             bubbleButton
+                                .accessibilityHidden(true)
                             textButton
+                                .accessibilityHidden(true)
                         }
+                        .accessibilityElement(children: .contain)
                         
                         DecorationItens(selectedOption: $selectedOption) { tapped in
                             if (selectedOption == .palettes) {
@@ -90,17 +96,17 @@ struct CreatePostView: View {
                             }
                             
                             if (selectedOption == .stickers) {
-                                let newItem = ModelTest(imageName: Image(uiImage: tapped), position: .init(x: 200, y: 200))
+                                let newItem = ModelTest(imageName: Image(uiImage: tapped.image), position: .init(x: 200, y: 200))
                                 selectedItens.append(newItem)
                             }
                             
                             if (selectedOption == .bubbles) {
-                                let newItem = ModelTest(imageName: Image(uiImage: tapped), position: .init(x: 200, y: 200))
+                                let newItem = ModelTest(imageName: Image(uiImage: tapped.image), position: .init(x: 200, y: 200))
                                 selectedItens.append(newItem)
                             }
                             
                             if (selectedOption == .texts) {
-                                let newItem = ModelTest(imageName: Image(uiImage: tapped), position: .init(x: 200, y: 200))
+                                let newItem = ModelTest(imageName: Image(uiImage: tapped.image), position: .init(x: 200, y: 200))
                                 selectedItens.append(newItem)
                             }
                         }
@@ -118,6 +124,8 @@ struct CreatePostView: View {
                                     self.presentationMode.wrappedValue.dismiss()
                                 } label: {
                                     Image("chevron_left_button")
+                                        .accessibilityLabel("Voltar")
+                                        .accessibilityHint("Toque duas vezes para voltar à tela de criação de look.")
                                 }
                                 .shadow(radius: 2, y: 2)
                             }
@@ -130,6 +138,8 @@ struct CreatePostView: View {
                                     self.presentationMode.wrappedValue.dismiss()
                                 } label: {
                                     Image("chevron_left_button")
+                                        .accessibilityLabel("Voltar")
+                                        .accessibilityHint("Toque duas vezes para voltar à  tela de criação de look.")
                                 }
                                 .shadow(radius: 2, y: 2)
                             }
@@ -149,8 +159,9 @@ struct CreatePostView: View {
                                     Label("Share Doll", systemImage: "person.fill")
                                 }
                                 .id(changes)
+                                .accessibilityHint("Toque duas vezes para compartilhar apenas a boneca.")
+                                
                                 ShareLink(
-                                    
                                     item: renderedImage,
                                     preview: SharePreview(
                                         Text("Post"),
@@ -162,21 +173,21 @@ struct CreatePostView: View {
                                         .foregroundStyle(Color(.systemGray))
                                 }
                                 .id(changes)
+                                .accessibilityHint("Toque duas vezes para compartilhar post.")
                             }
-                            label:{
+                            label: {
                                 Image("share_button")
                                     .onTapGesture {
                                         indexTapped = nil
                                         updateList(stickerID: UUID())
                                     }
                             }
+                            .accessibilityLabel("Compartilhar")
                             .shadow(radius: 2, y: 2)
                             .navigationBarBackButtonHidden(true)
                             
                         }
                         .sharedBackgroundVisibility(.hidden)
-                        
-                        
                     } else {
                         ToolbarItem(placement: .automatic) {
                             Menu {
@@ -203,43 +214,12 @@ struct CreatePostView: View {
                             }
                             label: {
                                 Image("share_button")
-                            }
-                        }
-                        
-                        if #available(iOS 26.0, *) {
-                            ToolbarItem(placement: .topBarTrailing) {
-                                HStack {
-                                    ShareLink(
-                                        item: renderedImage,
-                                        preview: SharePreview(
-                                            Text("Post"),
-                                            image: renderedImage
-                                        )
-                                    ) {
-                                        Image("share_button")
-                                    }
-                                    .id(changes)
-                                }
-                            }
-                            .sharedBackgroundVisibility(.hidden)
-                        } else {
-                            ToolbarItem(placement: .topBarTrailing) {
-                                HStack {
-                                    ShareLink(
-                                        item: renderedImage,
-                                        preview: SharePreview(
-                                            Text("Post"),
-                                            image: renderedImage
-                                        )
-                                    ) {
-                                        Image("share_button")
-                                    }
-                                    .id(changes)
-                                }
+                                    .accessibilityLabel("Compartilhar")
                             }
                         }
                     }
                 }
+                .navigationBarBackButtonHidden(true)
             }
         }
     }
@@ -304,7 +284,15 @@ struct CreatePostView: View {
                                     return length * 0.25
                                 }
                             }
+                            .accessibilityHidden(true)
                         Image("stickerButton")
+                            .accessibilityLabel("stickers")
+                            .accessibilityValue(
+                                selectedOption == .stickers
+                                ? "Selecionado"
+                                : "Não selecionado"
+                            )
+                            .accessibilityHint("Deslize para baixo para selecionar sticker.")
                     }
                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                         if axis == .vertical {
@@ -321,6 +309,13 @@ struct CreatePostView: View {
                 } label: {
                     ZStack {
                         Image("stickerButton")
+                            .accessibilityLabel("stickers")
+                            .accessibilityValue(
+                                selectedOption == .stickers
+                                ? "Selecionado"
+                                : "Não selecionado"
+                            )
+                            .accessibilityHint("Toque duas vezes para selecionar sticker.")
                     }
                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                         if axis == .vertical {
@@ -359,7 +354,15 @@ struct CreatePostView: View {
                                     return length * 0.25
                                 }
                             }
+                            .accessibilityHidden(true)
                         Image("paletteButton")
+                            .accessibilityLabel("Papel de Parede")
+                            .accessibilityValue(
+                                selectedOption == .palettes
+                                ? "Selecionado"
+                                : "Não selecionado"
+                            )
+                            .accessibilityHint("Deslize para baixo para selecionar papel de parede.")
                     }
                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                         if axis == .vertical {
@@ -383,6 +386,14 @@ struct CreatePostView: View {
                 } label: {
                     ZStack {
                         Image("paletteButton")
+                            .accessibilityLabel("Papel de Parede")
+                            .accessibilityValue(
+                                selectedOption == .palettes
+                                ? "Selecionado"
+                                : "Não selecionado"
+                            )
+                            .accessibilityHint("Toque duas vezes para selecionar papel de parede.")
+                            .accessibilityHint("Toque duas vezes para selecionar papel de parede.")
                     }
                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                         if axis == .vertical {
@@ -414,7 +425,15 @@ struct CreatePostView: View {
                                     return length * 0.25
                                 }
                             }
+                            .accessibilityHidden(true)
                         Image("bubbleButton")
+                            .accessibilityLabel("Balões")
+                            .accessibilityValue(
+                                selectedOption == .bubbles
+                                ? "Selecionado"
+                                : "Não selecionado"
+                            )
+                            .accessibilityHint("Deslize para baixo para selecionar balões.")
                     }
                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                         if axis == .vertical {
@@ -438,6 +457,13 @@ struct CreatePostView: View {
                 } label: {
                     ZStack {
                         Image("bubbleButton")
+                            .accessibilityLabel("Balões")
+                            .accessibilityValue(
+                                selectedOption == .bubbles
+                                ? "Selecionado"
+                                : "Não selecionado"
+                            )
+                            .accessibilityHint("Toque duas vezes para selecionar balões.")
                     }
                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                         if axis == .vertical {
@@ -476,7 +502,15 @@ struct CreatePostView: View {
                                     return length * 0.25
                                 }
                             }
+                            .accessibilityHidden(true)
                         Image("textButton")
+                            .accessibilityLabel("Têxtus")
+                            .accessibilityValue(
+                                selectedOption == .texts
+                                ? "Selecionado"
+                                : "Não selecionado"
+                            )
+                            .accessibilityHint("Deslize para baixo para selecionar têxtus.")
                     }
                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                         if axis == .vertical {
@@ -500,6 +534,13 @@ struct CreatePostView: View {
                 } label: {
                     ZStack {
                         Image("textButton")
+                            .accessibilityLabel("Têxtus")
+                            .accessibilityValue(
+                                selectedOption == .bubbles
+                                ? "Selecionado"
+                                : "Não selecionado"
+                            )
+                            .accessibilityHint("Toque duas vezes para selecionar têxtus.")
                     }
                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                         if axis == .vertical {
@@ -538,16 +579,17 @@ struct CreatePostView: View {
         }
         .frame(width: postWidth, height: postHeight)
         .background(
-            Image(uiImage: background.wallpaper)
+            Image(uiImage: background.wallpaper.image)
                 .resizable()
                 .scaledToFill()
+                .accessibilityLabel(background.wallpaper.description)
         )
         .onTapGesture { apGesture in
             indexTapped = nil
             updateList(stickerID: UUID())
         }
         .overlay {
-            ForEach(selectedItens.enumerated(), id: \.offset) { index, item in
+            ForEach(Array(selectedItens.enumerated()), id: \.offset) { index, item in
                 item.imageName
                     .resizable()
                     .scaledToFit()
@@ -585,7 +627,6 @@ struct CreatePostView: View {
                                     .frame(width: 35, height: 35)
                                     .background(.white)
                                     .border(.borderPink, width: 2)
-//                                    .clipShape(Circle())
                             }
                             .padding(.leading, sizeScreenWidth * 0.82)
                             .padding(.top, postHeight * 0.16)
@@ -600,7 +641,6 @@ struct CreatePostView: View {
                                     .frame(width: 35, height: 35)
                                     .background(.white)
                                     .border(.borderPink, width: 2)
-//                                    .clipShape(Circle())
                             }
                             .padding(.leading, sizeScreenWidth * 0.82)
                             .padding(.top, postHeight * -0.03)
@@ -615,7 +655,6 @@ struct CreatePostView: View {
                                     .frame(width: 35, height: 35)
                                     .background(.white)
                                     .border(.borderPink, width: 2)
-//                                    .clipShape(Circle())
                             }
                             .padding(.leading, sizeScreenWidth * 0.82)
                             .padding(.top, postHeight * -0.15)
@@ -632,6 +671,7 @@ struct CreatePostView: View {
                     .padding(.leading, sizeScreenWidth * 0.7)
                     .padding(.top, postHeight * 0.65)
                     .blendMode(.darken)
+                    .accessibilityHidden(true)
             }
         }
     }
