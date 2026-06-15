@@ -65,11 +65,11 @@ struct CreatePostView: View {
                 VStack (alignment: .center, spacing: 0) {
                     postGroup
                         .clipShape(.rect(cornerRadius: 6))
+                        .contentShape(.rect(cornerRadius: 6))
                         .border(.borderPink)
                         .containerRelativeFrame(.vertical, alignment: .center) { length, axis in
                             return length * 0.615
                         }
-                        .accessibilityElement(children: .ignore)
                         .accessibilityLabel("\(doll.face.description) \(doll.hair.description != "" ? "com " + doll.hair.description : "" )\(doll.top.description != "" ? ", vestindo " + doll.top.description : "")\(doll.bottom.description != "" ? ", e " + doll.bottom.description : "")\(doll.shoes.description != "" ? ", usando " + doll.shoes.description : ""). Ao fundo, \(background.description).")
                     
                     Spacer(minLength: 40)
@@ -583,7 +583,9 @@ struct CreatePostView: View {
                 .resizable()
                 .scaledToFill()
                 .accessibilityLabel(background.wallpaper.description)
+                .accessibilityElement(children: .ignore)
         )
+        .accessibilityElement(children: .ignore)
         .onTapGesture { apGesture in
             indexTapped = nil
             updateList(stickerID: UUID())
