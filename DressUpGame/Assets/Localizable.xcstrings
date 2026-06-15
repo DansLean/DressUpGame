@@ -356,9 +356,6 @@
         }
       }
     },
-    "Toque duas vezes para avançar para a criação de post." : {
-
-    },
     "Toque duas vezes para selecionar a cor" : {
 
     },
@@ -381,6 +378,9 @@
 
     },
     "Toque duas vezes para voltar à tela inicial." : {
+
+    },
+    "Toque três vezes para avançar para a criação de post." : {
 
     },
     "Toque três vezes para criar um novo look." : {
