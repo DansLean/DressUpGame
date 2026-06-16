@@ -87,7 +87,8 @@ struct AvatarDecorationItens: View {
         Asset(image: UIImage(resource: .acessorio9), gridImage: UIImage(resource: .gridAcessorio9), description: "Relógio de ponteiro fino"),
         Asset(image: UIImage(resource: .acessorio10), gridImage: UIImage(resource: .gridAcessorio10), description: "Óculos retangulares simples"),
         Asset(image: UIImage(resource: .acessorio11), gridImage: UIImage(resource: .gridAcessorio11), description: "Óculos escuros com detalhe de estrela na lateral"),
-        Asset(image: UIImage(resource: .acessorio12), gridImage: UIImage(resource: .gridAcessorio12), description: "Óculos estilo gatinho")
+        Asset(image: UIImage(resource: .acessorio12), gridImage: UIImage(resource: .gridAcessorio12), description: "Óculos estilo gatinho"),
+        Asset(image: UIImage(resource: .acessorio13), gridImage: UIImage(resource: .gridAcessorio13), description: "Meias grossas que cobrem a região do tornozelo até o joelho com detalhe de laço nas laterais")
     ]
     
     let sizeScreen: CGFloat = UIScreen.main.bounds.width + UIScreen.main.bounds.height / UIScreen.main.bounds.width
