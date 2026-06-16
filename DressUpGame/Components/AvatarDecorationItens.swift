@@ -16,78 +16,78 @@ struct AvatarDecorationItens: View {
     var tap: (Asset) -> Void
     
     @State var faces = [
-        Asset(image: UIImage(resource: .doll1), description: "Boneca com traços femininos de tom claro"),
-        Asset(image: UIImage(resource: .doll2), description: "Boneca com traços masculinos de tom claro"),
-        Asset(image: UIImage(resource: .doll7), description: "Boneca com traços femininos de tom médio claro"),
-        Asset(image: UIImage(resource: .doll8), description: "Boneca com traços masculinos de tom médio claro"),
-        Asset(image: UIImage(resource: .doll3), description: "Boneca com traços femininos de tom médio escuro"),
-        Asset(image: UIImage(resource: .doll4), description: "Boneca com traços masculinos de tom médio escuro"),
-        Asset(image: UIImage(resource: .doll5), description: "Boneca com traços femininos de tom escuro"),
-        Asset(image: UIImage(resource: .doll6), description: "Boneca com traços masculinos de tom escuro")
+        Asset(image: UIImage(resource: .doll1), gridImage: nil, description: "Boneca com traços femininos de tom claro"),
+        Asset(image: UIImage(resource: .doll2), gridImage: nil, description: "Boneca com traços masculinos de tom claro"),
+        Asset(image: UIImage(resource: .doll7), gridImage: nil, description: "Boneca com traços femininos de tom médio claro"),
+        Asset(image: UIImage(resource: .doll8), gridImage: nil, description: "Boneca com traços masculinos de tom médio claro"),
+        Asset(image: UIImage(resource: .doll3), gridImage: nil, description: "Boneca com traços femininos de tom médio escuro"),
+        Asset(image: UIImage(resource: .doll4), gridImage: nil, description: "Boneca com traços masculinos de tom médio escuro"),
+        Asset(image: UIImage(resource: .doll5), gridImage: nil, description: "Boneca com traços femininos de tom escuro"),
+        Asset(image: UIImage(resource: .doll6), gridImage: nil, description: "Boneca com traços masculinos de tom escuro")
     ]
     
     @State var hairs = [
-        Asset(image: UIImage(resource: .cabelo1), description: "Cabelo masculino curto e ondulado"),
-        Asset(image: UIImage(resource: .cabelo2), description: "Cabelo masculino curto, liso com franjas emoldurando o rosto"),
-        Asset(image: UIImage(resource: .cabelo3), description: "Cabelo masculino curto, liso sem franja"),
-        Asset(image: UIImage(resource: .cabelo4), description: "Cabelo masculino curto cacheado com suíças descendo até a orelha"),
-        Asset(image: UIImage(resource: .cabelo5), description: "Cabelo masculino curto, crespo"),
-        Asset(image: UIImage(resource: .cabelo6), description: "Cabelo feminino médio, liso com franja reta"),
-        Asset(image: UIImage(resource: .cabelo7), description: "Cabelo feminino longo, liso com franja reta"),
-        Asset(image: UIImage(resource: .cabelo8), description: "Cabelo feminino crespo com franja emoldurando o rosto e dois coques nas laterais."),
-        Asset(image: UIImage(resource: .cabelo9), description: "Cabelo feminino curto, liso com franja reta"),
-        Asset(image: UIImage(resource: .cabelo10), description: "Cabelo feminino curto, liso com franja lateral"),
-        Asset(image: UIImage(resource: .cabelo11), description: "Cabelo feminino longo, ondulado com franja curta repicada"),
-        Asset(image: UIImage(resource: .cabelo12), description: "Cabelo feminino longo cacheado"),
-        Asset(image: UIImage(resource: .cabelo13), description: "Cabelo feminino curto cacheado")
+        Asset(image: UIImage(resource: .cabelo1), gridImage: nil, description: "Cabelo masculino curto e ondulado"),
+        Asset(image: UIImage(resource: .cabelo2), gridImage: nil, description: "Cabelo masculino curto, liso com franjas emoldurando o rosto"),
+        Asset(image: UIImage(resource: .cabelo3), gridImage: nil, description: "Cabelo masculino curto, liso sem franja"),
+        Asset(image: UIImage(resource: .cabelo4), gridImage: nil, description: "Cabelo masculino curto cacheado com suíças descendo até a orelha"),
+        Asset(image: UIImage(resource: .cabelo5), gridImage: nil, description: "Cabelo masculino curto, crespo"),
+        Asset(image: UIImage(resource: .cabelo6), gridImage: nil, description: "Cabelo feminino médio, liso com franja reta"),
+        Asset(image: UIImage(resource: .cabelo7), gridImage: nil, description: "Cabelo feminino longo, liso com franja reta"),
+        Asset(image: UIImage(resource: .cabelo8), gridImage: nil, description: "Cabelo feminino crespo com franja emoldurando o rosto e dois coques nas laterais."),
+        Asset(image: UIImage(resource: .cabelo9), gridImage: nil, description: "Cabelo feminino curto, liso com franja reta"),
+        Asset(image: UIImage(resource: .cabelo10), gridImage: nil, description: "Cabelo feminino curto, liso com franja lateral"),
+        Asset(image: UIImage(resource: .cabelo11), gridImage: nil, description: "Cabelo feminino longo, ondulado com franja curta repicada"),
+        Asset(image: UIImage(resource: .cabelo12), gridImage: nil, description: "Cabelo feminino longo cacheado"),
+        Asset(image: UIImage(resource: .cabelo13), gridImage: nil, description: "Cabelo feminino curto cacheado")
     ]
     
     @State var tops = [
-        Asset(image: UIImage(resource: .top1), description: "Camisa larga de tamanho médio, manga média e gola redonda"),
-        Asset(image: UIImage(resource: .top2), description: "Camisa justa de tamanho médio, manga longa e gola redonda"),
-        Asset(image: UIImage(resource: .top3), description: "Camisa regata justa, curta e de gola redonda"),
-        Asset(image: UIImage(resource: .top4), description: "Camiseta de botões longa de mangas longas e detalhe na gola"),
-        Asset(image: UIImage(resource: .top5), description: "Camisa larga e curta, com manga média e gola redonda"),
-        Asset(image: UIImage(resource: .top6), description: "Moletom largo de mangas longas, detalhe de bolso frontal e gola com capuz"),
-        Asset(image: UIImage(resource: .top7), description: "Vestido de tamanho médio, com caimento aberto na parte de baixo e justo na parte de cima, com detalhe de amarração no pescoço"),
-        Asset(image: UIImage(resource: .top8), description: "Camisa regata com caimento solto e detalhe drapeado no busto"),
-        Asset(image: UIImage(resource: .top9), description: "Camisa ombro-a-ombro com caimento solto"),
-        Asset(image: UIImage(resource: .top10), description: "Camisa justa de tamanho médio, manga longa com listras horizontais, gola redonda e desenho de coelho no centro")
+        Asset(image: UIImage(resource: .top1), gridImage: nil, description: "Camisa larga de tamanho médio, manga média e gola redonda"),
+        Asset(image: UIImage(resource: .top2), gridImage: nil, description: "Camisa justa de tamanho médio, manga longa e gola redonda"),
+        Asset(image: UIImage(resource: .top3), gridImage: nil, description: "Camisa regata justa, curta e de gola redonda"),
+        Asset(image: UIImage(resource: .top4), gridImage: nil, description: "Camiseta de botões longa de mangas longas e detalhe na gola"),
+        Asset(image: UIImage(resource: .top5), gridImage: nil, description: "Camisa larga e curta, com manga média e gola redonda"),
+        Asset(image: UIImage(resource: .top6), gridImage: nil, description: "Moletom largo de mangas longas, detalhe de bolso frontal e gola com capuz"),
+        Asset(image: UIImage(resource: .top7), gridImage: nil, description: "Vestido de tamanho médio, com caimento aberto na parte de baixo e justo na parte de cima, com detalhe de amarração no pescoço"),
+        Asset(image: UIImage(resource: .top8), gridImage: nil, description: "Camisa regata com caimento solto e detalhe drapeado no busto"),
+        Asset(image: UIImage(resource: .top9), gridImage: nil, description: "Camisa ombro-a-ombro com caimento solto"),
+        Asset(image: UIImage(resource: .top10), gridImage: nil, description: "Camisa justa de tamanho médio, manga longa com listras horizontais, gola redonda e desenho de coelho no centro")
     ]
     
     @State var bottoms = [
-        Asset(image: UIImage(resource: .bottom1), description: "Calça jeans larga com bolsos laterais"),
-        Asset(image: UIImage(resource: .bottom2), description: "Saia curta com detalhe de amarração lateral"),
-        Asset(image: UIImage(resource: .bottom3), description: "Bermuda cargo com bolsos grandes na lateral"),
-        Asset(image: UIImage(resource: .bottom4), description: "Saia jeans curta com bolsos laterais"),
-        Asset(image: UIImage(resource: .bottom5), description: "Calça jeans de cintura baixa e bolsos laterais"),
-        Asset(image: UIImage(resource: .bottom6), description: "Calça de pijama com bolsos laterais e detalhes de costura"),
-        Asset(image: UIImage(resource: .bottom7), description: "Short curto de pijama com bolsos laterais e detalhes de costura"),
-        Asset(image: UIImage(resource: .bottom8), description: "Saia curta de babados bufante com detalhe no cós"),
-        Asset(image: UIImage(resource: .bottom9), description: "Saia longa com detalhe de amarração na cintura")
+        Asset(image: UIImage(resource: .bottom1), gridImage: nil, description: "Calça jeans larga com bolsos laterais"),
+        Asset(image: UIImage(resource: .bottom2), gridImage: nil, description: "Saia curta com detalhe de amarração lateral"),
+        Asset(image: UIImage(resource: .bottom3), gridImage: nil, description: "Bermuda cargo com bolsos grandes na lateral"),
+        Asset(image: UIImage(resource: .bottom4), gridImage: nil, description: "Saia jeans curta com bolsos laterais"),
+        Asset(image: UIImage(resource: .bottom5), gridImage: nil, description: "Calça jeans de cintura baixa e bolsos laterais"),
+        Asset(image: UIImage(resource: .bottom6), gridImage: nil, description: "Calça de pijama com bolsos laterais e detalhes de costura"),
+        Asset(image: UIImage(resource: .bottom7), gridImage: nil, description: "Short curto de pijama com bolsos laterais e detalhes de costura"),
+        Asset(image: UIImage(resource: .bottom8), gridImage: nil, description: "Saia curta de babados bufante com detalhe no cós"),
+        Asset(image: UIImage(resource: .bottom9), gridImage: nil, description: "Saia longa com detalhe de amarração na cintura")
     ]
     
     @State var shoes = [
-        Asset(image: UIImage(resource: .shoes1), description: "Sapato unissex de cano baixo, bico arredondado, cadarços brancos e uma listra branca vertical na lateral."),
-        Asset(image: UIImage(resource: .shoes2), description: "Sapato unissex de cano alto, bico arredondado e cadarços brancos"),
-        Asset(image: UIImage(resource: .shoes3), description: "Sapatilha feminina de bico arredondado, solado grosso e fechada na parte de cima, deixando os dedos visíveis"),
-        Asset(image: UIImage(resource: .shoes4), description: "Bota unissex de cano alto com detalhes que remetem correias "),
-        Asset(image: UIImage(resource: .shoes5), description: "Sapatilha feminina de bico arredondado, salto tamanco, detalhe de fitas e meia")
+        Asset(image: UIImage(resource: .shoes1), gridImage: nil, description: "Sapato unissex de cano baixo, bico arredondado, cadarços brancos e uma listra branca vertical na lateral."),
+        Asset(image: UIImage(resource: .shoes2), gridImage: nil, description: "Sapato unissex de cano alto, bico arredondado e cadarços brancos"),
+        Asset(image: UIImage(resource: .shoes3), gridImage: nil, description: "Sapatilha feminina de bico arredondado, solado grosso e fechada na parte de cima, deixando os dedos visíveis"),
+        Asset(image: UIImage(resource: .shoes4), gridImage: nil, description: "Bota unissex de cano alto com detalhes que remetem correias "),
+        Asset(image: UIImage(resource: .shoes5), gridImage: nil, description: "Sapatilha feminina de bico arredondado, salto tamanco, detalhe de fitas e meia")
     ]
     
     @State var accessories = [
-        Asset(image: UIImage(resource: .acessorio1), description: ""),
-        Asset(image: UIImage(resource: .acessorio2), description: ""),
-        Asset(image: UIImage(resource: .acessorio3), description: ""),
-        Asset(image: UIImage(resource: .acessorio4), description: ""),
-        Asset(image: UIImage(resource: .acessorio5), description: ""),
-        Asset(image: UIImage(resource: .acessorio6), description: ""),
-        Asset(image: UIImage(resource: .acessorio7), description: ""),
-        Asset(image: UIImage(resource: .acessorio8), description: ""),
-        Asset(image: UIImage(resource: .acessorio9), description: ""),
-        Asset(image: UIImage(resource: .acessorio10), description: ""),
-        Asset(image: UIImage(resource: .acessorio11), description: ""),
-        Asset(image: UIImage(resource: .acessorio12), description: "")
+        Asset(image: UIImage(resource: .acessorio1), gridImage: UIImage(resource: .gridAcessorio1), description: "Bolsa carteiro de lado com alça grossa"),
+        Asset(image: UIImage(resource: .acessorio2), gridImage: UIImage(resource: .gridAcessorio2), description: "Bolsa carteiro de lado com pingentes pendurados"),
+        Asset(image: UIImage(resource: .acessorio3), gridImage: UIImage(resource: .gridAcessorio3), description: "Cinto grosso com uma estrela no centro e detalhe de teclas de piano"),
+        Asset(image: UIImage(resource: .acessorio4), gridImage: UIImage(resource: .gridAcessorio4), description: "Cinto grosso de ilhós prata"),
+        Asset(image: UIImage(resource: .acessorio5), gridImage: UIImage(resource: .gridAcessorio5), description: "Brincos pequenos arredondados"),
+        Asset(image: UIImage(resource: .acessorio6), gridImage: UIImage(resource: .gridAcessorio6), description: "Brincos pequenos de pingente"),
+        Asset(image: UIImage(resource: .acessorio7), gridImage: UIImage(resource: .gridAcessorio7), description: "Bracelete duplo"),
+        Asset(image: UIImage(resource: .acessorio8), gridImage: UIImage(resource: .gridAcessorio8), description: "Bracelete com detalhes de pedras encrostadas"),
+        Asset(image: UIImage(resource: .acessorio9), gridImage: UIImage(resource: .gridAcessorio9), description: "Relógio de ponteiro fino"),
+        Asset(image: UIImage(resource: .acessorio10), gridImage: UIImage(resource: .gridAcessorio10), description: "Óculos retangulares simples"),
+        Asset(image: UIImage(resource: .acessorio11), gridImage: UIImage(resource: .gridAcessorio11), description: "Óculos escuros com detalhe de estrela na lateral"),
+        Asset(image: UIImage(resource: .acessorio12), gridImage: UIImage(resource: .gridAcessorio12), description: "Óculos estilo gatinho")
     ]
     
     let sizeScreen: CGFloat = UIScreen.main.bounds.width + UIScreen.main.bounds.height / UIScreen.main.bounds.width
@@ -197,11 +197,17 @@ struct AvatarDecorationItens: View {
                                     .accessibilityHint("Toque duas vezes para selecionar esse item.")
                             }
                             if self.selectedCustomization == .accessories {
-                                Image(uiImage: tab.image)
+                                Image(uiImage: tab.gridImage!)
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 200, height: 320)
-                                    .padding(.bottom, 3)
+                                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                        if axis == .vertical {
+                                            return length * 0.8
+                                        } else {
+                                            return length * 0.23
+                                        }
+                                    }
+                                    
                                     .accessibilityLabel(tab.description)
                                     .accessibilityHint("Toque duas vezes para selecionar esse item.")
                             }

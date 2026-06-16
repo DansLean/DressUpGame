@@ -27,6 +27,7 @@ enum AvatarOptions {
 struct Asset: Hashable {
     let id = UUID()
     let image: UIImage
+    let gridImage: UIImage?
     let description: String
 }
 
