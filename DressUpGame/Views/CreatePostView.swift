@@ -98,6 +98,8 @@ struct CreatePostView: View {
                             if (selectedOption == .stickers) {
                                 let newItem = ModelTest(imageName: Image(uiImage: tapped.image), position: .init(x: 200, y: 200))
                                 selectedItens.append(newItem)
+                                updateList(stickerID: newItem.id)
+                                indexTapped = selectedItens.count - 1
                             }
                             
                             if (selectedOption == .bubbles) {
