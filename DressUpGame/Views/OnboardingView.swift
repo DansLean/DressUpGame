@@ -8,121 +8,177 @@
 import Foundation
 import SwiftUI
 
-struct OnboardingItens: Identifiable {
-    var id = UUID()
-    var image: String
-    var title: String
-    var description: String
+
+enum OnboardingPage: Int, CaseIterable {
+    case avatar
+    case post
+    case share
+    
+    var title: String {
+        switch self {
+        case .avatar:
+            return "Personalize seu avatar"
+        case .post:
+            return "Customize seu post"
+        case .share:
+            return "Compartilhe sua criação"
+        }
+    }
+    
+    var image: String {
+        switch self {
+        case .avatar:
+            return "onBoarding-image1"
+        case .post:
+            return "onBoarding-image2"
+        case .share:
+            return "onBoarding-image3"
+        }
+    }
+    
+    var description: String {
+        switch self {
+        case .avatar:
+            return "Deixe a boneca com a sua cara usando nossas roupas e acessórios estilosos!"
+        case .post:
+            return "Decore seus posts com adesivos e crie os seus a partir da galeria."
+        case .share:
+            return "Mostre seu estilo e personalidade para amigos e seguidores!"
+        }
+    }
 }
 
-let showingImages: [OnboardingItens] = [
-    OnboardingItens(image: "onBoarding-image1", title: "Personalize seu avatar", description: "Deixe a boneca com a sua cara usando nossas roupas e acessórios estilosos!"),
-    OnboardingItens(image: "onBoarding-image2", title: "Customize seu post", description: "Decore seus posts com adesivos e crie os seus a partir da galeria."),
-    OnboardingItens(image: "onBoarding-image3", title: "Compartilhe sua criação", description: "Mostre seu estilo e personalidade para amigos e seguidores!"),
-    
-]
-
 struct OnboardingView: View {
-    var itens : OnboardingItens
+    @Binding var isFirstLaunch: Bool
     
+    @State private var currentPage = 0
+    @State private var trackingProgress: CGFloat = 0.0
     @State private var isAnimating: Bool = false
+    
     var body: some View {
-        VStack(alignment: .center)  {
-            VStack(alignment: .center) {
-                Image(itens.image)
-                    .resizable()
-                    .scaledToFit()
-                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                        if axis == .vertical {
-                            return length * 0.65
-                        } else {
-                            return length * 0.85
-                        }
+        NavigationStack {
+            ZStack {
+                TabView(selection: $currentPage) {
+                    ForEach(OnboardingPage.allCases, id: \.rawValue) { page in
+                        getPageView(for: page)
+                            .tag(page.rawValue)
                     }
-                    .accessibilityHidden(true)
-                    
+                }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .animation(.spring(), value: currentPage)
                 
-                VStack(alignment: .center) {
-                    Text(itens.title)
-                        .font(.title)
-                        .bold()
-                        .foregroundColor(.primaryPink)
+                VStack {
+                    Text("")
                         .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                             if axis == .vertical {
-                                return length * 0.05
+                                return length * 0.18
                             } else {
                                 return length
                             }
                         }
-                        .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                            if axis == .vertical {
-                                return length * 0.05
-                            } else {
-                                return length * 0.8
-                            }
+                    
+                    HStack(spacing: 12) {
+                        ForEach(0..<OnboardingPage.allCases.count, id: \.self) {
+                            index in
+                            Circle()
+                                .fill(currentPage == index ? Color.primaryPink : Color.gray.opacity(0.3))
+                                .frame(width: currentPage == index ? 12 : 8, height: currentPage == index ? 12 : 8)
+                                .animation(.spring(), value: currentPage)
                         }
-                    Text(itens.description)
+                    }
+                }
+            }
+            .background(
+                LinearGradient(gradient: Gradient(colors: [.borderPink, .white]), startPoint: .top, endPoint: .bottom)
+            )
+        }
+        .ignoresSafeArea()
+        .navigationBarBackButtonHidden(true)
+    }
+    
+    @ViewBuilder
+    private func getPageView(for page: OnboardingPage) -> some View {
+        ZStack {
+            VStack (alignment: .center) {
+                Image(page.image)
+                    .resizable()
+                    .scaledToFit()
+                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                        if axis == .vertical {
+                            return length * 0.45
+                        } else {
+                            return length
+                        }
+                    }
+                
+                VStack (alignment: .center, spacing: 8) {
+                    Text(page.title)
+                        .font(.title)
+                        .bold()
+                        .foregroundColor(.primaryPink)
+                    Text(page.description)
                         .font(.body)
                         .foregroundColor(.gray)
-                    
-                    
-                    
+                        .multilineTextAlignment(.center)
                 }
                 .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                     if axis == .vertical {
-                        return length * 0.2
+                        return length * 0.35
                     } else {
-                        return length * 0.8
-                    }
-                }
-                HStack(alignment: .center, spacing: 110) {
-
-                    NavigationLink(destination: CreateAvatarView()) {
-                        Button {
-                            
-                        } label: {
-                            Text("Pular")
-                                .padding(15)
-                                .padding(.leading, 10)
-                                .padding(.trailing, 10)
-                                .foregroundColor(.primaryPink)
-                                .bold()
-
-                        }
-                        .background(.primaryPink)
-                        .opacity(0.3)
-                        .cornerRadius(100)
-                        .shadow(radius: 2, y: 2)
-                    }
-                    
-                    NavigationLink(destination: CreateAvatarView()) {
-                        Button {
-                            
-                        } label: {
-                            Text("Próximo")
-                                .padding(15)
-                                .padding(.leading, 10)
-                                .padding(.trailing, 10)
-                                .foregroundColor(.white)
-                                .bold()
-
-                        }
-                        .background(.primaryPink)
-                        .cornerRadius(100)
-                        .shadow(radius: 2, y: 2)
-                    }
-
-                    
-                    
-                }
-                .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                    if axis == .vertical {
-                        return length * 0.1
-                    } else {
-                        return length
+                        return length * 0.85
                     }
                 }
                 
+                if page.title != "Compartilhe sua criação" {
+                    HStack (spacing: 120) {
+                        NavigationLink(destination: HomeView()) {
+                            Text("Pular")
+                                .padding(.top,10)
+                                .padding(.bottom,10)
+                                .padding(.leading,20)
+                                .padding(.trailing,20)
+                                .foregroundColor(.primaryPink)
+                                .bold()
+                        }
+                        .background(.borderPink)
+                        .opacity(0.8)
+                        .cornerRadius(100)
+                        .simultaneousGesture(TapGesture().onEnded {
+                            isFirstLaunch = false
+                        })
+                        
+                        Button(action: {
+                            self.currentPage = self.currentPage + 1
+                        }) {
+                            Text("Proximo")
+                                .padding(.top,10)
+                                .padding(.bottom,10)
+                                .padding(.leading,20)
+                                .padding(.trailing,20)
+                                .foregroundColor(.white)
+                                .bold()
+                        }
+                        .background(.primaryPink)
+                        .cornerRadius(100)
+                    }
+                } else {
+                    HStack (spacing: 120) {
+                        NavigationLink(destination: HomeView()) {
+                            Text("Começar agora!")
+                                .padding(.top,10)
+                                .padding(.bottom,10)
+                                .padding(.leading,20)
+                                .padding(.trailing,20)
+                                .foregroundColor(.white)
+                                .bold()
+                        }
+                        .background(.primaryPink)
+                        .cornerRadius(100)
+                        .simultaneousGesture(TapGesture().onEnded {
+                            isFirstLaunch = false
+                        })
+                    }
+                }
             }
             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                 if axis == .vertical {
@@ -131,23 +187,10 @@ struct OnboardingView: View {
                     return length
                 }
             }
-            
-            
-            
         }
-        .background(
-            LinearGradient(gradient: Gradient(colors: [.borderPink, .white]), startPoint: .top, endPoint: .bottom)
-        )
-        .ignoresSafeArea()
-        .navigationBarBackButtonHidden(true)
-        
-        
     }
 }
 
-
-
-
-#Preview {
-    OnboardingView(itens: showingImages[0])
-}
+//#Preview {
+//    OnboardingView()
+//}

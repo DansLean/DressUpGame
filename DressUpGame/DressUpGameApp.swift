@@ -38,9 +38,15 @@ struct AssetColor: Hashable {
 
 @main
 struct DressUpGameApp: App {
+    @AppStorage("isFirstLaunch") private var isFirstLaunch = true
+    
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            if isFirstLaunch {
+                OnboardingView(isFirstLaunch: $isFirstLaunch)
+            } else {
+                HomeView()
+            }
         }
     }
 }
