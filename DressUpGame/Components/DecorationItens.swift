@@ -149,9 +149,7 @@ struct DecorationItens: View {
                             }
                         )
                     }
-                    .accessibilityHidden(true)
                 }
-                
                 ForEach(selectedNumbers, id: \.self) { number in
                     Rectangle()
                         .overlay {
@@ -173,7 +171,6 @@ struct DecorationItens: View {
                                     }
                                     .accessibilityLabel(number.description)
                                     .accessibilityHint("Toque duas vezes para selecionar esse item.")
-                                    .accessibilityHidden(true)
                             }
                             
                             if self.selectedOption == .palettes {
@@ -206,7 +203,6 @@ struct DecorationItens: View {
                                     .padding(.bottom, 0.02 * sizeScreen)
                                     .accessibilityLabel(number.description)
                                     .accessibilityHint("Toque duas vezes para selecionar esse item.")
-                                    .accessibilityHidden(true)
                             }
                             
                             if self.selectedOption == .texts {
@@ -223,7 +219,6 @@ struct DecorationItens: View {
                                     .padding(.bottom, 0.02 * sizeScreen)
                                     .accessibilityLabel(number.description)
                                     .accessibilityHint("Toque duas vezes para selecionar esse item.")
-                                    .accessibilityHidden(true)
                             }
                         }
                         .aspectRatio(0.7, contentMode: .fit)
