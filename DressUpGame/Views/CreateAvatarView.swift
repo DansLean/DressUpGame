@@ -11,9 +11,9 @@ import SwiftUI
 struct CreateAvatarView: View {
     @Environment(\.presentationMode) var presentationMode
     @State var selectedCustomization: AvatarOptions = .face
-    @State var selectedHairColor: Color = .grayColorNew
-    @State var selectedTopColor: Color = .grayColorNew
-    @State var selectedBottomColor: Color = .grayColorNew
+    @State var selectedHairColor: AssetColor = AssetColor(color: .grayColorNew, name: "Preto")
+    @State var selectedTopColor: AssetColor = AssetColor(color: .grayColorNew, name: "Preto")
+    @State var selectedBottomColor: AssetColor = AssetColor(color: .grayColorNew, name: "Preto")
     @State var selectedItens: [ModelTest] = []
     var face: Image = Image("Doll1")
     var hair: Image = Image("Hair1")
@@ -131,7 +131,7 @@ struct CreateAvatarView: View {
                         
                         if selectedCustomization == .hair {
                             ColorHairsItens() { tapped in
-                                doll.setHairColor(hairColor: tapped)
+                                doll.setHairColor(hairColor: tapped.color)
                                 selectedHairColor = tapped
                             }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -149,7 +149,7 @@ struct CreateAvatarView: View {
                         
                         if selectedCustomization == .top {
                             ColorClothesItens() { tapped in
-                                doll.setTopColor(topColor: tapped)
+                                doll.setTopColor(topColor: tapped.color)
                                 selectedTopColor = tapped
                             }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -167,7 +167,7 @@ struct CreateAvatarView: View {
                         
                         if selectedCustomization == .bottom {
                             ColorClothesItens() { tapped in
-                                doll.setBottomColor(bottomColor: tapped)
+                                doll.setBottomColor(bottomColor: tapped.color)
                                 selectedBottomColor = tapped
                             }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -527,7 +527,15 @@ struct CreateAvatarView: View {
                     ZStack {
                         Image("buttonSelectedPost")
                             .resizable()
+                            .accessibilityHidden(true)
                         Image("AvatarAccessories")
+                            .accessibilityLabel("Acessórios")
+                            .accessibilityValue(
+                                selectedCustomization == .accessories
+                                ? "Selecionado"
+                                : "Não selecionado"
+                            )
+                            .accessibilityHint("Deslize para baixo para selecionar acessórios.")
                     }
                     .background()
                 }
@@ -537,6 +545,13 @@ struct CreateAvatarView: View {
                 } label: {
                     ZStack {
                         Image("AvatarAccessories")
+                            .accessibilityLabel("Acessórios")
+                            .accessibilityValue(
+                                selectedCustomization == .accessories
+                                ? "Selecionado"
+                                : "Não selecionado"
+                            )
+                            .accessibilityHint("Toque duas vezes para selecionar acessórios.")
                     }
                 }
             }
