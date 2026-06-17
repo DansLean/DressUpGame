@@ -54,7 +54,7 @@ struct CreatePostView: View {
     
     @State var changes = 0
     
-    @State var background = WallpaperClass(wallpaper: Asset(image: .background0, description: "Papel de parede com degradê que transiciona entre as cores rosa e branco com formas hexagonais em branco"))
+    @State var background = WallpaperClass(wallpaper: Asset(image: .background0, gridImage: nil, description: "Papel de parede com degradê que transiciona entre as cores rosa e branco com formas hexagonais em branco"))
     
     let sizeScreenHeight: CGFloat = UIScreen.main.bounds.height
     let sizeScreenWidth: CGFloat = UIScreen.main.bounds.width
@@ -98,6 +98,8 @@ struct CreatePostView: View {
                             if (selectedOption == .stickers) {
                                 let newItem = ModelTest(imageName: Image(uiImage: tapped.image), position: .init(x: 200, y: 200))
                                 selectedItens.append(newItem)
+                                updateList(stickerID: newItem.id)
+                                indexTapped = selectedItens.count - 1
                             }
                             
                             if (selectedOption == .bubbles) {

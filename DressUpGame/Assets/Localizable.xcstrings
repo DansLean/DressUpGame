@@ -49,6 +49,9 @@
         }
       }
     },
+    "Acessórios" : {
+
+    },
     "Add Sticker" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -155,6 +158,9 @@
 
     },
     "Côrpo" : {
+
+    },
+    "Deslize para baixo para selecionar acessórios." : {
 
     },
     "Deslize para baixo para selecionar balões." : {
@@ -419,6 +425,9 @@
 
     },
     "Toque duas vezes para selecionar a cor" : {
+
+    },
+    "Toque duas vezes para selecionar acessórios." : {
 
     },
     "Toque duas vezes para selecionar balões." : {
