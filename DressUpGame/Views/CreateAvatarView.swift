@@ -11,9 +11,9 @@ import SwiftUI
 struct CreateAvatarView: View {
     @Environment(\.presentationMode) var presentationMode
     @State var selectedCustomization: AvatarOptions = .face
-    @State var selectedHairColor: Color = .grayColorNew
-    @State var selectedTopColor: Color = .grayColorNew
-    @State var selectedBottomColor: Color = .grayColorNew
+    @State var selectedHairColor: AssetColor = AssetColor(color: .grayColorNew, name: "Preto")
+    @State var selectedTopColor: AssetColor = AssetColor(color: .grayColorNew, name: "Preto")
+    @State var selectedBottomColor: AssetColor = AssetColor(color: .grayColorNew, name: "Preto")
     @State var selectedItens: [ModelTest] = []
     var face: Image = Image("Doll1")
     var hair: Image = Image("Hair1")
@@ -22,7 +22,7 @@ struct CreateAvatarView: View {
     var shoes: Image = Image("Shoes1")
     var accessories: Image = Image("Accessories1")
     
-    @State var doll = DollClass(face: Asset(image: UIImage(resource: .doll1), description: "Boneca com traços femininos de tom claro"), hair: Asset(image: UIImage(), description: ""), hairColor: .grayColorNew, top: Asset(image: UIImage(), description: ""), topColor: .grayColorNew, bottom: Asset(image: UIImage(), description: ""), bottomColor: .grayColorNew, shoes: Asset(image: UIImage(), description: ""), accessories: Asset(image: UIImage(), description: ""))
+    @State var doll = DollClass(face: Asset(image: UIImage(resource: .doll1), gridImage: nil, description: "Boneca com traços femininos de tom claro"), hair: Asset(image: UIImage(), gridImage: nil, description: ""), hairColor: .grayColorNew, top: Asset(image: UIImage(), gridImage: nil, description: ""), topColor: .grayColorNew, bottom: Asset(image: UIImage(), gridImage: nil, description: ""), bottomColor: .grayColorNew, shoes: Asset(image: UIImage(), gridImage: nil, description: ""), accessories: Asset(image: UIImage(), gridImage: nil, description: ""))
     
     var body: some View {
         NavigationStack {
@@ -57,16 +57,71 @@ struct CreateAvatarView: View {
                             .frame(height: 0.5, alignment: .top)
                             .foregroundColor(Color.borderPink)
                         
-                        //                    ScrollView (.horizontal, showsIndicators: false) {
-                        HStack (spacing: 0) {
-                            faceButton
-                            hairButton
-                            topButton
-                            bottomButton
-                            shoesButton
-                            //                            accessoriesButton
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 0) {
+                                Rectangle()
+                                    .frame(width: 1, alignment: .top)
+                                    .foregroundColor(Color.borderPink)
+                                
+                                faceButton
+                                    .containerRelativeFrame(.horizontal) { length, axis in
+                                        return length * 0.23
+                                    }
+                                
+                                Rectangle()
+                                    .frame(width: 1, alignment: .top)
+                                    .foregroundColor(Color.borderPink)
+                                
+                                hairButton
+                                    .containerRelativeFrame(.horizontal) { length, axis in
+                                        return length * 0.23
+                                    }
+                                
+                                Rectangle()
+                                    .frame(width: 1, alignment: .top)
+                                    .foregroundColor(Color.borderPink)
+                                
+                                topButton
+                                    .containerRelativeFrame(.horizontal) { length, axis in
+                                        return length * 0.23
+                                    }
+                                
+                                Rectangle()
+                                    .frame(width: 1, alignment: .top)
+                                    .foregroundColor(Color.borderPink)
+                                
+                                bottomButton
+                                    .containerRelativeFrame(.horizontal) { length, axis in
+                                        return length * 0.23
+                                    }
+                                
+                                Rectangle()
+                                    .frame(width: 1, alignment: .top)
+                                    .foregroundColor(Color.borderPink)
+                                
+                                shoesButton
+                                    .containerRelativeFrame(.horizontal) { length, axis in
+                                        return length * 0.23
+                                    }
+                                
+                                Rectangle()
+                                    .frame(width: 1, alignment: .top)
+                                    .foregroundColor(Color.borderPink)
+                                
+                                accessoriesButton
+                                    .containerRelativeFrame(.horizontal) { length, axis in
+                                        return length * 0.23
+                                    }
+                                
+                                Rectangle()
+                                    .frame(width: 1, alignment: .top)
+                                    .foregroundColor(Color.borderPink)
+                            }
                         }
-                        //                    }
+                        .containerRelativeFrame(.vertical) { length, axis in
+                            return length * 0.1
+                        }
+                        .border(Color.borderPink, width: 1)
                         .background(Color.white)
                         .accessibilityElement(children: .contain)
                         
@@ -76,7 +131,7 @@ struct CreateAvatarView: View {
                         
                         if selectedCustomization == .hair {
                             ColorHairsItens() { tapped in
-                                doll.setHairColor(hairColor: tapped)
+                                doll.setHairColor(hairColor: tapped.color)
                                 selectedHairColor = tapped
                             }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -94,7 +149,7 @@ struct CreateAvatarView: View {
                         
                         if selectedCustomization == .top {
                             ColorClothesItens() { tapped in
-                                doll.setTopColor(topColor: tapped)
+                                doll.setTopColor(topColor: tapped.color)
                                 selectedTopColor = tapped
                             }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -112,7 +167,7 @@ struct CreateAvatarView: View {
                         
                         if selectedCustomization == .bottom {
                             ColorClothesItens() { tapped in
-                                doll.setBottomColor(bottomColor: tapped)
+                                doll.setBottomColor(bottomColor: tapped.color)
                                 selectedBottomColor = tapped
                             }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -132,27 +187,27 @@ struct CreateAvatarView: View {
                         if selectedCustomization == .hair || selectedCustomization == .top || selectedCustomization == .bottom {
                             AvatarDecorationItens(selectedCustomization: $selectedCustomization, assetHairColor: $selectedHairColor, assetTopColor: $selectedTopColor, assetBottomColor: $selectedBottomColor) { tapped in
                                 if selectedCustomization == .face {
-                                    doll.setDoll(face: Asset(image: tapped.image, description: tapped.description))
+                                    doll.setDoll(face: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .hair {
-                                    doll.setHair(hair: Asset(image: tapped.image, description: tapped.description))
+                                    doll.setHair(hair: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .top {
-                                    doll.setTop(top: Asset(image: tapped.image, description: tapped.description))
+                                    doll.setTop(top: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .bottom {
-                                    doll.setBottom(bottom: Asset(image: tapped.image, description: tapped.description))
+                                    doll.setBottom(bottom: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .shoes {
-                                    doll.setShoes(shoes: Asset(image: tapped.image, description: tapped.description))
+                                    doll.setShoes(shoes: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .accessories {
-                                    doll.setAccessories(accessories: Asset(image: tapped.image, description: tapped.description))
+                                    doll.setAccessories(accessories: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }
                             }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -165,27 +220,27 @@ struct CreateAvatarView: View {
                         } else {
                             AvatarDecorationItens(selectedCustomization: $selectedCustomization, assetHairColor: $selectedHairColor, assetTopColor: $selectedTopColor, assetBottomColor: $selectedBottomColor) { tapped in
                                 if selectedCustomization == .face {
-                                    doll.setDoll(face: Asset(image: tapped.image, description: tapped.description))
+                                    doll.setDoll(face: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .hair {
-                                    doll.setHair(hair: Asset(image: tapped.image, description: tapped.description))
+                                    doll.setHair(hair: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .top {
-                                    doll.setTop(top: Asset(image: tapped.image, description: tapped.description))
+                                    doll.setTop(top: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .bottom {
-                                    doll.setBottom(bottom: Asset(image: tapped.image, description: tapped.description))
+                                    doll.setBottom(bottom: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .shoes {
-                                    doll.setShoes(shoes: Asset(image: tapped.image, description: tapped.description))
+                                    doll.setShoes(shoes: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .accessories {
-                                    doll.setAccessories(accessories: Asset(image: tapped.image, description: tapped.description))
+                                    doll.setAccessories(accessories: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }
                             }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -267,13 +322,6 @@ struct CreateAvatarView: View {
                     ZStack {
                         Image("buttonSelectedPost")
                             .resizable()
-                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                                if axis == .vertical {
-                                    return length * 0.1
-                                } else {
-                                    return length * 0.2
-                                }
-                            }
                             .accessibilityHidden(true)
                         Image("AvatarHead")
                             .accessibilityLabel("Côrpo")
@@ -284,14 +332,6 @@ struct CreateAvatarView: View {
                             )
                             .accessibilityHint("Deslize para baixo para selecionar boneca e tom de pele.")
                     }
-                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                        if axis == .vertical {
-                            return length * 0.1
-                        } else {
-                            return length * 0.2
-                        }
-                    }
-                    .border(Color.borderPink, width: 1)
                 }
             }
             else {
@@ -308,14 +348,6 @@ struct CreateAvatarView: View {
                             )
                             .accessibilityHint("Toque duas vezes para selecionar boneca e tom de pele.")
                     }
-                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                        if axis == .vertical {
-                            return length * 0.1
-                        } else {
-                            return length * 0.2
-                        }
-                    }
-                    .border(Color.borderPink, width: 1)
                 }
             }
         }
@@ -331,13 +363,6 @@ struct CreateAvatarView: View {
                     ZStack {
                         Image("buttonSelectedPost")
                             .resizable()
-                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                                if axis == .vertical {
-                                    return length * 0.1
-                                } else {
-                                    return length * 0.2
-                                }
-                            }
                             .accessibilityHidden(true)
                         Image("AvatarHair")
                             .accessibilityLabel("Cabelo")
@@ -349,14 +374,6 @@ struct CreateAvatarView: View {
                             .accessibilityHint("Deslize para baixo para selecionar e colorir cabelo.")
                     }
                     .background()
-                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                        if axis == .vertical {
-                            return length * 0.1
-                        } else {
-                            return length * 0.2
-                        }
-                    }
-                    .border(Color.borderPink, width: 1)
                 }
                 
             } else {
@@ -373,14 +390,6 @@ struct CreateAvatarView: View {
                             )
                             .accessibilityHint("Toque duas vezes para selecionar e colorir cabelo.")
                     }
-                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                        if axis == .vertical {
-                            return length * 0.1
-                        } else {
-                            return length * 0.2
-                        }
-                    }
-                    .border(Color.borderPink, width: 1)
                 }
             }
         }
@@ -395,13 +404,6 @@ struct CreateAvatarView: View {
                     ZStack {
                         Image("buttonSelectedPost")
                             .resizable()
-                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                                if axis == .vertical {
-                                    return length * 0.1
-                                } else {
-                                    return length * 0.2
-                                }
-                            }
                             .accessibilityHidden(true)
                         Image("AvatarTop")
                             .accessibilityLabel("Partes de cima")
@@ -413,14 +415,6 @@ struct CreateAvatarView: View {
                             .accessibilityHint("Deslize para baixo para selecionar e colorir roupas da parte de cima da boneca.")
                     }
                     .background()
-                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                        if axis == .vertical {
-                            return length * 0.1
-                        } else {
-                            return length * 0.2
-                        }
-                    }
-                    .border(Color.borderPink, width: 1)
                 }
                 
             } else {
@@ -437,14 +431,6 @@ struct CreateAvatarView: View {
                             )
                             .accessibilityHint("Toque duas vezes para selecionar e colorir roupas da parte de cima da boneca.")
                     }
-                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                        if axis == .vertical {
-                            return length * 0.1
-                        } else {
-                            return length * 0.2
-                        }
-                    }
-                    .border(Color.borderPink, width: 1)
                 }
             }
         }
@@ -459,13 +445,6 @@ struct CreateAvatarView: View {
                     ZStack {
                         Image("buttonSelectedPost")
                             .resizable()
-                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                                if axis == .vertical {
-                                    return length * 0.1
-                                } else {
-                                    return length * 0.2
-                                }
-                            }
                             .accessibilityHidden(true)
                         Image("AvatarBottom")
                             .accessibilityLabel("Partes de baixo")
@@ -477,14 +456,6 @@ struct CreateAvatarView: View {
                             .accessibilityHint("Deslize para baixo para selecionar e colorir roupas da parte de baixo da boneca.")
                     }
                     .background()
-                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                        if axis == .vertical {
-                            return length * 0.1
-                        } else {
-                            return length * 0.2
-                        }
-                    }
-                    .border(Color.borderPink, width: 1)
                 }
                 
             } else {
@@ -501,18 +472,9 @@ struct CreateAvatarView: View {
                             )
                             .accessibilityHint("Toque duas vezes para selecionar e colorir roupas da parte de baixo da boneca.")
                     }
-                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                        if axis == .vertical {
-                            return length * 0.1
-                        } else {
-                            return length * 0.2
-                        }
-                    }
-                    .border(Color.borderPink, width: 1)
                 }
             }
         }
-        
         
     }
     
@@ -525,13 +487,6 @@ struct CreateAvatarView: View {
                     ZStack {
                         Image("buttonSelectedPost")
                             .resizable()
-                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                                if axis == .vertical {
-                                    return length * 0.1
-                                } else {
-                                    return length * 0.2
-                                }
-                            }
                             .accessibilityHidden(true)
                         Image("AvatarShoes")
                             .accessibilityLabel("Sapatos")
@@ -543,16 +498,7 @@ struct CreateAvatarView: View {
                             .accessibilityHint("Deslize para baixo para selecionar sapatos.")
                     }
                     .background()
-                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                        if axis == .vertical {
-                            return length * 0.1
-                        } else {
-                            return length * 0.2
-                        }
-                    }
-                    .border(Color.borderPink, width: 1)
                 }
-                
             } else {
                 Button {
                     selectedCustomization = .shoes
@@ -567,19 +513,9 @@ struct CreateAvatarView: View {
                             )
                             .accessibilityHint("Toque duas vezes para selecionar sapatos.")
                     }
-                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                        if axis == .vertical {
-                            return length * 0.1
-                        } else {
-                            return length * 0.2
-                        }
-                    }
-                    .border(Color.borderPink, width: 1)
                 }
             }
         }
-        
-        
     }
     
     var accessoriesButton: some View {
@@ -591,48 +527,36 @@ struct CreateAvatarView: View {
                     ZStack {
                         Image("buttonSelectedPost")
                             .resizable()
-                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                                if axis == .vertical {
-                                    return length * 0.1
-                                } else {
-                                    return length * 0.2
-                                }
-                            }
+                            .accessibilityHidden(true)
                         Image("AvatarAccessories")
+                            .accessibilityLabel("Acessórios")
+                            .accessibilityValue(
+                                selectedCustomization == .accessories
+                                ? "Selecionado"
+                                : "Não selecionado"
+                            )
+                            .accessibilityHint("Deslize para baixo para selecionar acessórios.")
                     }
                     .background()
-                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                        if axis == .vertical {
-                            return length * 0.1
-                        } else {
-                            return length * 0.2
-                        }
-                    }
-                    .border(Color.borderPink, width: 1)
                 }
-                
             } else {
                 Button {
                     selectedCustomization = .accessories
                 } label: {
                     ZStack {
                         Image("AvatarAccessories")
+                            .accessibilityLabel("Acessórios")
+                            .accessibilityValue(
+                                selectedCustomization == .accessories
+                                ? "Selecionado"
+                                : "Não selecionado"
+                            )
+                            .accessibilityHint("Toque duas vezes para selecionar acessórios.")
                     }
-                    .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                        if axis == .vertical {
-                            return length * 0.1
-                        } else {
-                            return length * 0.2
-                        }
-                    }
-                    .border(Color.borderPink, width: 1)
                 }
             }
         }
-        
-        
     }
-    
 }
 
 #Preview {

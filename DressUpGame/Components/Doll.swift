@@ -109,7 +109,7 @@ struct DollView: View {
                 .scaledToFit()
         }
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel("\(doll.face.description) \(doll.hair.description != "" ? "com " + doll.hair.description : "" )\(doll.top.description != "" ? ", vestindo " + doll.top.description : "")\(doll.bottom.description != "" ? ", e " + doll.bottom.description : "")\(doll.shoes.description != "" ? ", usando " + doll.shoes.description : "").")
+        .accessibilityLabel("\(doll.face.description)\(doll.hair.description != "" ? " com " + doll.hair.description : "" )\(doll.top.description != "" ? ", vestindo " + doll.top.description : "")\(doll.bottom.description != "" ? ", e " + doll.bottom.description : "")\(doll.shoes.description != "" ? ", calçando " + doll.shoes.description : "")\(doll.accessories.description != "" ? ", usando " + doll.accessories.description : "").")
         .scaleEffect(0.7)
     }
 }

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ColorHairsItens: View {
     
-    var tap: (Color) -> Void
+    var tap: (AssetColor) -> Void
     
     @State var colors = [
         AssetColor(color: .grayColorNew, name: "Preto"),
@@ -36,7 +36,7 @@ struct ColorHairsItens: View {
                             Circle()
                                 .foregroundColor(colorOption.color)
                                 .onTapGesture {
-                                    tap(colorOption.color)
+                                    tap(colorOption)
                                 }
                                 .accessibilityLabel(colorOption.name)
                                 .accessibilityHint("Toque duas vezes para selecionar a cor")
