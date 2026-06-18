@@ -202,7 +202,7 @@ struct CreateAvatarView: View {
                                 .foregroundColor(Color.borderPink)
                         }
                         
-                        if selectedCustomization == .hair || selectedCustomization == .top || selectedCustomization == .bottom || selectedCustomization == .accessories || selectedCustomization == .shoes{
+                        if selectedCustomization == .hair || selectedCustomization == .top || selectedCustomization == .bottom || selectedCustomization == .shoes{
                             AvatarDecorationItens(selectedCustomization: $selectedCustomization, assetHairColor: $selectedHairColor, assetTopColor: $selectedTopColor, assetBottomColor: $selectedBottomColor, assetShoesColor: $selectedShoesColor) { tapped in
                                 if selectedCustomization == .face {
                                     doll.setDoll(face: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
