@@ -63,6 +63,7 @@ struct HomeView: View {
                             .foregroundColor(.separator), alignment: .top)
                         .simultaneousGesture(TapGesture().onEnded {
                             doll = DollClass(face: Asset(image: UIImage(resource: .doll1), gridImage: nil, description: "Boneca com traços femininos de tom claro"), hair: Asset(image: UIImage(), gridImage: nil, description: ""), hairColor: .grayColorNew, top: Asset(image: UIImage(), gridImage: nil, description: ""), topColor: .grayColorNew, bottom: Asset(image: UIImage(), gridImage: nil, description: ""), bottomColor: .grayColorNew, shoes: Asset(image: UIImage(), gridImage: nil, description: ""), accessories: Asset(image: UIImage(), gridImage: nil, description: ""))
+                            background = WallpaperClass(wallpaper: Asset(image: .background0, gridImage: nil, description: "Papel de parede com degradê que transiciona entre as cores rosa e branco com formas hexagonais em branco"))
                         })
                     }
                     .accessibilityHint("Toque três vezes para criar um novo look.")
