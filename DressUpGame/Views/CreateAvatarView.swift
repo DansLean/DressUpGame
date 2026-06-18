@@ -285,29 +285,21 @@ struct CreateAvatarView: View {
                     
                     if #available(iOS 26.0, *) {
                         ToolbarItem(placement: .topBarTrailing) {
-                            Button {
-                                
-                            } label: {
                                 NavigationLink(destination: CreatePostView(doll: $doll, background: $background)) {
                                     Image("chevron_right_button")
                                         .accessibilityLabel("Avançar")
-                                        .accessibilityHint("Toque três vezes para avançar para a criação de post.")
+                                        .accessibilityHint("Toque duas vezes para avançar para a criação de post.")
                                 }
-                            }
                             .shadow(radius: 2, y: 2)
                         }
                         .sharedBackgroundVisibility(.hidden)
                     } else {
                         ToolbarItem(placement: .topBarTrailing) {
-                            Button {
-                                
-                            } label: {
                                 NavigationLink(destination: CreatePostView(doll: $doll, background: $background)) {
                                     Image("chevron_right_button")
                                         .accessibilityLabel("Avançar")
-                                        .accessibilityHint("Toque três vezes para avançar para a criação de post.")
+                                        .accessibilityHint("Toque duas vezes para avançar para a criação de post.")
                                 }
-                            }
                             .shadow(radius: 2, y: 2)
                         }
                     }
