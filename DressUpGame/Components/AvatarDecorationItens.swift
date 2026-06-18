@@ -126,6 +126,9 @@ struct AvatarDecorationItens: View {
                             .scaledToFit()
                             .frame(width: 35, height: 35)
                             .foregroundColor(.gray4)
+                            .onTapGesture {
+                                tap(Asset(image: UIImage(), gridImage: nil, description: ""))
+                            }
                         Text("Remover\nItem")
                             .foregroundStyle(.gray4)
                             .font(.system(.caption, weight: .semibold))
@@ -133,11 +136,9 @@ struct AvatarDecorationItens: View {
                     }
                     .padding(.horizontal, 10)
                     .padding(.trailing, 5)
+                    .accessibilityElement(children: .combine)
                     .accessibilityLabel("Remover item")
                     .accessibilityHint("Toque duas vezes para remover o item selecionado.")
-                    .onTapGesture {
-                        tap(Asset(image: UIImage(), gridImage: nil, description: ""))
-                    }
                 }
                 
                 ForEach(selectedTab, id: \.self) { tab in
