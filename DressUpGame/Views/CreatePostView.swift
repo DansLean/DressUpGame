@@ -121,30 +121,26 @@ struct CreatePostView: View {
                 .toolbar {
                     if #available(iOS 26.0, *) {
                         ToolbarItem(placement: .topBarLeading) {
-                            NavigationLink(destination: CreateAvatarView()) {
-                                Button {
-                                    self.presentationMode.wrappedValue.dismiss()
-                                } label: {
-                                    Image("chevron_left_button")
-                                        .accessibilityLabel("Voltar")
-                                        .accessibilityHint("Toque duas vezes para voltar à tela de criação de look.")
-                                }
-                                .shadow(radius: 2, y: 2)
+                            Button {
+                                self.presentationMode.wrappedValue.dismiss()
+                            } label: {
+                                Image("chevron_left_button")
+                                    .accessibilityLabel("Voltar")
+                                    .accessibilityHint("Toque duas vezes para voltar à tela de criação de look.")
                             }
+                            .shadow(radius: 2, y: 2)
                         }
                         .sharedBackgroundVisibility(.hidden)
                     } else {
                         ToolbarItem(placement: .topBarLeading) {
-                            NavigationLink(destination: CreateAvatarView()) {
-                                Button {
-                                    self.presentationMode.wrappedValue.dismiss()
-                                } label: {
-                                    Image("chevron_left_button")
-                                        .accessibilityLabel("Voltar")
-                                        .accessibilityHint("Toque duas vezes para voltar à  tela de criação de look.")
-                                }
-                                .shadow(radius: 2, y: 2)
+                            Button {
+                                self.presentationMode.wrappedValue.dismiss()
+                            } label: {
+                                Image("chevron_left_button")
+                                    .accessibilityLabel("Voltar")
+                                    .accessibilityHint("Toque duas vezes para voltar à  tela de criação de look.")
                             }
+                            .shadow(radius: 2, y: 2)
                         }
                     }
                     
