@@ -14,6 +14,7 @@ struct CreateAvatarView: View {
     @State var selectedHairColor: AssetColor = AssetColor(color: .grayColorNew, name: "Preto")
     @State var selectedTopColor: AssetColor = AssetColor(color: .grayColorNew, name: "Preto")
     @State var selectedBottomColor: AssetColor = AssetColor(color: .grayColorNew, name: "Preto")
+    @State var selectedShoesColor: AssetColor = AssetColor(color: .grayColorNew, name: "Preto")
     @State var selectedItens: [ModelTest] = []
     var face: Image = Image("Doll1")
     var hair: Image = Image("Hair1")
@@ -22,7 +23,7 @@ struct CreateAvatarView: View {
     var shoes: Image = Image("Shoes1")
     var accessories: Image = Image("Accessories1")
     
-    @State var doll = DollClass(face: Asset(image: UIImage(resource: .doll1), gridImage: nil, description: "Boneca com traços femininos de tom claro"), hair: Asset(image: UIImage(), gridImage: nil, description: ""), hairColor: .grayColorNew, top: Asset(image: UIImage(), gridImage: nil, description: ""), topColor: .grayColorNew, bottom: Asset(image: UIImage(), gridImage: nil, description: ""), bottomColor: .grayColorNew, shoes: Asset(image: UIImage(), gridImage: nil, description: ""), accessories: Asset(image: UIImage(), gridImage: nil, description: ""))
+    @State var doll = DollClass(face: Asset(image: UIImage(resource: .doll1), gridImage: nil, description: "Boneca com traços femininos de tom claro"), hair: Asset(image: UIImage(), gridImage: nil, description: ""), hairColor: .grayColorNew, top: Asset(image: UIImage(), gridImage: nil, description: ""), topColor: .grayColorNew, bottom: Asset(image: UIImage(), gridImage: nil, description: ""), bottomColor: .grayColorNew, shoes: Asset(image: UIImage(), gridImage: nil, description: ""), shoesColor: .grayColorNew, accessories: Asset(image: UIImage(), gridImage: nil, description: ""))
     
     var body: some View {
         NavigationStack {
@@ -183,9 +184,26 @@ struct CreateAvatarView: View {
                                 .foregroundColor(Color.borderPink)
                         }
                         
+                        if selectedCustomization == .shoes {
+                            ColorClothesItens() { tapped in
+                                doll.setShoesColor(shoesColor: tapped.color)
+                                selectedShoesColor = tapped
+                            }
+                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                if axis == .vertical {
+                                    return length * 0.1
+                                } else {
+                                    return length
+                                }
+                            }
+                            
+                            Rectangle()
+                                .frame(height: 1.6, alignment: .top)
+                                .foregroundColor(Color.borderPink)
+                        }
                         
-                        if selectedCustomization == .hair || selectedCustomization == .top || selectedCustomization == .bottom {
-                            AvatarDecorationItens(selectedCustomization: $selectedCustomization, assetHairColor: $selectedHairColor, assetTopColor: $selectedTopColor, assetBottomColor: $selectedBottomColor) { tapped in
+                        if selectedCustomization == .hair || selectedCustomization == .top || selectedCustomization == .bottom || selectedCustomization == .accessories || selectedCustomization == .shoes{
+                            AvatarDecorationItens(selectedCustomization: $selectedCustomization, assetHairColor: $selectedHairColor, assetTopColor: $selectedTopColor, assetBottomColor: $selectedBottomColor, assetShoesColor: $selectedShoesColor) { tapped in
                                 if selectedCustomization == .face {
                                     doll.setDoll(face: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }
@@ -218,7 +236,7 @@ struct CreateAvatarView: View {
                                 }
                             }
                         } else {
-                            AvatarDecorationItens(selectedCustomization: $selectedCustomization, assetHairColor: $selectedHairColor, assetTopColor: $selectedTopColor, assetBottomColor: $selectedBottomColor) { tapped in
+                            AvatarDecorationItens(selectedCustomization: $selectedCustomization, assetHairColor: $selectedHairColor, assetTopColor: $selectedTopColor, assetBottomColor: $selectedBottomColor, assetShoesColor: $selectedShoesColor) { tapped in
                                 if selectedCustomization == .face {
                                     doll.setDoll(face: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }

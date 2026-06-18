@@ -12,6 +12,7 @@ struct AvatarDecorationItens: View {
     @Binding var assetHairColor: AssetColor
     @Binding var assetTopColor: AssetColor
     @Binding var assetBottomColor: AssetColor
+    @Binding var assetShoesColor: AssetColor
     
     var tap: (Asset) -> Void
     
@@ -73,13 +74,15 @@ struct AvatarDecorationItens: View {
         ]
     }
     
-    @State var shoes = [
-        Asset(image: UIImage(resource: .shoes1), gridImage: nil, description: "Sapato unissex de cano baixo, bico arredondado, cadarços brancos e uma listra branca vertical na lateral."),
-        Asset(image: UIImage(resource: .shoes2), gridImage: nil, description: "Sapato unissex de cano alto, bico arredondado e cadarços brancos"),
-        Asset(image: UIImage(resource: .shoes3), gridImage: nil, description: "Sapatilha feminina de bico arredondado, solado grosso e fechada na parte de cima, deixando os dedos visíveis"),
-        Asset(image: UIImage(resource: .shoes4), gridImage: nil, description: "Bota unissex de cano alto com detalhes que remetem correias "),
-        Asset(image: UIImage(resource: .shoes5), gridImage: nil, description: "Sapatilha feminina de bico arredondado, salto tamanco, detalhe de fitas e meia")
-    ]
+    var shoes: [Asset] {
+        [
+            Asset(image: UIImage(resource: .shoes1), gridImage: nil, description: "Sapato unissex de cano baixo, bico arredondado, cadarços brancos e uma listra branca vertical na lateral."),
+            Asset(image: UIImage(resource: .shoes2), gridImage: nil, description: "Sapato unissex de cano alto, bico arredondado e cadarços brancos"),
+            Asset(image: UIImage(resource: .shoes3), gridImage: nil, description: "Sapatilha feminina de bico arredondado, solado grosso e fechada na parte de cima, deixando os dedos visíveis"),
+            Asset(image: UIImage(resource: .shoes4), gridImage: nil, description: "Bota unissex de cano alto com detalhes que remetem correias "),
+            Asset(image: UIImage(resource: .shoes5), gridImage: nil, description: "Sapatilha feminina de bico arredondado, salto tamanco, detalhe de fitas e meia")
+        ]
+    }
     
     @State var accessories = [
         Asset(image: UIImage(resource: .acessorio1), gridImage: UIImage(resource: .gridAcessorio1), description: "Bolsa carteiro de lado com alça grossa"),
@@ -194,13 +197,15 @@ struct AvatarDecorationItens: View {
                                     .scaledToFit()
                                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                                         if axis == .vertical {
-                                            return length * 1.8
+                                            return length * 2.4
                                         } else {
-                                            return length * 0.3
+                                            return length * 1
                                         }
                                     }
                                     .padding(.top, -0.75 * sizeScreen)
                                     .accessibilityLabel(tab.description)
+                                    .colorMultiply(assetShoesColor.color)
+                                    .saturation(1)
                                     .accessibilityHint("Toque duas vezes para selecionar esse item.")
                             }
                             if self.selectedCustomization == .accessories {

@@ -18,9 +18,10 @@ class DollClass: Identifiable {
     var bottom: Asset
     var bottomColor: Color
     var shoes: Asset
+    var shoesColor: Color
     var accessories: Asset
     
-    init(face: Asset, hair: Asset, hairColor: Color, top: Asset, topColor: Color, bottom: Asset, bottomColor: Color, shoes: Asset, accessories: Asset) {
+    init(face: Asset, hair: Asset, hairColor: Color, top: Asset, topColor: Color, bottom: Asset, bottomColor: Color, shoes: Asset, shoesColor: Color, accessories: Asset) {
         self.face = face
         self.hair = hair
         self.hairColor = hairColor
@@ -29,6 +30,7 @@ class DollClass: Identifiable {
         self.bottom = bottom
         self.bottomColor = bottomColor
         self.shoes = shoes
+        self.shoesColor = shoesColor
         self.accessories = accessories
     }
     
@@ -67,6 +69,11 @@ class DollClass: Identifiable {
         self.shoes = shoes
     }
     
+    func setShoesColor(shoesColor: Color) {
+        self.shoesColor = shoesColor
+        self.shoes = self.shoes
+    }
+    
     func setAccessories(accessories: Asset) {
         self.accessories = accessories
     }
@@ -91,6 +98,8 @@ struct DollView: View {
             Image(uiImage: doll.shoes.image)   // Calçado
                 .resizable()
                 .scaledToFit()
+                .colorMultiply(doll.shoesColor)
+                .saturation(1.5)
             
             Image(uiImage: doll.bottom.image)   // Bottom
                 .resizable()
