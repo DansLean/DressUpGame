@@ -119,6 +119,27 @@ struct AvatarDecorationItens: View {
     var body: some View {
         ScrollView(.horizontal) {
             LazyHGrid(rows: Array(repeating: GridItem(.flexible()), count: 1)) {
+                if (self.selectedCustomization == .hair || self.selectedCustomization == .top || self.selectedCustomization == .bottom || self.selectedCustomization == .shoes || self.selectedCustomization == .accessories) {
+                    VStack (alignment: .center, spacing: 10) {
+                        Image(uiImage: UIImage(resource: .multiplyPersonalizado))
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 35, height: 35)
+                            .foregroundColor(.gray4)
+                        Text("Remover\nItem")
+                            .foregroundStyle(.gray4)
+                            .font(.system(.caption, weight: .semibold))
+                            .multilineTextAlignment(.center)
+                    }
+                    .padding(.horizontal, 10)
+                    .padding(.trailing, 5)
+                    .accessibilityLabel("Remover item")
+                    .accessibilityHint("Toque duas vezes para remover o item selecionado.")
+                    .onTapGesture {
+                        tap(Asset(image: UIImage(), gridImage: nil, description: ""))
+                    }
+                }
+                
                 ForEach(selectedTab, id: \.self) { tab in
                     Rectangle()
                         .overlay {
@@ -137,6 +158,7 @@ struct AvatarDecorationItens: View {
                                     .accessibilityLabel(tab.description)
                                     .accessibilityHint("Toque duas vezes para selecionar esse item.")
                             }
+                            
                             if self.selectedCustomization == .hair {
                                 Image(uiImage: tab.image)
                                     .resizable()
@@ -154,6 +176,7 @@ struct AvatarDecorationItens: View {
                                     .accessibilityLabel(tab.description)
                                     .accessibilityHint("Toque duas vezes para selecionar esse item.")
                             }
+                            
                             if self.selectedCustomization == .top {
                                 Image(uiImage: tab.image)
                                     .resizable()
@@ -171,6 +194,7 @@ struct AvatarDecorationItens: View {
                                     .accessibilityLabel(tab.description)
                                     .accessibilityHint("Toque duas vezes para selecionar esse item.")
                             }
+                            
                             if self.selectedCustomization == .bottom {
                                 Image(uiImage: tab.image)
                                     .resizable()
@@ -188,6 +212,7 @@ struct AvatarDecorationItens: View {
                                     .accessibilityLabel(tab.description)
                                     .accessibilityHint("Toque duas vezes para selecionar esse item.")
                             }
+                            
                             if self.selectedCustomization == .shoes {
                                 Image(uiImage: tab.image)
                                     .resizable()
@@ -203,6 +228,7 @@ struct AvatarDecorationItens: View {
                                     .accessibilityLabel(tab.description)
                                     .accessibilityHint("Toque duas vezes para selecionar esse item.")
                             }
+                            
                             if self.selectedCustomization == .accessories {
                                 Image(uiImage: tab.gridImage!)
                                     .resizable()
@@ -214,7 +240,6 @@ struct AvatarDecorationItens: View {
                                             return length * 0.23
                                         }
                                     }
-                                    
                                     .accessibilityLabel(tab.description)
                                     .accessibilityHint("Toque duas vezes para selecionar esse item.")
                             }
@@ -225,7 +250,7 @@ struct AvatarDecorationItens: View {
                         }
                 }
             }
-            .padding(.horizontal, 10)
+            .padding(.horizontal, 15)
             .background(Color.white)
             .foregroundStyle(.white)
         }
