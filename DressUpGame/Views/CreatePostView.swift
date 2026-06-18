@@ -49,12 +49,10 @@ struct CreatePostView: View {
     @State private var showActivityControllerView: Bool = false
     @State var selectedItens: [ModelTest] = []
     @State var indexTapped: Int?
-    
-    var wallpaper: UIImage = UIImage(resource: .background0)
-    
+        
     @State var changes = 0
     
-    @State var background = WallpaperClass(wallpaper: Asset(image: .background0, gridImage: nil, description: "Papel de parede com degradê que transiciona entre as cores rosa e branco com formas hexagonais em branco"))
+    @Binding var background: WallpaperClass
     
     let sizeScreenHeight: CGFloat = UIScreen.main.bounds.height
     let sizeScreenWidth: CGFloat = UIScreen.main.bounds.width
@@ -121,27 +119,29 @@ struct CreatePostView: View {
                 .toolbar {
                     if #available(iOS 26.0, *) {
                         ToolbarItem(placement: .topBarLeading) {
-                            Button {
-                                self.presentationMode.wrappedValue.dismiss()
-                            } label: {
-                                Image("chevron_left_button")
-                                    .accessibilityLabel("Voltar")
-                                    .accessibilityHint("Toque duas vezes para voltar à tela de criação de look.")
-                            }
-                            .shadow(radius: 2, y: 2)
+                                Button {
+                                    self.presentationMode.wrappedValue.dismiss()
+                                } label: {
+                                    Image("chevron_left_button")
+                                        .accessibilityLabel("Voltar")
+                                        .accessibilityHint("Toque duas vezes para voltar à tela de criação de look.")
+                                }
+                                .shadow(radius: 2, y: 2)
                         }
                         .sharedBackgroundVisibility(.hidden)
                     } else {
                         ToolbarItem(placement: .topBarLeading) {
-                            Button {
-                                self.presentationMode.wrappedValue.dismiss()
-                            } label: {
-                                Image("chevron_left_button")
-                                    .accessibilityLabel("Voltar")
-                                    .accessibilityHint("Toque duas vezes para voltar à  tela de criação de look.")
+
+                                Button {
+                                    self.presentationMode.wrappedValue.dismiss()
+                                    
+                                } label: {
+                                    Image("chevron_left_button")
+                                        .accessibilityLabel("Voltar")
+                                        .accessibilityHint("Toque duas vezes para voltar à  tela de criação de look.")
+                                }
+                                .shadow(radius: 2, y: 2)
                             }
-                            .shadow(radius: 2, y: 2)
-                        }
                     }
                     
                     if #available(iOS 26.0, *) {

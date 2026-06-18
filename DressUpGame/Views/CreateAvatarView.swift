@@ -15,6 +15,9 @@ struct CreateAvatarView: View {
     @State var selectedHairColor: AssetColor = AssetColor(color: .grayColorNew, name: "Preto")
     @State var selectedTopColor: AssetColor = AssetColor(color: .grayColorNew, name: "Preto")
     @State var selectedBottomColor: AssetColor = AssetColor(color: .grayColorNew, name: "Preto")
+    @State var selectedShoesColor: AssetColor = AssetColor(color: .grayColorNew, name: "Preto")
+    @Binding var background: WallpaperClass
+
     @State var selectedItens: [ModelTest] = []
     var face: Image = Image("Doll1")
     var hair: Image = Image("Hair1")
@@ -22,11 +25,12 @@ struct CreateAvatarView: View {
     var bottom: Image = Image("Bottom1")
     var shoes: Image = Image("Shoes1")
     var accessories: Image = Image("Accessories1")
+    @State var teste: Bool = false
     
     var body: some View {
         NavigationStack {
             ZStack {
-                Image("Background0")
+                Image(uiImage: background.wallpaper.image)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .ignoresSafeArea()
@@ -257,6 +261,7 @@ struct CreateAvatarView: View {
                         ToolbarItem(placement: .topBarLeading) {
                             Button {
                                 self.presentationMode.wrappedValue.dismiss()
+                                teste = true
                             } label: {
                                 Image("chevron_left_button")
                                     .accessibilityLabel("Voltar")
@@ -283,7 +288,7 @@ struct CreateAvatarView: View {
                             Button {
                                 
                             } label: {
-                                NavigationLink(destination: CreatePostView(doll: $doll)) {
+                                NavigationLink(destination: CreatePostView(doll: $doll, background: $background)) {
                                     Image("chevron_right_button")
                                         .accessibilityLabel("Avançar")
                                         .accessibilityHint("Toque três vezes para avançar para a criação de post.")
@@ -297,7 +302,7 @@ struct CreateAvatarView: View {
                             Button {
                                 
                             } label: {
-                                NavigationLink(destination: CreatePostView(doll: $doll)) {
+                                NavigationLink(destination: CreatePostView(doll: $doll, background: $background)) {
                                     Image("chevron_right_button")
                                         .accessibilityLabel("Avançar")
                                         .accessibilityHint("Toque três vezes para avançar para a criação de post.")
