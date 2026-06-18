@@ -9,6 +9,8 @@ import SwiftUI
 
 
 struct HomeView: View {
+    @State var doll = DollClass(face: Asset(image: UIImage(resource: .doll1), gridImage: nil, description: "Boneca com traços femininos de tom claro"), hair: Asset(image: UIImage(), gridImage: nil, description: ""), hairColor: .grayColorNew, top: Asset(image: UIImage(), gridImage: nil, description: ""), topColor: .grayColorNew, bottom: Asset(image: UIImage(), gridImage: nil, description: ""), bottomColor: .grayColorNew, shoes: Asset(image: UIImage(), gridImage: nil, description: ""), accessories: Asset(image: UIImage(), gridImage: nil, description: ""))
+    
     var body: some View {
         NavigationStack {
             VStack(alignment: .center)  {
@@ -36,7 +38,7 @@ struct HomeView: View {
                 Button {
                     
                 } label: {
-                    NavigationLink(destination: CreateAvatarView()) {
+                    NavigationLink(destination: CreateAvatarView(doll: $doll)) {
                         ZStack {
                             LinearGradient(gradient: Gradient(colors: [.lightgreenGradient, .greenGradient]), startPoint: .top, endPoint: .bottom)
                             VStack (spacing: 8) {
@@ -54,6 +56,9 @@ struct HomeView: View {
                     .overlay(Rectangle()
                         .frame(width: nil, height: 3, alignment: .top)
                         .foregroundColor(.separator), alignment: .top)
+                    .simultaneousGesture(TapGesture().onEnded {
+                        doll = DollClass(face: Asset(image: UIImage(resource: .doll1), gridImage: nil, description: "Boneca com traços femininos de tom claro"), hair: Asset(image: UIImage(), gridImage: nil, description: ""), hairColor: .grayColorNew, top: Asset(image: UIImage(), gridImage: nil, description: ""), topColor: .grayColorNew, bottom: Asset(image: UIImage(), gridImage: nil, description: ""), bottomColor: .grayColorNew, shoes: Asset(image: UIImage(), gridImage: nil, description: ""), accessories: Asset(image: UIImage(), gridImage: nil, description: ""))
+                    })
                 }
                 .accessibilityHint("Toque três vezes para criar um novo look.")
             }

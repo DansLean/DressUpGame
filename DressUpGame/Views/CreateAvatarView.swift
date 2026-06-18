@@ -10,6 +10,7 @@ import SwiftUI
 
 struct CreateAvatarView: View {
     @Environment(\.presentationMode) var presentationMode
+    @Binding var doll : DollClass
     @State var selectedCustomization: AvatarOptions = .face
     @State var selectedHairColor: AssetColor = AssetColor(color: .grayColorNew, name: "Preto")
     @State var selectedTopColor: AssetColor = AssetColor(color: .grayColorNew, name: "Preto")
@@ -21,8 +22,6 @@ struct CreateAvatarView: View {
     var bottom: Image = Image("Bottom1")
     var shoes: Image = Image("Shoes1")
     var accessories: Image = Image("Accessories1")
-    
-    @State var doll = DollClass(face: Asset(image: UIImage(resource: .doll1), gridImage: nil, description: "Boneca com traços femininos de tom claro"), hair: Asset(image: UIImage(), gridImage: nil, description: ""), hairColor: .grayColorNew, top: Asset(image: UIImage(), gridImage: nil, description: ""), topColor: .grayColorNew, bottom: Asset(image: UIImage(), gridImage: nil, description: ""), bottomColor: .grayColorNew, shoes: Asset(image: UIImage(), gridImage: nil, description: ""), accessories: Asset(image: UIImage(), gridImage: nil, description: ""))
     
     var body: some View {
         NavigationStack {
@@ -559,6 +558,6 @@ struct CreateAvatarView: View {
     }
 }
 
-#Preview {
-    CreateAvatarView()
-}
+//#Preview {
+//    CreateAvatarView()
+//}
