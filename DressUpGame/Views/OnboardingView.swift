@@ -76,6 +76,7 @@ struct OnboardingView: View {
                                 return length
                             }
                         }
+                        .accessibilityHidden(true)
                     
                     HStack(spacing: 12) {
                         ForEach(0..<OnboardingPage.allCases.count, id: \.self) {
@@ -110,6 +111,7 @@ struct OnboardingView: View {
                             return length
                         }
                     }
+                    .accessibilityHidden(true)
                 
                 VStack (alignment: .center, spacing: 8) {
                     Text(page.title)
@@ -150,7 +152,7 @@ struct OnboardingView: View {
                         Button(action: {
                             self.currentPage = self.currentPage + 1
                         }) {
-                            Text("Proximo")
+                            Text("Próximo")
                                 .padding(.top,10)
                                 .padding(.bottom,10)
                                 .padding(.leading,20)
