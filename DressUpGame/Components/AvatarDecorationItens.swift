@@ -15,7 +15,7 @@ struct AvatarDecorationItens: View {
     
     var tap: (Asset) -> Void
     
-    @State var lastTappedIndex: Int = 0
+    @State var lastTappedIndex: Int?
     
     @State var faces = [
         Asset(image: UIImage(resource: .doll1), gridImage: nil, description: "Boneca com traços femininos de tom claro"),
@@ -259,13 +259,19 @@ struct AvatarDecorationItens: View {
             .foregroundStyle(.white)
         }
         .onChange(of: assetHairColor) {
-            tap(selectedTab[lastTappedIndex])
+            if lastTappedIndex != nil {
+                tap(selectedTab[lastTappedIndex!])
+            }
         }
         .onChange(of: assetTopColor) {
-            tap(selectedTab[lastTappedIndex])
+            if lastTappedIndex != nil {
+                tap(selectedTab[lastTappedIndex!])
+            }
         }
         .onChange(of: assetBottomColor) {
-            tap(selectedTab[lastTappedIndex])
+            if lastTappedIndex != nil {
+                tap(selectedTab[lastTappedIndex!])
+            }
         }
     }
 }
