@@ -18,7 +18,7 @@ struct CreateAvatarView: View {
     @State var selectedShoesColor: AssetColor = AssetColor(color: .grayColorNew, name: "Preto")
     @Binding var background: WallpaperClass
     @State var tappedSelected: Asset?
-
+    
     @State var selectedItens: [ModelTest] = []
     var face: Image = Image("Doll1")
     var hair: Image = Image("Hair1")
@@ -188,7 +188,6 @@ struct CreateAvatarView: View {
                                 .foregroundColor(Color.borderPink)
                         }
                         
-                        
                         if selectedCustomization == .hair || selectedCustomization == .top || selectedCustomization == .bottom {
                             AvatarDecorationItens(selectedCustomization: $selectedCustomization, assetHairColor: $selectedHairColor, assetTopColor: $selectedTopColor, assetBottomColor: $selectedBottomColor) { tapped in
                                 tappedSelected = tapped
@@ -299,21 +298,21 @@ struct CreateAvatarView: View {
                     
                     if #available(iOS 26.0, *) {
                         ToolbarItem(placement: .topBarTrailing) {
-                                NavigationLink(destination: CreatePostView(doll: $doll, background: $background)) {
-                                    Image("chevron_right_button")
-                                        .accessibilityLabel("Avançar")
-                                        .accessibilityHint("Toque duas vezes para avançar para a criação de post.")
-                                }
+                            NavigationLink(destination: CreatePostView(doll: $doll, background: $background)) {
+                                Image("chevron_right_button")
+                                    .accessibilityLabel("Avançar")
+                                    .accessibilityHint("Toque duas vezes para avançar para a criação de post.")
+                            }
                             .shadow(radius: 2, y: 2)
                         }
                         .sharedBackgroundVisibility(.hidden)
                     } else {
                         ToolbarItem(placement: .topBarTrailing) {
-                                NavigationLink(destination: CreatePostView(doll: $doll, background: $background)) {
-                                    Image("chevron_right_button")
-                                        .accessibilityLabel("Avançar")
-                                        .accessibilityHint("Toque duas vezes para avançar para a criação de post.")
-                                }
+                            NavigationLink(destination: CreatePostView(doll: $doll, background: $background)) {
+                                Image("chevron_right_button")
+                                    .accessibilityLabel("Avançar")
+                                    .accessibilityHint("Toque duas vezes para avançar para a criação de post.")
+                            }
                             .shadow(radius: 2, y: 2)
                         }
                     }
