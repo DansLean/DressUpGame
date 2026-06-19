@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct HomeView: View {
-    @State var doll = DollClass(face: Asset(image: UIImage(resource: .doll1), gridImage: nil, description: "Boneca com traços femininos de tom claro"), hair: Asset(image: UIImage(), gridImage: nil, description: ""), hairColor: .grayColorNew, top: Asset(image: UIImage(), gridImage: nil, description: ""), topColor: .grayColorNew, bottom: Asset(image: UIImage(), gridImage: nil, description: ""), bottomColor: .grayColorNew, shoes: Asset(image: UIImage(), gridImage: nil, description: ""), accessories: Asset(image: UIImage(), gridImage: nil, description: ""))
+    @State var doll = DollClass(face: Asset(image: UIImage(resource: .doll1), gridImage: nil, description: "Boneca com traços femininos de tom claro"), hair: Asset(image: UIImage(), gridImage: nil, description: ""), hairColor: AssetColor(color: .grayColorNew, name: "Preto"), top: Asset(image: UIImage(), gridImage: nil, description: ""), topColor: AssetColor(color: .grayColorNew, name: "Preto"), bottom: Asset(image: UIImage(), gridImage: nil, description: ""), bottomColor: AssetColor(color: .grayColorNew, name: "Preto"), shoes: Asset(image: UIImage(), gridImage: nil, description: ""), accessories: Asset(image: UIImage(), gridImage: nil, description: ""))
     
     @State var background = WallpaperClass(wallpaper: Asset(image: .background0, gridImage: nil, description: "Papel de parede com degradê que transiciona entre as cores rosa e branco com formas hexagonais em branco"))
     
@@ -59,7 +59,7 @@ struct HomeView: View {
                 .accessibilityHint("Toque duas vezes para criar um novo look.")
             }
             .onAppear {
-                doll = DollClass(face: Asset(image: UIImage(resource: .doll1), gridImage: nil, description: "Boneca com traços femininos de tom claro"), hair: Asset(image: UIImage(), gridImage: nil, description: ""), hairColor: .grayColorNew, top: Asset(image: UIImage(), gridImage: nil, description: ""), topColor: .grayColorNew, bottom: Asset(image: UIImage(), gridImage: nil, description: ""), bottomColor: .grayColorNew, shoes: Asset(image: UIImage(), gridImage: nil, description: ""), accessories: Asset(image: UIImage(), gridImage: nil, description: ""))
+                doll = DollClass(face: Asset(image: UIImage(resource: .doll1), gridImage: nil, description: "Boneca com traços femininos de tom claro"), hair: Asset(image: UIImage(), gridImage: nil, description: ""), hairColor: AssetColor(color: .grayColorNew, name: "Preto"), top: Asset(image: UIImage(), gridImage: nil, description: ""), topColor: AssetColor(color: .grayColorNew, name: "Preto"), bottom: Asset(image: UIImage(), gridImage: nil, description: ""), bottomColor: AssetColor(color: .grayColorNew, name: "Preto"), shoes: Asset(image: UIImage(), gridImage: nil, description: ""), accessories: Asset(image: UIImage(), gridImage: nil, description: ""))
                 background = WallpaperClass(wallpaper: Asset(image: .background0, gridImage: nil, description: "Papel de parede com degradê que transiciona entre as cores rosa e branco com formas hexagonais em branco"))
                 
             }

@@ -15,6 +15,8 @@ struct AvatarDecorationItens: View {
     
     var tap: (Asset) -> Void
     
+    @State var lastTappedIndex: Int?
+    
     @State var faces = [
         Asset(image: UIImage(resource: .doll1), gridImage: nil, description: "Boneca com traços femininos de tom claro"),
         Asset(image: UIImage(resource: .doll2), gridImage: nil, description: "Boneca com traços masculinos de tom claro"),
@@ -141,7 +143,7 @@ struct AvatarDecorationItens: View {
                     .accessibilityHint("Toque duas vezes para remover o item selecionado.")
                 }
                 
-                ForEach(selectedTab, id: \.self) { tab in
+                ForEach(Array(selectedTab.enumerated()), id: \.offset) { index, tab in
                     Rectangle()
                         .overlay {
                             if self.selectedCustomization == .face {
@@ -248,12 +250,22 @@ struct AvatarDecorationItens: View {
                         .aspectRatio(0.0013 * sizeScreen, contentMode: .fit)
                         .onTapGesture {
                             tap(tab)
+                            lastTappedIndex = index
                         }
                 }
             }
             .padding(.horizontal, 15)
             .background(Color.white)
             .foregroundStyle(.white)
+        }
+        .onChange(of: assetHairColor) {
+            tap(selectedTab[lastTappedIndex!])
+        }
+        .onChange(of: assetTopColor) {
+            tap(selectedTab[lastTappedIndex!])
+        }
+        .onChange(of: assetBottomColor) {
+            tap(selectedTab[lastTappedIndex!])
         }
     }
 }

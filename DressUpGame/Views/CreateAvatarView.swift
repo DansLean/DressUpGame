@@ -17,6 +17,7 @@ struct CreateAvatarView: View {
     @State var selectedBottomColor: AssetColor = AssetColor(color: .grayColorNew, name: "Preto")
     @State var selectedShoesColor: AssetColor = AssetColor(color: .grayColorNew, name: "Preto")
     @Binding var background: WallpaperClass
+    @State var tappedSelected: Asset?
 
     @State var selectedItens: [ModelTest] = []
     var face: Image = Image("Doll1")
@@ -26,6 +27,7 @@ struct CreateAvatarView: View {
     var shoes: Image = Image("Shoes1")
     var accessories: Image = Image("Accessories1")
     @State var teste: Bool = false
+    @State var descriptionUpdated: String = ""
     
     var body: some View {
         NavigationStack {
@@ -134,7 +136,7 @@ struct CreateAvatarView: View {
                         
                         if selectedCustomization == .hair {
                             ColorHairsItens() { tapped in
-                                doll.setHairColor(hairColor: tapped.color)
+                                doll.setHairColor(hairColor: tapped)
                                 selectedHairColor = tapped
                             }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -152,7 +154,7 @@ struct CreateAvatarView: View {
                         
                         if selectedCustomization == .top {
                             ColorClothesItens() { tapped in
-                                doll.setTopColor(topColor: tapped.color)
+                                doll.setTopColor(topColor: tapped)
                                 selectedTopColor = tapped
                             }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -170,7 +172,7 @@ struct CreateAvatarView: View {
                         
                         if selectedCustomization == .bottom {
                             ColorClothesItens() { tapped in
-                                doll.setBottomColor(bottomColor: tapped.color)
+                                doll.setBottomColor(bottomColor: tapped)
                                 selectedBottomColor = tapped
                             }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -189,6 +191,7 @@ struct CreateAvatarView: View {
                         
                         if selectedCustomization == .hair || selectedCustomization == .top || selectedCustomization == .bottom {
                             AvatarDecorationItens(selectedCustomization: $selectedCustomization, assetHairColor: $selectedHairColor, assetTopColor: $selectedTopColor, assetBottomColor: $selectedBottomColor) { tapped in
+                                tappedSelected = tapped
                                 if selectedCustomization == .face {
                                     doll.setDoll(face: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }
@@ -211,6 +214,17 @@ struct CreateAvatarView: View {
                                 
                                 if selectedCustomization == .accessories {
                                     doll.setAccessories(accessories: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
+                                }
+                            }
+                            .onChange(of: tappedSelected) {
+                                if selectedCustomization == .hair {
+                                    doll.setHair(hair: Asset(image: tappedSelected!.image, gridImage: nil, description: tappedSelected!.description))
+                                }
+                                if selectedCustomization == .top {
+                                    doll.setTop(top: Asset(image: tappedSelected!.image, gridImage: nil, description: tappedSelected!.description))
+                                }
+                                if selectedCustomization == .bottom {
+                                    doll.setBottom(bottom: Asset(image: tappedSelected!.image, gridImage: nil, description: tappedSelected!.description))
                                 }
                             }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
