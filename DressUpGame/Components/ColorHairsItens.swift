@@ -13,15 +13,15 @@ struct ColorHairsItens: View {
     var tap: (AssetColor) -> Void
     
     @State var colors = [
-        AssetColor(color: .grayColorNew, name: "Preto"),
-        AssetColor(color: .beigeColorNew, name: "Loiro"),
-        AssetColor(color: .orangeColorNew, name: "Ruivo médio"),
-        AssetColor(color: .redColorNew, name: "Ruivo escuro"),
-        AssetColor(color: .brownColorNew, name: "Castanho"),
-        AssetColor(color: .blueColorNew, name: "Turquesa"),
-        AssetColor(color: .pinkColorNew, name: "Rosa claro"),
-        AssetColor(color: .purpleColorNew, name: "Roxo"),
-        AssetColor(color: .salmonColorNew, name: "Rosa cereja")
+        AssetColor(color: "grayColorNew", name: "Preto"),
+        AssetColor(color: "beigeColorNew", name: "Loiro"),
+        AssetColor(color: "orangeColorNew", name: "Ruivo médio"),
+        AssetColor(color: "redColorNew", name: "Ruivo escuro"),
+        AssetColor(color: "brownColorNew", name: "Castanho"),
+        AssetColor(color: "blueColorNew", name: "Turquesa"),
+        AssetColor(color: "pinkColorNew", name: "Rosa claro"),
+        AssetColor(color: "purpleColorNew", name: "Roxo"),
+        AssetColor(color: "salmonColorNew", name: "Rosa cereja")
     ]
     
     let sizeScreen: CGFloat = UIScreen.main.bounds.width + UIScreen.main.bounds.height / UIScreen.main.bounds.width
@@ -34,7 +34,7 @@ struct ColorHairsItens: View {
                         .foregroundColor(.white)
                         .overlay {
                             Circle()
-                                .foregroundColor(colorOption.color)
+                                .foregroundColor(Color(colorOption.color))
                                 .onTapGesture {
                                     tap(colorOption)
                                 }

@@ -69,7 +69,7 @@ struct CreatePostView: View {
                             return length * 0.615
                         }
                         .accessibilityElement(children: .ignore)
-                        .accessibilityLabel("\(doll.face.description) \(doll.hair.description != "" ? "com " + doll.hair.description : "" )\(doll.top.description != "" ? ", vestindo " + doll.top.description : "")\(doll.bottom.description != "" ? ", e " + doll.bottom.description : "")\(doll.shoes.description != "" ? ", usando " + doll.shoes.description : ""). Ao fundo, \(background.description).")
+                        .accessibilityLabel("\(doll.face.desc) \(doll.hair.desc != "" ? "com " + doll.hair.desc : "" )\(doll.top.desc != "" ? ", vestindo " + doll.top.desc : "")\(doll.bottom.desc != "" ? ", e " + doll.bottom.desc : "")\(doll.shoes.desc != "" ? ", usando " + doll.shoes.desc : ""). Ao fundo, \(background.description).")
                     
                     Spacer(minLength: 40)
                     
@@ -95,19 +95,19 @@ struct CreatePostView: View {
                             }
                             
                             if (selectedOption == .stickers) {
-                                let newItem = ModelTest(imageName: Image(uiImage: tapped.image), position: .init(x: 200, y: 200))
+                                let newItem = ModelTest(imageName: Image(tapped.image), position: .init(x: 200, y: 200))
                                 selectedItens.append(newItem)
                                 updateList(stickerID: newItem.id)
                                 indexTapped = selectedItens.count - 1
                             }
                             
                             if (selectedOption == .bubbles) {
-                                let newItem = ModelTest(imageName: Image(uiImage: tapped.image), position: .init(x: 200, y: 200))
+                                let newItem = ModelTest(imageName: Image(tapped.image), position: .init(x: 200, y: 200))
                                 selectedItens.append(newItem)
                             }
                             
                             if (selectedOption == .texts) {
-                                let newItem = ModelTest(imageName: Image(uiImage: tapped.image), position: .init(x: 200, y: 200))
+                                let newItem = ModelTest(imageName: Image(tapped.image), position: .init(x: 200, y: 200))
                                 selectedItens.append(newItem)
                             }
                         }
@@ -577,10 +577,10 @@ struct CreatePostView: View {
         }
         .frame(width: postWidth, height: postHeight)
         .background(
-            Image(uiImage: background.wallpaper.image)
+            Image(background.wallpaper.image)
                 .resizable()
                 .scaledToFill()
-                .accessibilityLabel(background.wallpaper.description)
+                .accessibilityLabel(background.wallpaper.desc)
         )
         .onTapGesture { apGesture in
             indexTapped = nil

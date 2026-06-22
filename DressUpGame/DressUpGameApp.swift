@@ -6,16 +6,16 @@
 //
 
 import SwiftUI
+import SwiftData
 
-
-enum PostOptions {
+enum PostOptions: Codable {
     case stickers
     case palettes
     case bubbles
     case texts
 }
 
-enum AvatarOptions {
+enum AvatarOptions: Codable {
     case face
     case hair
     case top
@@ -24,16 +24,16 @@ enum AvatarOptions {
     case accessories
 }
 
-struct Asset: Hashable {
-    let id = UUID()
-    let image: UIImage
-    let gridImage: UIImage?
-    let description: String
+struct Asset: Hashable, Codable {
+    var id = UUID()
+    let image: String
+    let gridImage: String?
+    let desc: String
 }
 
-struct AssetColor: Hashable {
-    let id = UUID()
-    let color: Color
+struct AssetColor: Hashable, Codable {
+    var id = UUID()
+    let color: String
     let name: String
 }
 
@@ -43,11 +43,13 @@ struct DressUpGameApp: App {
     
     var body: some Scene {
         WindowGroup {
+            
             if isFirstLaunch {
                 OnboardingView(isFirstLaunch: $isFirstLaunch)
             } else {
                 HomeView()
             }
         }
+        .modelContainer(for: [DollClass.self])
     }
 }

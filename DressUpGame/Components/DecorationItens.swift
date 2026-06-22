@@ -21,69 +21,69 @@ struct DecorationItens: View {
     var tap: (Asset) -> Void
     
     @State var stickers = [
-        Asset(image: UIImage(resource: .sticker1), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .sticker2), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .sticker3), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .sticker4), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .sticker5), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .sticker6), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .sticker7), gridImage: nil, description: "")
+        Asset(image: "Sticker1", gridImage: nil, desc: ""),
+        Asset(image: "Sticker2", gridImage: nil, desc: ""),
+        Asset(image: "Sticker3", gridImage: nil, desc: ""),
+        Asset(image: "Sticker4", gridImage: nil, desc: ""),
+        Asset(image: "Sticker5", gridImage: nil, desc: ""),
+        Asset(image: "Sticker6", gridImage: nil, desc: ""),
+        Asset(image: "Sticker7", gridImage: nil, desc: "")
     ]
-    
+
     @State var palettes = [
-        Asset(image: UIImage(resource: .background0), gridImage: nil, description: "Papel de parede com degradê que transiciona entre as cores rosa e branco com formas hexagonais em branco"),
-        Asset(image: UIImage(resource: .background1), gridImage: nil, description: "Papel de parede com degradê que transiciona entre tons de rosa com bolinhas pequenas em rosa"),
-        Asset(image: UIImage(resource: .background2), gridImage: nil, description: "Papel de parede com degradê que transiciona entre cores lilás e branco com formas hexagonais em branco"),
-        Asset(image: UIImage(resource: .background3), gridImage: nil, description: "Papel de parede amarelo com bolinhas pequenas em rosa pêssego"),
-        Asset(image: UIImage(resource: .background4), gridImage: nil, description: "Papel de parede rosa com linhas diagonais rosa escuro"),
-        Asset(image: UIImage(resource: .background5), gridImage: nil, description: "Papel de parede azul com formas de estrela de quatro pontas azuis escuro"),
-        Asset(image: UIImage(resource: .background6), gridImage: nil, description: "Papel de parede verde menta com bolinhas pequenas em verde escuro"),
-        Asset(image: UIImage(resource: .background7), gridImage: nil, description: "Papel de parede com degradê que transiciona entre tons de rosa com linhas verticais em rosa escuro"),
-        Asset(image: UIImage(resource: .background8), gridImage: nil, description: "Papel de parede com degradê que transiciona entre tons de lilás com quadriculado em lilás escuro")
+        Asset(image: "Background0", gridImage: nil, desc: "Papel de parede com degradê que transiciona entre as cores rosa e branco com formas hexagonais em branco"),
+        Asset(image: "Background1", gridImage: nil, desc: "Papel de parede com degradê que transiciona entre tons de rosa com bolinhas pequenas em rosa"),
+        Asset(image: "Background2", gridImage: nil, desc: "Papel de parede com degradê que transiciona entre cores lilás e branco com formas hexagonais em branco"),
+        Asset(image: "Background3", gridImage: nil, desc: "Papel de parede amarelo com bolinhas pequenas em rosa pêssego"),
+        Asset(image: "Background4", gridImage: nil, desc: "Papel de parede rosa com linhas diagonais rosa escuro"),
+        Asset(image: "Background5", gridImage: nil, desc: "Papel de parede azul com formas de estrela de quatro pontas azuis escuro"),
+        Asset(image: "Background6", gridImage: nil, desc: "Papel de parede verde menta com bolinhas pequenas em verde escuro"),
+        Asset(image: "Background7", gridImage: nil, desc: "Papel de parede com degradê que transiciona entre tons de rosa com linhas verticais em rosa escuro"),
+        Asset(image: "Background8", gridImage: nil, desc: "Papel de parede com degradê que transiciona entre tons de lilás com quadriculado em lilás escuro")
     ]
-    
+
     @State var bubbles = [
-        Asset(image: UIImage(resource: .bubble1), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .bubble2), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .bubble3), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .bubble4), gridImage: nil, description: "")
+        Asset(image: "Bubble1", gridImage: nil, desc: ""),
+        Asset(image: "Bubble2", gridImage: nil, desc: ""),
+        Asset(image: "Bubble3", gridImage: nil, desc: ""),
+        Asset(image: "Bubble4", gridImage: nil, desc: "")
     ]
-    
+
     @State var texts = [
-        Asset(image: UIImage(resource: .alphabet1), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet2), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet3), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet4), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet5), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet6), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet7), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet8), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet9), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet10), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet11), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet12), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet13), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet14), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet15), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet16), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet17), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet18), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet19), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet20), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet21), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet22), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet23), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet24), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet25), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet26), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet27), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet28), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet29), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet30), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet31), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet32), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet33), gridImage: nil, description: ""),
-        Asset(image: UIImage(resource: .alphabet34), gridImage: nil, description: "")
+        Asset(image: "Alphabet1", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet2", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet3", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet4", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet5", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet6", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet7", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet8", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet9", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet10", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet11", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet12", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet13", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet14", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet15", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet16", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet17", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet18", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet19", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet20", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet21", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet22", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet23", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet24", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet25", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet26", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet27", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet28", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet29", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet30", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet31", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet32", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet33", gridImage: nil, desc: ""),
+        Asset(image: "Alphabet34", gridImage: nil, desc: "")
     ]
     
     let sizeScreen: CGFloat = UIScreen.main.bounds.width + UIScreen.main.bounds.height / UIScreen.main.bounds.width
@@ -156,7 +156,7 @@ struct DecorationItens: View {
                     Rectangle()
                         .overlay {
                             if self.selectedOption == .stickers {
-                                Image(uiImage: number.image)
+                                Image(number.image)
                                     .resizable()
                                     .scaledToFit()
                                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -167,15 +167,15 @@ struct DecorationItens: View {
                                         }
                                     }
                                     .sheet(isPresented: $isShowingCustomStickerPicker) {
-                                        PhotoSticker(showingAlert: $showingAlert) {
-                                            stickers.insert(Asset(image: $0, gridImage: nil, description: ""), at: 0)
-                                        }
+//                                        PhotoSticker(showingAlert: $showingAlert) {
+//                                            stickers.insert(Asset(image: $0, gridImage: nil, description: ""), at: 0)
+//                                        }
                                     }
                                     .accessibilityHidden(true)
                             }
                             
                             if self.selectedOption == .palettes {
-                                Image(uiImage: number.image)
+                                Image(number.image)
                                     .resizable()
                                     .scaledToFit()
                                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -186,12 +186,12 @@ struct DecorationItens: View {
                                         }
                                     }
                                     .padding(.bottom, 0.02 * sizeScreen)
-                                    .accessibilityLabel(number.description)
+                                    .accessibilityLabel(number.desc)
                                     .accessibilityHint("Toque duas vezes para selecionar esse item.")
                             }
                             
                             if self.selectedOption == .bubbles {
-                                Image(uiImage: number.image)
+                                Image(number.image)
                                     .resizable()
                                     .scaledToFit()
                                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -206,7 +206,7 @@ struct DecorationItens: View {
                             }
                             
                             if self.selectedOption == .texts {
-                                Image(uiImage: number.image)
+                                Image(number.image)
                                     .resizable()
                                     .scaledToFit()
                                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in

@@ -15,19 +15,19 @@ class WallpaperClass: Identifiable {
     
     init(wallpaper: Asset) {
         self.wallpaper = wallpaper
-        self.description = wallpaper.description
+        self.description = wallpaper.desc
     }
     
     func setWallpaper(wallpaper: Asset) {
         self.wallpaper = wallpaper
-        self.description = wallpaper.description
+        self.description = wallpaper.desc
     }
 }
 
 struct WallpaperView: View {
     let wallpaper: WallpaperClass
     var body: some View {
-        Image(uiImage: wallpaper.wallpaper.image)
+        Image(wallpaper.wallpaper.image)
             .resizable()
             .aspectRatio(contentMode: .fill)
             .ignoresSafeArea()

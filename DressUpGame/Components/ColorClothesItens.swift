@@ -13,20 +13,20 @@ struct ColorClothesItens: View {
     var tap: (AssetColor) -> Void
     
     @State var colors = [
-        AssetColor(color: .grayColorNew, name: "Preto"),
-        AssetColor(color: .brownColorNew, name: "Marrom"),
-        AssetColor(color: .lightGrayColorClothes, name: "Cinza"),
-        AssetColor(color: .yellowColorClothes, name: "Amarelo"),
-        AssetColor(color: .greenColorClothes, name: "Verde"),
-        AssetColor(color: .blueColorNew, name: "Turquesa"),
-        AssetColor(color: .pinkColorNew, name: "Rosa"),
-        AssetColor(color: .lightPurpleColorClothes, name: "Roxo"),
-        AssetColor(color: .salmonColorNew, name: "Rosa cereja"),
-        AssetColor(color: .lightSalmonColorClothes, name: "Rosa claro"),
-        AssetColor(color: .evenLighterPuplerColorClothes, name: "Roxo claro"),
-        AssetColor(color: .blueGrayColorClothes, name: "Azul escuro"),
-        AssetColor(color: .lightDarkGreenColorClothes, name: "Verde azulado"),
-        AssetColor(color: .lightBlueColorClothes, name: "Azul claro")
+        AssetColor(color: "grayColorNew", name: "Preto"),
+        AssetColor(color: "brownColorNew", name: "Marrom"),
+        AssetColor(color: "lightGrayColorClothes", name: "Cinza"),
+        AssetColor(color: "yellowColorClothes", name: "Amarelo"),
+        AssetColor(color: "greenColorClothes", name: "Verde"),
+        AssetColor(color: "blueColorNew", name: "Turquesa"),
+        AssetColor(color: "pinkColorNew", name: "Rosa"),
+        AssetColor(color: "lightPurpleColorClothes", name: "Roxo"),
+        AssetColor(color: "salmonColorNew", name: "Rosa cereja"),
+        AssetColor(color: "lightSalmonColorClothes", name: "Rosa claro"),
+        AssetColor(color: "evenLighterPuplerColorClothes", name: "Roxo claro"),
+        AssetColor(color: "blueGrayColorClothes", name: "Azul escuro"),
+        AssetColor(color: "lightDarkGreenColorClothes", name: "Verde azulado"),
+        AssetColor(color: "lightBlueColorClothes", name: "Azul claro")
     ]
     
     let sizeScreen: CGFloat = UIScreen.main.bounds.width + UIScreen.main.bounds.height / UIScreen.main.bounds.width
@@ -39,7 +39,7 @@ struct ColorClothesItens: View {
                         .foregroundColor(.white)
                         .overlay {
                             Circle()
-                                .foregroundColor(colorOption.color)
+                                .foregroundColor(Color(colorOption.color))
                                 .onTapGesture {
                                     tap(colorOption)
                                 }
