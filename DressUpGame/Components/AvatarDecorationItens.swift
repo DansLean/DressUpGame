@@ -22,10 +22,11 @@ struct AvatarDecorationItens: View {
         Asset(image: UIImage(resource: .doll2), gridImage: nil, description: "Boneca com traços masculinos de tom claro"),
         Asset(image: UIImage(resource: .doll7), gridImage: nil, description: "Boneca com traços femininos de tom médio claro"),
         Asset(image: UIImage(resource: .doll8), gridImage: nil, description: "Boneca com traços masculinos de tom médio claro"),
-        Asset(image: UIImage(resource: .doll3), gridImage: nil, description: "Boneca com traços femininos de tom médio escuro"),
-        Asset(image: UIImage(resource: .doll4), gridImage: nil, description: "Boneca com traços masculinos de tom médio escuro"),
-        Asset(image: UIImage(resource: .doll5), gridImage: nil, description: "Boneca com traços femininos de tom escuro"),
-        Asset(image: UIImage(resource: .doll6), gridImage: nil, description: "Boneca com traços masculinos de tom escuro")
+        Asset(image: UIImage(resource: .doll5), gridImage: nil, description: "Boneca com traços femininos de tom médio escuro"),
+        Asset(image: UIImage(resource: .doll6), gridImage: nil, description: "Boneca com traços masculinos de tom médio escuro"),
+        Asset(image: UIImage(resource: .doll3), gridImage: nil, description: "Boneca com traços femininos de tom escuro"),
+        Asset(image: UIImage(resource: .doll4), gridImage: nil, description: "Boneca com traços masculinos de tom escuro")
+        
     ]
     
     var hairs: [Asset] {
@@ -257,6 +258,9 @@ struct AvatarDecorationItens: View {
             .padding(.horizontal, 15)
             .background(Color.white)
             .foregroundStyle(.white)
+        }
+        .onChange(of: selectedCustomization) {
+            lastTappedIndex = nil
         }
         .onChange(of: assetHairColor) {
             if lastTappedIndex != nil {
