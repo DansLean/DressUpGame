@@ -15,15 +15,18 @@ struct AvatarDecorationItens: View {
     
     var tap: (Asset) -> Void
     
+    @State var lastTappedIndex: Int?
+    
     @State var faces = [
         Asset(image: UIImage(resource: .doll1), gridImage: nil, description: "Boneca com traços femininos de tom claro"),
         Asset(image: UIImage(resource: .doll2), gridImage: nil, description: "Boneca com traços masculinos de tom claro"),
         Asset(image: UIImage(resource: .doll7), gridImage: nil, description: "Boneca com traços femininos de tom médio claro"),
         Asset(image: UIImage(resource: .doll8), gridImage: nil, description: "Boneca com traços masculinos de tom médio claro"),
-        Asset(image: UIImage(resource: .doll3), gridImage: nil, description: "Boneca com traços femininos de tom médio escuro"),
-        Asset(image: UIImage(resource: .doll4), gridImage: nil, description: "Boneca com traços masculinos de tom médio escuro"),
-        Asset(image: UIImage(resource: .doll5), gridImage: nil, description: "Boneca com traços femininos de tom escuro"),
-        Asset(image: UIImage(resource: .doll6), gridImage: nil, description: "Boneca com traços masculinos de tom escuro")
+        Asset(image: UIImage(resource: .doll5), gridImage: nil, description: "Boneca com traços femininos de tom médio escuro"),
+        Asset(image: UIImage(resource: .doll6), gridImage: nil, description: "Boneca com traços masculinos de tom médio escuro"),
+        Asset(image: UIImage(resource: .doll3), gridImage: nil, description: "Boneca com traços femininos de tom escuro"),
+        Asset(image: UIImage(resource: .doll4), gridImage: nil, description: "Boneca com traços masculinos de tom escuro")
+        
     ]
     
     var hairs: [Asset] {
@@ -119,7 +122,29 @@ struct AvatarDecorationItens: View {
     var body: some View {
         ScrollView(.horizontal) {
             LazyHGrid(rows: Array(repeating: GridItem(.flexible()), count: 1)) {
-                ForEach(selectedTab, id: \.self) { tab in
+                if (self.selectedCustomization == .hair || self.selectedCustomization == .top || self.selectedCustomization == .bottom || self.selectedCustomization == .shoes || self.selectedCustomization == .accessories) {
+                    VStack (alignment: .center, spacing: 10) {
+                        Image(uiImage: UIImage(resource: .multiplyPersonalizado))
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 35, height: 35)
+                            .foregroundColor(.gray4)
+                            .onTapGesture {
+                                tap(Asset(image: UIImage(), gridImage: nil, description: ""))
+                            }
+                        Text("Remover\nItem")
+                            .foregroundStyle(.gray4)
+                            .font(.system(.caption, weight: .semibold))
+                            .multilineTextAlignment(.center)
+                    }
+                    .padding(.horizontal, 10)
+                    .padding(.trailing, 5)
+                    .accessibilityElement(children: .combine)
+                    .accessibilityLabel("Remover item")
+                    .accessibilityHint("Toque duas vezes para remover o item selecionado.")
+                }
+                
+                ForEach(Array(selectedTab.enumerated()), id: \.offset) { index, tab in
                     Rectangle()
                         .overlay {
                             if self.selectedCustomization == .face {
@@ -137,6 +162,7 @@ struct AvatarDecorationItens: View {
                                     .accessibilityLabel(tab.description)
                                     .accessibilityHint("Toque duas vezes para selecionar esse item.")
                             }
+                            
                             if self.selectedCustomization == .hair {
                                 Image(uiImage: tab.image)
                                     .resizable()
@@ -154,6 +180,7 @@ struct AvatarDecorationItens: View {
                                     .accessibilityLabel(tab.description)
                                     .accessibilityHint("Toque duas vezes para selecionar esse item.")
                             }
+                            
                             if self.selectedCustomization == .top {
                                 Image(uiImage: tab.image)
                                     .resizable()
@@ -171,6 +198,7 @@ struct AvatarDecorationItens: View {
                                     .accessibilityLabel(tab.description)
                                     .accessibilityHint("Toque duas vezes para selecionar esse item.")
                             }
+                            
                             if self.selectedCustomization == .bottom {
                                 Image(uiImage: tab.image)
                                     .resizable()
@@ -188,6 +216,7 @@ struct AvatarDecorationItens: View {
                                     .accessibilityLabel(tab.description)
                                     .accessibilityHint("Toque duas vezes para selecionar esse item.")
                             }
+                            
                             if self.selectedCustomization == .shoes {
                                 Image(uiImage: tab.image)
                                     .resizable()
@@ -203,6 +232,7 @@ struct AvatarDecorationItens: View {
                                     .accessibilityLabel(tab.description)
                                     .accessibilityHint("Toque duas vezes para selecionar esse item.")
                             }
+                            
                             if self.selectedCustomization == .accessories {
                                 Image(uiImage: tab.gridImage!)
                                     .resizable()
@@ -214,7 +244,6 @@ struct AvatarDecorationItens: View {
                                             return length * 0.23
                                         }
                                     }
-                                    
                                     .accessibilityLabel(tab.description)
                                     .accessibilityHint("Toque duas vezes para selecionar esse item.")
                             }
@@ -222,12 +251,31 @@ struct AvatarDecorationItens: View {
                         .aspectRatio(0.0013 * sizeScreen, contentMode: .fit)
                         .onTapGesture {
                             tap(tab)
+                            lastTappedIndex = index
                         }
                 }
             }
-            .padding(.horizontal, 10)
+            .padding(.horizontal, 15)
             .background(Color.white)
             .foregroundStyle(.white)
+        }
+        .onChange(of: selectedCustomization) {
+            lastTappedIndex = nil
+        }
+        .onChange(of: assetHairColor) {
+            if lastTappedIndex != nil {
+                tap(selectedTab[lastTappedIndex!])
+            }
+        }
+        .onChange(of: assetTopColor) {
+            if lastTappedIndex != nil {
+                tap(selectedTab[lastTappedIndex!])
+            }
+        }
+        .onChange(of: assetBottomColor) {
+            if lastTappedIndex != nil {
+                tap(selectedTab[lastTappedIndex!])
+            }
         }
     }
 }

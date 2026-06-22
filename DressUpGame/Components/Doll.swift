@@ -12,15 +12,15 @@ import SwiftUI
 class DollClass: Identifiable {
     var face: Asset
     var hair: Asset
-    var hairColor: Color
+    var hairColor: AssetColor
     var top: Asset
-    var topColor: Color
+    var topColor: AssetColor
     var bottom: Asset
-    var bottomColor: Color
+    var bottomColor: AssetColor
     var shoes: Asset
     var accessories: Asset
     
-    init(face: Asset, hair: Asset, hairColor: Color, top: Asset, topColor: Color, bottom: Asset, bottomColor: Color, shoes: Asset, accessories: Asset) {
+    init(face: Asset, hair: Asset, hairColor: AssetColor, top: Asset, topColor: AssetColor, bottom: Asset, bottomColor: AssetColor, shoes: Asset, accessories: Asset) {
         self.face = face
         self.hair = hair
         self.hairColor = hairColor
@@ -40,7 +40,7 @@ class DollClass: Identifiable {
         self.hair = hair
     }
     
-    func setHairColor(hairColor: Color) {
+    func setHairColor(hairColor: AssetColor) {
         self.hairColor = hairColor
         self.hair = self.hair
     }
@@ -49,7 +49,7 @@ class DollClass: Identifiable {
         self.top = top
     }
     
-    func setTopColor(topColor: Color) {
+    func setTopColor(topColor: AssetColor) {
         self.topColor = topColor
         self.top = self.top
     }
@@ -58,7 +58,7 @@ class DollClass: Identifiable {
         self.bottom = bottom
     }
     
-    func setBottomColor(bottomColor: Color) {
+    func setBottomColor(bottomColor: AssetColor) {
         self.bottomColor = bottomColor
         self.bottom = self.bottom
     }
@@ -84,7 +84,7 @@ struct DollView: View {
             Image(uiImage: doll.hair.image)   // Cabelo
                 .resizable()
                 .scaledToFit()
-                .colorMultiply(doll.hairColor)
+                .colorMultiply(doll.hairColor.color)
                 .saturation(1)
                 .offset(x: 0, y: -5)
             
@@ -95,13 +95,13 @@ struct DollView: View {
             Image(uiImage: doll.bottom.image)   // Bottom
                 .resizable()
                 .scaledToFit()
-                .colorMultiply(doll.bottomColor)
+                .colorMultiply(doll.bottomColor.color)
                 .saturation(1)
             
             Image(uiImage: doll.top.image)   // Top
                 .resizable()
                 .scaledToFit()
-                .colorMultiply(doll.topColor)
+                .colorMultiply(doll.topColor.color)
                 .saturation(1)
             
             Image(uiImage: doll.accessories.image)   // Acessórios

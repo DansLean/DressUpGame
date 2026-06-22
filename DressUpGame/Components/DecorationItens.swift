@@ -130,6 +130,8 @@ struct DecorationItens: View {
                                 .font(.system(.body, weight: .semibold))
                         }
                     }
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityHidden(true)
                     .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                         if axis == .vertical {
                             return length * 1
@@ -169,8 +171,7 @@ struct DecorationItens: View {
                                             stickers.insert(Asset(image: $0, gridImage: nil, description: ""), at: 0)
                                         }
                                     }
-                                    .accessibilityLabel(number.description)
-                                    .accessibilityHint("Toque duas vezes para selecionar esse item.")
+                                    .accessibilityHidden(true)
                             }
                             
                             if self.selectedOption == .palettes {
@@ -201,8 +202,7 @@ struct DecorationItens: View {
                                         }
                                     }
                                     .padding(.bottom, 0.02 * sizeScreen)
-                                    .accessibilityLabel(number.description)
-                                    .accessibilityHint("Toque duas vezes para selecionar esse item.")
+                                    .accessibilityHidden(true)
                             }
                             
                             if self.selectedOption == .texts {
@@ -217,8 +217,7 @@ struct DecorationItens: View {
                                         }
                                     }
                                     .padding(.bottom, 0.02 * sizeScreen)
-                                    .accessibilityLabel(number.description)
-                                    .accessibilityHint("Toque duas vezes para selecionar esse item.")
+                                    .accessibilityHidden(true)
                             }
                         }
                         .aspectRatio(0.7, contentMode: .fit)

@@ -49,7 +49,7 @@ struct CreatePostView: View {
     @State private var showActivityControllerView: Bool = false
     @State var selectedItens: [ModelTest] = []
     @State var indexTapped: Int?
-        
+    
     @State var changes = 0
     
     @Binding var background: WallpaperClass
@@ -63,6 +63,7 @@ struct CreatePostView: View {
                 VStack (alignment: .center, spacing: 0) {
                     postGroup
                         .clipShape(.rect(cornerRadius: 6))
+                        .contentShape(.rect(cornerRadius: 6))
                         .border(.borderPink)
                         .containerRelativeFrame(.vertical, alignment: .center) { length, axis in
                             return length * 0.615
@@ -119,29 +120,29 @@ struct CreatePostView: View {
                 .toolbar {
                     if #available(iOS 26.0, *) {
                         ToolbarItem(placement: .topBarLeading) {
-                                Button {
-                                    self.presentationMode.wrappedValue.dismiss()
-                                } label: {
-                                    Image("chevron_left_button")
-                                        .accessibilityLabel("Voltar")
-                                        .accessibilityHint("Toque duas vezes para voltar à tela de criação de look.")
-                                }
-                                .shadow(radius: 2, y: 2)
+                            Button {
+                                self.presentationMode.wrappedValue.dismiss()
+                            } label: {
+                                Image("chevron_left_button")
+                                    .accessibilityLabel("Voltar")
+                                    .accessibilityHint("Toque duas vezes para voltar à tela de criação de look.")
+                            }
+                            .shadow(radius: 2, y: 2)
                         }
                         .sharedBackgroundVisibility(.hidden)
                     } else {
                         ToolbarItem(placement: .topBarLeading) {
-
-                                Button {
-                                    self.presentationMode.wrappedValue.dismiss()
-                                    
-                                } label: {
-                                    Image("chevron_left_button")
-                                        .accessibilityLabel("Voltar")
-                                        .accessibilityHint("Toque duas vezes para voltar à  tela de criação de look.")
-                                }
-                                .shadow(radius: 2, y: 2)
+                            
+                            Button {
+                                self.presentationMode.wrappedValue.dismiss()
+                                
+                            } label: {
+                                Image("chevron_left_button")
+                                    .accessibilityLabel("Voltar")
+                                    .accessibilityHint("Toque duas vezes para voltar à  tela de criação de look.")
                             }
+                            .shadow(radius: 2, y: 2)
+                        }
                     }
                     
                     if #available(iOS 26.0, *) {
@@ -593,7 +594,6 @@ struct CreatePostView: View {
                     .frame(width: item.imageSize, height: item.imageSize)
                     .padding(8)
                     .border(.primaryPink, width: item.borderStickerWidth)
-                
                     .position(item.position)
                     .gesture(
                         DragGesture()
@@ -616,8 +616,7 @@ struct CreatePostView: View {
                                 selectedItens.remove(at: index)
                                 indexTapped = nil
                                 item.setBorder(borderStickerWidth: 0)
-                            }
-                            label: {
+                            } label: {
                                 Image(systemName: "trash")
                                     .bold()
                                     .foregroundStyle(.primaryPink)
@@ -630,8 +629,7 @@ struct CreatePostView: View {
                             
                             Button {
                                 item.decreaseSize(size: 10)
-                            }
-                            label: {
+                            } label: {
                                 Image(systemName: "minus")
                                     .bold()
                                     .foregroundStyle(.primaryPink)
@@ -644,8 +642,7 @@ struct CreatePostView: View {
                             
                             Button {
                                 item.increaseSize(size: 10)
-                            }
-                            label: {
+                            } label: {
                                 Image(systemName: "plus")
                                     .bold()
                                     .foregroundStyle(.primaryPink)
@@ -673,7 +670,6 @@ struct CreatePostView: View {
         }
     }
 }
-
 
 //#Preview {
 //    CreatePostView()
