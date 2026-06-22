@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 enum PostOptions {
     case stickers
     case palettes
@@ -23,13 +24,30 @@ enum AvatarOptions {
     case accessories
 }
 
+struct Asset: Hashable {
+    let id = UUID()
+    let image: UIImage
+    let gridImage: UIImage?
+    let description: String
+}
+
+struct AssetColor: Hashable {
+    let id = UUID()
+    let color: Color
+    let name: String
+}
+
 @main
 struct DressUpGameApp: App {
+    @AppStorage("isFirstLaunch") private var isFirstLaunch = true
+    
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            if isFirstLaunch {
+                OnboardingView(isFirstLaunch: $isFirstLaunch)
+            } else {
+                HomeView()
+            }
         }
     }
 }
-
-
