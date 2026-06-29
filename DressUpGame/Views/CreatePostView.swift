@@ -44,7 +44,7 @@ class ModelTest: Identifiable {
 struct CreatePostView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.displayScale) var displayScale
-    @Binding var doll: DollClass
+    let doll: DollClass
     @State var selectedOption: PostOptions = .stickers
     @State private var showActivityControllerView: Bool = false
     @State var selectedItens: [ModelTest] = []

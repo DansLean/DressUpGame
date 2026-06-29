@@ -13,7 +13,7 @@ struct CreateAvatarView: View {
     @Environment(\.modelContext)
     private var modelContext
     
-    @Binding var doll : DollClass
+    var doll : DollClass
     @State var selectedCustomization: AvatarOptions = .face
     @State var selectedHairColor: AssetColor = AssetColor(color: "grayColorNew", name: "Preto")
     @State var selectedTopColor: AssetColor = AssetColor(color: "grayColorNew", name: "Preto")
@@ -59,7 +59,6 @@ struct CreateAvatarView: View {
                             return length
                         }
                     }
-                    
                     
                     Group {
                         Rectangle()
@@ -142,7 +141,6 @@ struct CreateAvatarView: View {
                             ColorHairsItens() { tapped in
                                 doll.hairColor = tapped
                                 doll.hair = doll.hair
-//                                doll.setHairColor(hairColor: tapped)
                                 selectedHairColor = tapped
                             }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -162,7 +160,6 @@ struct CreateAvatarView: View {
                             ColorClothesItens() { tapped in
                                 doll.topColor = tapped
                                 doll.top = doll.top
-//                                doll.setTopColor(topColor: tapped)
                                 selectedTopColor = tapped
                             }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -182,7 +179,6 @@ struct CreateAvatarView: View {
                             ColorClothesItens() { tapped in
                                 doll.bottomColor = tapped
                                 doll.bottom = doll.bottom
-//                                doll.setBottomColor(bottomColor: tapped)
                                 selectedBottomColor = tapped
                             }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -203,51 +199,37 @@ struct CreateAvatarView: View {
                                 tappedSelected = tapped
                                 if selectedCustomization == .face {
                                     doll.face = Asset(image: tapped.image, gridImage: nil, desc: tapped.desc)
-
-//                                    doll.setDoll(face: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .hair {
                                     doll.hair = Asset(image: tapped.image, gridImage: nil, desc: tapped.desc)
-
-//                                    doll.setHair(hair: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .top {
                                     doll.top = Asset(image: tapped.image, gridImage: nil, desc: tapped.desc)
-
-//                                    doll.setTop(top: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .bottom {
                                     doll.bottom = Asset(image: tapped.image, gridImage: nil, desc: tapped.desc)
-
-//                                    doll.setBottom(bottom: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .shoes {
                                     doll.shoes = Asset(image: tapped.image, gridImage: nil, desc: tapped.desc)
-
-//                                    doll.setShoes(shoes: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .accessories {
                                     doll.accessories = Asset(image: tapped.image, gridImage: nil, desc: tapped.desc)
-//                                    doll.setAccessories(accessories: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }
                             }
                             .onChange(of: tappedSelected) {
                                 if selectedCustomization == .hair {
                                     doll.hair = Asset(image: tappedSelected!.image, gridImage: nil, desc: tappedSelected!.desc)
-//                                    doll.setHair(hair: Asset(image: tappedSelected!.image, gridImage: nil, description: tappedSelected!.description))
                                 }
                                 if selectedCustomization == .top {
                                     doll.top = Asset(image: tappedSelected!.image, gridImage: nil, desc: tappedSelected!.desc)
-//                                    doll.setTop(top: Asset(image: tappedSelected!.image, gridImage: nil, description: tappedSelected!.description))
                                 }
                                 if selectedCustomization == .bottom {
                                     doll.bottom = Asset(image: tappedSelected!.image, gridImage: nil, desc: tappedSelected!.desc)
-//                                    doll.setBottom(bottom: Asset(image: tappedSelected!.image, gridImage: nil, description: tappedSelected!.description))
                                 }
                             }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -261,34 +243,26 @@ struct CreateAvatarView: View {
                             AvatarDecorationItens(selectedCustomization: $selectedCustomization, assetHairColor: $selectedHairColor, assetTopColor: $selectedTopColor, assetBottomColor: $selectedBottomColor) { tapped in
                                 if selectedCustomization == .face {
                                     doll.face = Asset(image: tapped.image, gridImage: nil, desc: tapped.desc)
-//                                    doll.setDoll(face: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .hair {
                                     doll.hair = Asset(image: tapped.image, gridImage: nil, desc: tapped.desc)
-//                                    doll.setHair(hair: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .top {
                                     doll.top = Asset(image: tapped.image, gridImage: nil, desc: tapped.desc)
-//                                    doll.setTop(top: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .bottom {
                                     doll.bottom = Asset(image: tapped.image, gridImage: nil, desc: tapped.desc)
-
-//                                    doll.setBottom(bottom: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .shoes {
                                     doll.shoes = Asset(image: tapped.image, gridImage: nil, desc: tapped.desc)
-
-//                                    doll.setShoes(shoes: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }
                                 
                                 if selectedCustomization == .accessories {
                                     doll.accessories = Asset(image: tapped.image, gridImage: nil, desc: tapped.desc)
-//                                    doll.setAccessories(accessories: Asset(image: tapped.image, gridImage: nil, description: tapped.description))
                                 }
                             }
                             .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
@@ -330,7 +304,7 @@ struct CreateAvatarView: View {
                     
                     if #available(iOS 26.0, *) {
                         ToolbarItem(placement: .topBarTrailing) {
-                            NavigationLink(destination: CreatePostView(doll: $doll, background: $background)) {
+                            NavigationLink(destination: CreatePostView(doll: doll, background: $background)) {
                                 Image("chevron_right_button")
                                     .accessibilityLabel("Avançar")
                                     .accessibilityHint("Toque duas vezes para avançar para a criação de post.")
@@ -343,7 +317,7 @@ struct CreateAvatarView: View {
                         .sharedBackgroundVisibility(.hidden)
                     } else {
                         ToolbarItem(placement: .topBarTrailing) {
-                            NavigationLink(destination: CreatePostView(doll: $doll, background: $background)) {
+                            NavigationLink(destination: CreatePostView(doll: doll, background: $background)) {
                                 Image("chevron_right_button")
                                     .accessibilityLabel("Avançar")
                                     .accessibilityHint("Toque duas vezes para avançar para a criação de post.")

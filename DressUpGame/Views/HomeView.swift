@@ -11,38 +11,53 @@ import SwiftData
 
 struct HomeView: View {
     @State var doll = DollClass(face: Asset(image: "Doll1", gridImage: nil, desc: "Boneca com traços femininos de tom claro"),
-               hair: Asset(image: "", gridImage: nil, desc: ""),
-               hairColor: AssetColor(color: "grayColorNew", name: "Preto"),
-               top: Asset(image: "", gridImage: nil, desc: ""),
-               topColor: AssetColor(color: "grayColorNew", name: "Preto"),
-               bottom: Asset(image: "", gridImage: nil, desc: ""),
-               bottomColor: AssetColor(color: "grayColorNew", name: "Preto"), shoes: Asset(image: "", gridImage: nil, desc: ""),
-               accessories: Asset(image: "", gridImage: nil, desc: "")
+                                hair: Asset(image: "", gridImage: nil, desc: ""),
+                                hairColor: AssetColor(color: "grayColorNew", name: "Preto"),
+                                top: Asset(image: "", gridImage: nil, desc: ""),
+                                topColor: AssetColor(color: "grayColorNew", name: "Preto"),
+                                bottom: Asset(image: "", gridImage: nil, desc: ""),
+                                bottomColor: AssetColor(color: "grayColorNew", name: "Preto"), shoes: Asset(image: "", gridImage: nil, desc: ""),
+                                accessories: Asset(image: "", gridImage: nil, desc: "")
     )
     
     @State var background = WallpaperClass(wallpaper: Asset(image: "Background0", gridImage: nil, desc: "Papel de parede com degradê que transiciona entre as cores rosa e branco com formas hexagonais em branco"))
     
     @Query(sort: \DollClass.face.id)
     private var dolls: [DollClass]
+    var dollSaved: DollClass? {
+        if dolls == [] {
+            return nil
+        }
+        return dolls[0]
+    }
+    
+    @State var animationStart: Bool = false
     
     var body: some View {
         NavigationStack {
             VStack(alignment: .center)  {
-                VStack(alignment: .center) {
-//                    ForEach(dolls) { doll in
-//                        DollView(doll: doll)
-//                    }
-                    Image("Doll1")
-                        .resizable()
-                        .scaledToFit()
-                        .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
-                            if axis == .vertical {
-                                return length * 0.55
-                            } else {
-                                return length
-                            }
+                HStack(alignment: .center) {
+                    if (dollSaved != nil) {
+                        NavigationLink(destination: CreateAvatarView(doll: dollSaved!, background: $background)) {
+                            DollView(doll: dollSaved!)
+                                .phaseAnimator([true, false, true, false, true], trigger: animationStart, content: { content, phase in
+                                    content
+                                        .scaleEffect(phase ? 1.0 : 1.1)
+                                })
                         }
-                        .accessibilityHidden(true)
+                    } else {
+                        Image("Doll1")
+                            .resizable()
+                            .scaledToFit()
+                            .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
+                                if axis == .vertical {
+                                    return length * 0.55
+                                } else {
+                                    return length
+                                }
+                            }
+                            .accessibilityHidden(true)
+                    }
                 }
                 .containerRelativeFrame([.horizontal, .vertical]) { length, axis in
                     if axis == .vertical {
@@ -52,7 +67,7 @@ struct HomeView: View {
                     }
                 }
                 
-                NavigationLink(destination: CreateAvatarView(doll: $doll, background: $background)) {
+                NavigationLink(destination: CreateAvatarView(doll: doll, background: $background)) {
                     ZStack {
                         LinearGradient(gradient: Gradient(colors: [.lightgreenGradient, .greenGradient]), startPoint: .top, endPoint: .bottom)
                         VStack (spacing: 8) {
@@ -82,9 +97,13 @@ struct HomeView: View {
                                  bottom: Asset(image: "", gridImage: nil, desc: ""),
                                  bottomColor: AssetColor(color: "grayColorNew", name: "Preto"), shoes: Asset(image: "", gridImage: nil, desc: ""),
                                  accessories: Asset(image: "", gridImage: nil, desc: "")
-                      )
+                )
                 background = WallpaperClass(wallpaper: Asset(image: "Background0", gridImage: nil, desc: "Papel de parede com degradê que transiciona entre as cores rosa e branco com formas hexagonais em branco"))
                 
+                Task {
+                    try? await Task.sleep(for: .seconds(0.5))
+                    animationStart.toggle()
+                }
             }
             .background(
                 Image("Background0")
